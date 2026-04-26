@@ -1367,62 +1367,58 @@ function closeLogin() {
 }
 
 function doLogin() {
+  if (window.netlifyIdentity) {
+    closeLogin();
+    netlifyIdentity.open('login');
+    return;
+  }
+  // Fallback manual API
   const email = document.getElementById('li-email').value.trim();
   const pass  = document.getElementById('li-pass').value;
   const err   = document.getElementById('login-err');
   err.style.display = 'none';
-
   if (!email || !pass) { err.textContent='Completa todos los campos'; err.style.display='block'; return; }
-
-  // Use Netlify Identity widget
-  if (window.netlifyIdentity) {
-    netlifyIdentity.open('login');
-    return;
-  }
-  // Fallback: direct API call
   fetch('/.netlify/identity/token', {
-    method: 'POST',
-    headers: {'Content-Type':'application/x-www-form-urlencoded'},
-    body: `grant_type=password&username=${encodeURIComponent(email)}&password=${encodeURIComponent(pass)}`
-  }).then(r => r.json()).then(data => {
-    if (data.access_token) {
-      localStorage.setItem('udg_token', data.access_token);
-      localStorage.setItem('udg_user', email);
-      enterApp();
-    } else {
-      err.textContent = 'Correo o contraseña incorrectos';
-      err.style.display = 'block';
-    }
-  }).catch(() => {
-    err.textContent = 'Error de conexión. Verifica tu internet.';
-    err.style.display = 'block';
-  });
+    method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:`grant_type=password&username=${encodeURIComponent(email)}&password=${encodeURIComponent(pass)}`
+  }).then(r=>r.json()).then(data=>{
+    if (data.access_token) { localStorage.setItem('udg_token', data.access_token); enterApp(); }
+    else { err.textContent='Correo o contraseña incorrectos'; err.style.display='block'; }
+  }).catch(()=>{ err.textContent='Error de conexión'; err.style.display='block'; });
 }
 
 function enterApp() {
-  document.getElementById('landing').style.display = 'none';
+  document.getElementById('landing').style.display    = 'none';
   document.getElementById('login-overlay').classList.remove('show');
-  document.getElementById('s-home').style.display = 'block';
-  document.getElementById('s-home').classList.add('active');
+  // Show home screen and make it active
+  const home = document.getElementById('s-home');
+  home.style.display = 'block';
+  home.classList.add('active');
 }
 
 function checkSession() {
-  // If Netlify Identity is available, use it
-  if (window.netlifyIdentity) {
-    netlifyIdentity.on('init', user => { if (user) enterApp(); });
-    netlifyIdentity.on('login', user => { netlifyIdentity.close(); enterApp(); });
-    netlifyIdentity.on('logout', () => {
-      document.getElementById('landing').style.display = 'flex';
-      document.getElementById('s-home').style.display = 'none';
-    });
-    netlifyIdentity.init();
+  if (!window.netlifyIdentity) {
+    // No Identity widget — show landing, let manual login handle it
     return;
   }
-  // Fallback: check stored token
-  if (localStorage.getItem('udg_token')) { enterApp(); }
+  netlifyIdentity.on('init', user => {
+    if (user) enterApp();
+  });
+  netlifyIdentity.on('login', user => {
+    netlifyIdentity.close();
+    enterApp();
+  });
+  netlifyIdentity.on('logout', () => {
+    document.getElementById('landing').style.display = 'flex';
+    document.querySelectorAll('.screen').forEach(s => {
+      s.style.display = 'none';
+      s.classList.remove('active');
+    });
+  });
+  netlifyIdentity.init();
 }
 
-// Init on load
 window.addEventListener('DOMContentLoaded', checkSession);
 </script>
 </body>
