@@ -1398,17 +1398,16 @@ function enterApp() {
 }
 
 function checkSession() {
-  if (!window.netlifyIdentity) {
-    // No Identity widget — show landing, let manual login handle it
-    return;
+  if (!window.netlifyIdentity) return;
+
+  // Handle invite/recovery tokens in URL hash
+  const hash = window.location.hash;
+  if (hash && (hash.includes('invite_token') || hash.includes('recovery_token') || hash.includes('confirmation_token'))) {
+    netlifyIdentity.open();
   }
-  netlifyIdentity.on('init', user => {
-    if (user) enterApp();
-  });
-  netlifyIdentity.on('login', user => {
-    netlifyIdentity.close();
-    enterApp();
-  });
+
+  netlifyIdentity.on('init', user => { if (user) enterApp(); });
+  netlifyIdentity.on('login', user => { netlifyIdentity.close(); enterApp(); });
   netlifyIdentity.on('logout', () => {
     document.getElementById('landing').style.display = 'flex';
     document.querySelectorAll('.screen').forEach(s => {
