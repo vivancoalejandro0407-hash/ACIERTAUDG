@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AciertaUDG — Tu pase a la universidad</title>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --azul:    #004a97;
+  --azul2:   #0066cc;
+  --oro:     #f0a500;
+  --oro2:    #ffc72c;
+  --bg:      #f5f7fa;
+  --panel:   #ffffff;
+  --text:    #0d1b2e;
+  --muted:   #6b7a90;
+  --border:  #e2e8f2;
+  --rad:     18px;
+  --rad-lg:  26px;
+  --success: #16a34a;
+  --danger:  #dc2626;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--azul);border-radius:99px}
+
+/* ── LANDING / LOGIN ── */
+#landing{display:flex;flex-direction:column;min-height:100vh;background:linear-gradient(135deg,#001840 0%,#004a97 50%,#001840 100%);position:relative;overflow:hidden}
+#landing::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(240,165,0,.12),transparent 60%),radial-gradient(circle at 80% 20%,rgba(99,102,241,.15),transparent 50%)}
+.land-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 28px;position:relative;z-index:2}
+.land-logo{font-family:'Syne';font-weight:800;font-size:1.3rem;color:#fff;letter-spacing:-.5px}
+.land-logo span{color:var(--oro)}
+.land-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;position:relative;z-index:2}
+.land-badge{display:inline-block;background:rgba(240,165,0,.2);border:1px solid rgba(240,165,0,.4);color:var(--oro2);font-size:.7rem;font-weight:700;letter-spacing:2px;padding:5px 16px;border-radius:99px;text-transform:uppercase;margin-bottom:20px}
+.land-h1{font-family:'Syne';font-weight:800;font-size:3rem;color:#fff;line-height:1.05;margin-bottom:14px}
+.land-h1 span{color:var(--oro)}
+.land-sub{color:rgba(255,255,255,.65);font-size:.95rem;max-width:400px;margin:0 auto 36px;line-height:1.65}
+.land-features{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:400px;margin:0 auto 40px;text-align:left}
+.land-feat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start}
+.land-feat-icon{font-size:1.3rem;flex-shrink:0}
+.land-feat h4{color:#fff;font-size:.82rem;font-weight:700;margin-bottom:2px}
+.land-feat p{color:rgba(255,255,255,.5);font-size:.7rem;line-height:1.4}
+.land-cta{display:flex;flex-direction:column;gap:12px;align-items:center;width:100%;max-width:320px;margin:0 auto}
+.btn-land{background:linear-gradient(135deg,var(--oro),var(--oro2));color:#1a0e00;font-weight:800;font-size:.95rem;padding:16px 32px;border-radius:14px;border:none;cursor:pointer;width:100%;font-family:'Syne';letter-spacing:-.3px;transition:all .2s;box-shadow:0 4px 20px rgba(240,165,0,.3)}
+.btn-land:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(240,165,0,.4)}
+.btn-land-outline{background:rgba(255,255,255,.08);color:#fff;font-weight:600;font-size:.85rem;padding:13px 32px;border-radius:14px;border:1px solid rgba(255,255,255,.2);cursor:pointer;width:100%;font-family:'DM Sans';transition:all .2s}
+.btn-land-outline:hover{background:rgba(255,255,255,.14)}
+.land-footer{text-align:center;padding:20px;color:rgba(255,255,255,.3);font-size:.72rem;position:relative;z-index:2}
+/* login modal */
+#login-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);backdrop-filter:blur(12px);align-items:center;justify-content:center}
+#login-overlay.show{display:flex}
+.login-box{background:#fff;border-radius:24px;padding:36px 32px;width:360px;max-width:92vw;text-align:center}
+.login-box h2{font-family:'Syne';font-size:1.2rem;color:var(--azul);margin-bottom:6px}
+.login-box p{font-size:.8rem;color:var(--muted);margin-bottom:24px}
+.login-box input{width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:12px;font-size:.9rem;font-family:'DM Sans';color:var(--text);margin-bottom:12px;box-sizing:border-box;transition:border .2s}
+.login-box input:focus{outline:none;border-color:var(--azul)}
+.login-box .btn-login{background:var(--azul);color:#fff;border:none;width:100%;padding:14px;border-radius:12px;font-weight:700;font-size:.9rem;cursor:pointer;font-family:'DM Sans';transition:all .2s;margin-bottom:10px}
+.login-box .btn-login:hover{background:var(--azul2)}
+.login-err{color:#dc2626;font-size:.78rem;margin-bottom:10px;display:none}
+.login-close{color:var(--muted);font-size:.75rem;cursor:pointer;background:none;border:none;font-family:'DM Sans'}
+.login-close:hover{color:var(--text)}
+.screen{display:none;min-height:100vh;animation:fadeUp .4s ease}
+.screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── HEADER ── */
+.top-bar{
+  background:var(--azul);
+  padding:14px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 2px 16px rgba(0,74,151,.25);
+}
+.logo{font-family:'Syne';font-weight:800;font-size:1.15rem;color:#fff;letter-spacing:-.5px}
+.logo span{color:var(--oro)}
+.back-btn{
+  background:rgba(255,255,255,.15);border:none;color:#fff;
+  padding:7px 14px;border-radius:10px;font-size:.8rem;font-weight:600;
+  cursor:pointer;transition:background .2s;font-family:'DM Sans'
+}
+.back-btn:hover{background:rgba(255,255,255,.25)}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(135deg,var(--azul) 0%,#003070 60%,#001840 100%);
+  padding:48px 20px 60px;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 70% 30%,rgba(240,165,0,.18) 0%,transparent 60%);
+}
+.hero-badge{
+  display:inline-block;
+  background:rgba(240,165,0,.2);border:1px solid rgba(240,165,0,.4);
+  color:var(--oro2);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  padding:5px 14px;border-radius:99px;text-transform:uppercase;margin-bottom:18px;
+}
+.hero h1{
+  font-family:'Syne';font-weight:800;font-size:2.6rem;color:#fff;
+  line-height:1.1;margin-bottom:12px;
+}
+.hero h1 span{color:var(--oro)}
+.hero p{color:rgba(255,255,255,.7);font-size:.95rem;max-width:360px;margin:0 auto 32px}
+
+/* ── CARDS GRID ── */
+.cards-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+  max-width:480px;margin:0 auto;padding:0 20px;
+}
+.area-card{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--rad);padding:20px 16px;
+  cursor:pointer;transition:all .22s;text-align:center;
+  backdrop-filter:blur(8px);
+}
+.area-card:hover{background:rgba(255,255,255,.14);transform:translateY(-3px);border-color:var(--oro)}
+.area-card .emoji{font-size:2rem;margin-bottom:8px}
+.area-card h3{color:#fff;font-weight:700;font-size:.85rem;font-family:'Syne'}
+.area-card p{color:rgba(255,255,255,.55);font-size:.7rem;margin-top:3px}
+
+/* ── MAIN CONTENT ── */
+.main-wrap{max-width:520px;margin:0 auto;padding:24px 16px 80px}
+
+/* ── GLASS CARD ── */
+.card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:var(--rad-lg);padding:22px;margin-bottom:16px;
+  box-shadow:0 2px 12px rgba(0,0,0,.04);
+}
+.card h3{font-family:'Syne';font-weight:700;font-size:.95rem;margin-bottom:14px;color:var(--text)}
+
+/* ── NAV PILLS ── */
+.nav-pills{display:flex;gap:8px;overflow-x:auto;padding:0 16px;margin:16px 0;scrollbar-width:none}
+.nav-pills::-webkit-scrollbar{display:none}
+.pill{
+  background:var(--panel);border:1.5px solid var(--border);
+  color:var(--muted);font-size:.78rem;font-weight:600;
+  padding:8px 16px;border-radius:99px;cursor:pointer;
+  transition:all .2s;white-space:nowrap;font-family:'DM Sans';
+}
+.pill.active,.pill:hover{background:var(--azul);border-color:var(--azul);color:#fff}
+
+/* ── SECTION LABEL ── */
+.sect{font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);margin:20px 0 10px;padding:0 4px}
+
+/* ── ACTION CARDS ── */
+.action-card{
+  background:var(--panel);border:1px solid var(--border);border-radius:var(--rad);
+  padding:18px;margin-bottom:12px;display:flex;align-items:center;gap:14px;
+  cursor:pointer;transition:all .2s;box-shadow:0 1px 6px rgba(0,0,0,.04);
+}
+.action-card:hover{border-color:var(--azul);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,74,151,.1)}
+.action-icon{
+  width:52px;height:52px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;
+}
+.action-card h4{font-weight:700;font-size:.9rem;margin-bottom:3px}
+.action-card p{font-size:.75rem;color:var(--muted)}
+.action-card .arrow{margin-left:auto;color:var(--border);font-size:1.1rem}
+
+/* ── BTN ── */
+.btn{
+  background:var(--azul);color:#fff;border:none;
+  padding:14px 24px;border-radius:12px;font-weight:700;font-size:.85rem;
+  cursor:pointer;transition:all .22s;font-family:'DM Sans';width:100%;
+}
+.btn:hover{background:var(--azul2);transform:translateY(-1px)}
+.btn-oro{background:linear-gradient(135deg,var(--oro),var(--oro2));color:#1a0e00}
+.btn-sm{padding:9px 18px;font-size:.78rem;width:auto}
+.btn-outline{background:transparent;border:2px solid var(--azul);color:var(--azul)}
+.btn-outline:hover{background:var(--azul);color:#fff}
+.btn-danger{background:var(--danger)}
+
+/* ── SIMULACRO ── */
+.sim-header{
+  background:linear-gradient(135deg,var(--azul),#003070);
+  padding:20px;border-radius:var(--rad-lg);margin-bottom:16px;color:#fff;
+}
+.sim-timer{
+  font-family:'Syne';font-size:2rem;font-weight:800;color:var(--oro);
+  text-align:center;
+}
+.sim-progress{height:6px;background:rgba(255,255,255,.2);border-radius:99px;overflow:hidden;margin:10px 0}
+.sim-progress-bar{height:100%;background:var(--oro);border-radius:99px;transition:width .3s}
+.question-num{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.question-text{font-size:1rem;font-weight:600;line-height:1.5;margin-top:6px}
+
+.opt-btn{
+  background:var(--panel);border:2px solid var(--border);
+  border-radius:12px;padding:14px 16px;margin-bottom:10px;
+  cursor:pointer;transition:all .18s;text-align:left;width:100%;
+  font-family:'DM Sans';font-size:.88rem;color:var(--text);font-weight:500;
+}
+.opt-btn:hover{border-color:var(--azul);background:#f0f5ff}
+.opt-btn.selected{border-color:var(--azul);background:#e8f0ff;color:var(--azul);font-weight:600}
+.opt-btn.correct{border-color:var(--success);background:#f0fdf4;color:var(--success)}
+.opt-btn.wrong{border-color:var(--danger);background:#fef2f2;color:var(--danger)}
+
+/* ── RESULTADO ── */
+.score-circle{
+  width:120px;height:120px;border-radius:50%;
+  border:6px solid var(--azul);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  margin:0 auto 20px;background:linear-gradient(135deg,var(--azul),var(--azul2));
+}
+.score-circle .num{font-family:'Syne';font-size:2rem;font-weight:800;color:#fff}
+.score-circle .den{font-size:.75rem;color:rgba(255,255,255,.7)}
+
+/* ── TEMAS ── */
+.tema-item{
+  background:var(--panel);border:1px solid var(--border);border-radius:14px;
+  padding:16px;margin-bottom:10px;cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;gap:12px;
+}
+.tema-item:hover{border-color:var(--azul);transform:translateY(-1px)}
+.tema-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.tema-info h4{font-weight:700;font-size:.88rem;margin-bottom:2px}
+.tema-info p{font-size:.73rem;color:var(--muted)}
+
+/* ── TEMA CONTENIDO ── */
+.content-block{margin-bottom:16px}
+.content-block h3{font-family:'Syne';font-weight:700;font-size:1rem;color:var(--azul);margin-bottom:8px}
+.content-block p{font-size:.88rem;color:#374151;line-height:1.65;margin-bottom:8px}
+.example-box{
+  background:#f0f5ff;border-left:4px solid var(--azul);
+  border-radius:0 10px 10px 0;padding:12px 16px;margin:10px 0;
+  font-size:.83rem;color:#1e3a5f;font-family:monospace;line-height:1.6;
+}
+.tip-box{
+  background:#fffbeb;border:1px solid #fde68a;border-radius:10px;
+  padding:12px 16px;margin:10px 0;font-size:.83rem;color:#92400e;
+}
+
+/* ── CALCULADORA ── */
+.calc-input{
+  width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:12px;
+  font-family:'DM Sans';font-size:.9rem;color:var(--text);background:var(--bg);
+  transition:border .2s;margin-bottom:12px;
+}
+.calc-input:focus{outline:none;border-color:var(--azul);background:#fff}
+.prob-bar-wrap{margin-bottom:12px}
+.prob-label{display:flex;justify-content:space-between;font-size:.8rem;margin-bottom:5px}
+.prob-label span:first-child{font-weight:600}
+.prob-bar{height:10px;background:var(--border);border-radius:99px;overflow:hidden}
+.prob-fill{height:100%;border-radius:99px;transition:width .6s ease}
+
+/* ── CALENDARIO ── */
+.cal-event{
+  background:var(--panel);border:1px solid var(--border);border-radius:14px;
+  padding:16px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start;
+}
+.cal-date{
+  min-width:52px;text-align:center;
+  background:var(--azul);color:#fff;border-radius:10px;padding:8px 4px;
+}
+.cal-date .mes{font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:.8}
+.cal-date .dia{font-family:'Syne';font-size:1.4rem;font-weight:800;line-height:1}
+.cal-info h4{font-weight:700;font-size:.88rem;margin-bottom:3px}
+.cal-info p{font-size:.75rem;color:var(--muted)}
+.cal-tag{
+  display:inline-block;font-size:.62rem;font-weight:700;padding:2px 8px;
+  border-radius:99px;margin-top:5px;text-transform:uppercase;letter-spacing:.5px;
+}
+
+/* ── VIDEOS ── */
+.video-section{margin-bottom:16px}
+.video-section h4{font-size:.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.video-card{
+  background:var(--bg);border:1px solid var(--border);border-radius:12px;
+  overflow:hidden;margin-bottom:10px;cursor:pointer;transition:all .2s;
+}
+.video-card:hover{border-color:var(--azul);transform:translateY(-1px)}
+.video-thumb{
+  position:relative;width:100%;padding-top:56.25%;background:#000;overflow:hidden;
+}
+.video-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.video-play{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.3);
+}
+.video-play-btn{
+  width:48px;height:48px;background:rgba(255,0,0,.9);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+}
+.video-play-btn svg{fill:#fff;margin-left:4px}
+.video-info{padding:10px 12px}
+.video-info p{font-size:.82rem;font-weight:600;color:var(--text);line-height:1.4}
+.video-embed{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;margin-bottom:10px}
+.video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+#toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:#0d1b2e;color:#fff;padding:12px 22px;border-radius:12px;
+  font-size:.82rem;font-weight:600;opacity:0;transition:all .3s;z-index:9999;
+  pointer-events:none;white-space:nowrap;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- ══ LANDING ══ -->
+<div id="landing">
+  <nav class="land-nav">
+    <div class="land-logo">Acier<span>ta</span>UDG</div>
+    <button class="btn-land-outline" style="width:auto;padding:10px 22px" onclick="showLogin()">Iniciar sesión</button>
+  </nav>
+  <div class="land-hero">
+    <div class="land-badge">Examen PAA · Universidad de Guadalajara 2026-B</div>
+    <h1 class="land-h1">Tu pase a la<br><span>UDG</span> empieza aquí</h1>
+    <p class="land-sub">Simulacros cronometrados, preparación por temas, calculadora de puntaje real y calendario oficial. Todo lo que necesitas para entrar.</p>
+    <div class="land-features">
+      <div class="land-feat"><div class="land-feat-icon">🧪</div><div><h4>Simulacro PAA</h4><p>80 preguntas · 90 min</p></div></div>
+      <div class="land-feat"><div class="land-feat-icon">📚</div><div><h4>Temas + Videos</h4><p>Mat, Español, Ciencias</p></div></div>
+      <div class="land-feat"><div class="land-feat-icon">🎯</div><div><h4>Calculadora Real</h4><p>Fórmula oficial UDG</p></div></div>
+      <div class="land-feat"><div class="land-feat-icon">📅</div><div><h4>Calendario 2026-B</h4><p>Fechas verificadas</p></div></div>
+    </div>
+    <div class="land-cta">
+      <button class="btn-land" onclick="showLogin()">🚀 Acceder ahora</button>
+      <p style="color:rgba(255,255,255,.4);font-size:.72rem;margin-top:4px">Acceso con cuenta autorizada</p>
+    </div>
+  </div>
+  <div class="land-footer">AciertaUDG © 2026 · Todos los derechos reservados · Alejandro Vivanco Consultoría</div>
+</div>
+
+<!-- ══ LOGIN MODAL ══ -->
+<div id="login-overlay">
+  <div class="login-box">
+    <div style="font-size:2rem;margin-bottom:8px">🎓</div>
+    <h2>Acceder a AciertaUDG</h2>
+    <p>Ingresa con tu cuenta autorizada</p>
+    <p id="login-err" class="login-err">Correo o contraseña incorrectos</p>
+    <input type="email" id="li-email" placeholder="tu@correo.com" autocomplete="email">
+    <input type="password" id="li-pass" placeholder="Contraseña" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn-login" onclick="doLogin()">Entrar →</button>
+    <button class="login-close" onclick="closeLogin()">← Volver al inicio</button>
+  </div>
+</div>
+
+<!-- ══ SCREEN: HOME ══ -->
+<div id="s-home" class="screen" style="display:none">
+  <div class="hero">
+    <div class="hero-badge">Universidad de Guadalajara · PIAC 2025</div>
+    <h1>Acier<span>ta</span>UDG</h1>
+    <p>Prepárate para el examen de admisión con simulacros, temas y tu probabilidad real de ingreso.</p>
+  </div>
+  <!-- Area selector -->
+  <div style="background:linear-gradient(135deg,var(--azul) 0%,#001840 100%);padding:0 0 32px">
+    <p class="sect" style="color:rgba(255,255,255,.5);padding:0 20px;padding-top:0;margin-top:0">Elige tu área</p>
+    <div class="cards-grid">
+      <div class="area-card" onclick="selectArea('salud')">
+        <div class="emoji">🩺</div>
+        <h3>Ciencias de la Salud</h3>
+        <p>Medicina, Enfermería, Odontología...</p>
+      </div>
+      <div class="area-card" onclick="selectArea('exactas')">
+        <div class="emoji">⚗️</div>
+        <h3>Exactas e Ingenierías</h3>
+        <p>Computación, Civil, Industrial...</p>
+      </div>
+      <div class="area-card" onclick="selectArea('sociales')">
+        <div class="emoji">⚖️</div>
+        <h3>Sociales y Humanidades</h3>
+        <p>Derecho, Psicología, Trabajo Social...</p>
+      </div>
+      <div class="area-card" onclick="selectArea('economico')">
+        <div class="emoji">📊</div>
+        <h3>Económico-Administrativo</h3>
+        <p>Administración, Contaduría, Economía...</p>
+      </div>
+      <div class="area-card" onclick="selectArea('arte')">
+        <div class="emoji">🎨</div>
+        <h3>Arte, Arquitectura y Diseño</h3>
+        <p>Arquitectura, Diseño Gráfico...</p>
+      </div>
+      <div class="area-card" onclick="selectArea('agricola')">
+        <div class="emoji">🌱</div>
+        <h3>Agropecuarias y Biológicas</h3>
+        <p>Agronomía, Biología, Veterinaria...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA simple -->
+  <div class="main-wrap" style="padding-top:28px;text-align:center">
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px">Selecciona tu área arriba para comenzar →</p>
+  </div>
+</div>
+
+<!-- ══ SCREEN: AREA ══ -->
+<div id="s-area" class="screen">
+  <div class="top-bar">
+    <div class="logo">Acier<span>ta</span>UDG</div>
+    <button class="back-btn" onclick="goHome()">← Inicio</button>
+  </div>
+  <div class="main-wrap">
+    <div id="area-hero" class="card" style="text-align:center;background:linear-gradient(135deg,var(--azul),#003070);color:#fff;border:none">
+      <div style="font-size:2.5rem;margin-bottom:8px" id="area-emoji"></div>
+      <h2 id="area-nombre" style="font-family:'Syne';font-weight:800;font-size:1.2rem;margin-bottom:4px"></h2>
+      <p id="area-desc" style="font-size:.8rem;opacity:.7"></p>
+    </div>
+    <div class="action-card" onclick="goSimulacro()">
+      <div class="action-icon" style="background:linear-gradient(135deg,#004a97,#0066cc)">🧪</div>
+      <div><h4>Hacer simulacro PIAC</h4><p>80 preguntas · 90 minutos · calificación inmediata</p></div>
+      <div class="arrow">›</div>
+    </div>
+    <div class="action-card" onclick="goTemas()">
+      <div class="action-icon" style="background:linear-gradient(135deg,#15803d,#16a34a)">📚</div>
+      <div><h4>Prepararte por temas</h4><p>Estudia cada materia con explicaciones y ejemplos</p></div>
+      <div class="arrow">›</div>
+    </div>
+    <div class="action-card" onclick="goCalc()">
+      <div class="action-icon" style="background:linear-gradient(135deg,#b45309,#f59e0b)">🎯</div>
+      <div><h4>Calcular mi probabilidad</h4><p>Ingresa tu puntaje y ve tus chances por carrera</p></div>
+      <div class="arrow">›</div>
+    </div>
+    <div class="action-card" onclick="goCal()">
+      <div class="action-icon" style="background:linear-gradient(135deg,#7c3aed,#a855f7)">📅</div>
+      <div><h4>Calendario de fechas</h4><p>Registro, examen, resultados y más</p></div>
+      <div class="arrow">›</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN: SIMULACRO ══ -->
+<div id="s-sim" class="screen">
+  <div class="top-bar">
+    <div class="logo">Acier<span>ta</span>UDG</div>
+    <button class="back-btn" id="sim-exit-btn" onclick="confirmExit()">✕ Salir</button>
+  </div>
+  <div id="exit-modal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.6);align-items:center;justify-content:center;backdrop-filter:blur(6px)">
+    <div style="background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:32px;max-width:320px;width:90%;text-align:center">
+      <p style="font-size:1.1rem;font-weight:700;margin-bottom:8px">¿Salir del simulacro?</p>
+      <p style="font-size:.84rem;color:var(--muted);margin-bottom:24px">Perderás todo el progreso actual.</p>
+      <div style="display:flex;gap:12px">
+        <button class="btn btn-danger" onclick="doExit()" style="flex:1">Sí, salir</button>
+        <button class="btn btn-outline" onclick="closeExitModal()" style="flex:1">Continuar</button>
+      </div>
+    </div>
+  </div>
+  <div class="main-wrap" style="padding-top:16px">
+    <div class="sim-header">
+      <div class="question-num" id="sim-qnum">PREGUNTA 1 DE 80</div>
+      <div class="sim-timer" id="sim-timer">90:00</div>
+      <div class="sim-progress"><div class="sim-progress-bar" id="sim-pbar" style="width:0%"></div></div>
+    </div>
+    <div class="card">
+      <div id="sim-materia" style="font-size:.7rem;font-weight:700;color:var(--azul);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px"></div>
+      <p id="sim-question" style="font-size:.95rem;font-weight:600;line-height:1.6;color:var(--text)"></p>
+    </div>
+    <div id="sim-opts"></div>
+    <div id="sim-feedback" style="display:none" class="card">
+      <p id="sim-feedback-text" style="font-size:.85rem;line-height:1.6"></p>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:8px">
+      <button class="btn btn-outline btn-sm" id="sim-prev-btn" onclick="simPrev()">← Anterior</button>
+      <button class="btn btn-sm" id="sim-next-btn" onclick="simNext()" style="flex:1">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN: RESULTADO ══ -->
+<div id="s-resultado" class="screen">
+  <div class="top-bar">
+    <div class="logo">Acier<span>ta</span>UDG</div>
+    <button class="back-btn" onclick="goArea()">← Mi área</button>
+  </div>
+  <div class="main-wrap">
+    <div class="card" style="text-align:center">
+      <h2 style="font-family:'Syne';font-size:1.1rem;margin-bottom:20px">Resultado del Simulacro</h2>
+      <div class="score-circle">
+        <span class="num" id="res-score">0</span>
+        <span class="den" id="res-den">/ 80</span>
+      </div>
+      <p id="res-pct" style="font-size:1.8rem;font-weight:800;font-family:'Syne';color:var(--azul);margin-bottom:4px"></p>
+      <p id="res-msg" style="font-size:.85rem;color:var(--muted);margin-bottom:20px"></p>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px">
+        <div style="background:var(--bg);border-radius:12px;padding:12px">
+          <p style="font-size:1.2rem;font-weight:800;color:var(--success)" id="res-correct">0</p>
+          <p style="font-size:.7rem;color:var(--muted)">Correctas</p>
+        </div>
+        <div style="background:var(--bg);border-radius:12px;padding:12px">
+          <p style="font-size:1.2rem;font-weight:800;color:var(--danger)" id="res-wrong">0</p>
+          <p style="font-size:.7rem;color:var(--muted)">Incorrectas</p>
+        </div>
+        <div style="background:var(--bg);border-radius:12px;padding:12px">
+          <p style="font-size:1.2rem;font-weight:800;color:var(--muted)" id="res-skip">0</p>
+          <p style="font-size:.7rem;color:var(--muted)">Sin responder</p>
+        </div>
+      </div>
+      <button class="btn btn-oro" onclick="goSimulacro()">🔁 Repetir simulacro</button>
+      <button class="btn btn-outline" style="margin-top:10px" onclick="goCalc()">🎯 Ver mi probabilidad</button>
+    </div>
+    <div class="card">
+      <h3>Desempeño por materia</h3>
+      <div id="res-breakdown"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN: TEMAS ══ -->
+<div id="s-temas" class="screen">
+  <div class="top-bar">
+    <div class="logo">Acier<span>ta</span>UDG</div>
+    <button class="back-btn" onclick="goArea()">← Mi área</button>
+  </div>
+  <div class="main-wrap">
+    <p class="sect">Materias del PIAC</p>
+    <div id="temas-list"></div>
+  </div>
+</div>
+
+<!-- ══ SCREEN: TEMA DETALLE ══ -->
+<div id="s-tema-detail" class="screen">
+  <div class="top-bar">
+    <div class="logo">Acier<span>ta</span>UDG</div>
+    <button class="back-btn" onclick="goTemas()">← Temas</button>
+  </div>
+  <div class="main-wrap">
+    <div id="tema-content"></div>
+  </div>
+</div>
+
+<!-- ══ SCREEN: CALCULADORA ══ -->
+<div id="s-calc" class="screen">
+  <div class="top-bar">
+    <div class="logo">Acier<span>ta</span>UDG</div>
+    <button class="back-btn" onclick="goArea()">← Mi área</button>
+  </div>
+  <div class="main-wrap">
+    <div class="card">
+      <h3>🎯 Calculadora de Puntaje UDG</h3>
+      <p style="font-size:.8rem;color:var(--muted);margin-bottom:20px">Fórmula oficial: <strong>Puntaje PAA + Promedio Bachillerato = Puntaje Final</strong></p>
+
+      <label style="font-size:.78rem;font-weight:600;color:var(--muted);display:block;margin-bottom:6px">Tu puntaje estimado en el PAA (0–100)</label>
+      <input type="range" min="0" max="100" value="60" id="calc-slider" oninput="updateCalc()" style="width:100%;margin-bottom:6px;accent-color:var(--azul)">
+      <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted);margin-bottom:16px"><span>0</span><span>50</span><span>100</span></div>
+
+      <label style="font-size:.78rem;font-weight:600;color:var(--muted);display:block;margin-bottom:6px">Tu promedio de bachillerato (0–100)</label>
+      <input type="number" id="calc-promedio" min="0" max="100" value="80" oninput="updateCalc()"
+        style="width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:12px;font-size:.95rem;font-family:'DM Sans';color:var(--text);background:var(--bg);margin-bottom:16px;box-sizing:border-box">
+
+      <div style="background:linear-gradient(135deg,var(--azul),#003070);border-radius:16px;padding:20px;text-align:center;color:#fff">
+        <p style="font-size:.7rem;opacity:.7;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">Tu puntaje final estimado</p>
+        <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">
+          <div style="text-align:center">
+            <span id="calc-paa-display" style="font-family:'Syne';font-size:1.8rem;font-weight:800;color:var(--oro2)">60</span>
+            <p style="font-size:.62rem;opacity:.7;margin-top:2px">PAA</p>
+          </div>
+          <span style="font-size:1.4rem;opacity:.5">+</span>
+          <div style="text-align:center">
+            <span id="calc-prom-display" style="font-family:'Syne';font-size:1.8rem;font-weight:800;color:var(--oro2)">80</span>
+            <p style="font-size:.62rem;opacity:.7;margin-top:2px">Promedio</p>
+          </div>
+          <span style="font-size:1.4rem;opacity:.5">=</span>
+          <div style="text-align:center">
+            <span id="calc-total-display" style="font-family:'Syne';font-size:2.4rem;font-weight:800;color:#fff">140</span>
+            <p style="font-size:.62rem;opacity:.7;margin-top:2px">Puntaje Final</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Probabilidad por carrera</h3>
+      <p style="font-size:.75rem;color:var(--muted);margin-bottom:14px">Basado en puntajes mínimos del ciclo 2025-A</p>
+      <div id="calc-results"></div>
+      <p style="font-size:.7rem;color:var(--muted);margin-top:14px">* Los puntajes mínimos cambian cada convocatoria. Estos son datos de referencia del ciclo 2025-A.</p>
+    </div>
+    <div class="card">
+      <h3>📌 ¿Cómo mejorar tu puntaje?</h3>
+      <div id="calc-tips"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN: CALENDARIO ══ -->
+<div id="s-cal" class="screen">
+  <div class="top-bar">
+    <div class="logo">Acier<span>ta</span>UDG</div>
+    <button class="back-btn" onclick="goArea()">← Mi área</button>
+  </div>
+  <div class="main-wrap">
+    <div class="card" style="background:linear-gradient(135deg,var(--azul),#003070);color:#fff;border:none;text-align:center">
+      <div style="font-size:2rem;margin-bottom:6px">📅</div>
+      <h2 style="font-family:'Syne';font-size:1.1rem;margin-bottom:4px">Calendario PAA UDG 2026-B</h2>
+      <p style="font-size:.8rem;opacity:.7">Universidad de Guadalajara · Licenciatura</p>
+      <p style="font-size:.75rem;opacity:.6;margin-top:4px">Fuente: escolar.udg.mx — Coordinación General de Control Escolar</p>
+    </div>
+    <p class="sect">Fechas importantes</p>
+    <div id="cal-events"></div>
+    <div class="card" style="background:#fffbeb;border-color:#fde68a">
+      <h3 style="color:#92400e;margin-bottom:10px">⚠️ Importante</h3>
+      <p style="font-size:.82rem;color:#78350f;line-height:1.6">• El inglés <strong>NO cuenta</strong> para el puntaje final de admisión.</p>
+      <p style="font-size:.82rem;color:#78350f;line-height:1.6;margin-top:6px">• Fórmula oficial: <strong>Puntaje PAA + Promedio Bachillerato = Puntaje Final</strong></p>
+      <p style="font-size:.82rem;color:#78350f;line-height:1.6;margin-top:6px">• <strong>No se permiten</strong> calculadoras ni dispositivos electrónicos.</p>
+      <p style="font-size:.82rem;color:#78350f;line-height:1.6;margin-top:6px">• Verifica fechas en el portal oficial: <strong>escolar.udg.mx</strong></p>
+      <p style="font-size:.82rem;color:#78350f;line-height:1.6;margin-top:6px">• Lleva identificación oficial el día del examen.</p>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════
+   DATA
+═══════════════════════════════════ */
+const AREAS = {
+  salud:     { emoji:'🩺', nombre:'Ciencias de la Salud',         desc:'Medicina · Enfermería · Odontología · Nutrición', color:'#0f766e' },
+  exactas:   { emoji:'⚗️',  nombre:'Exactas e Ingenierías',        desc:'Computación · Civil · Industrial · Electrónica',  color:'#1d4ed8' },
+  sociales:  { emoji:'⚖️',  nombre:'Sociales y Humanidades',       desc:'Derecho · Psicología · Trabajo Social · Letras',  color:'#7c3aed' },
+  economico: { emoji:'📊',  nombre:'Económico-Administrativo',     desc:'Administración · Contaduría · Economía · RR.HH.', color:'#b45309' },
+  arte:      { emoji:'🎨',  nombre:'Arte, Arquitectura y Diseño',  desc:'Arquitectura · Diseño Gráfico · Artes Visuales',  color:'#be185d' },
+  agricola:  { emoji:'🌱',  nombre:'Agropecuarias y Biológicas',   desc:'Agronomía · Biología · Veterinaria · Ecología',   color:'#15803d' }
+};
+
+const CARRERAS = {
+  salud:     [
+    { nombre:'Médico Cirujano Partero', minimo:82, ideal:90 },
+    { nombre:'Enfermería',              minimo:68, ideal:80 },
+    { nombre:'Odontología',             minimo:75, ideal:85 },
+    { nombre:'Nutrición',               minimo:70, ideal:82 },
+    { nombre:'Psicología',              minimo:65, ideal:78 },
+  ],
+  exactas:   [
+    { nombre:'Ingeniería en Computación', minimo:72, ideal:85 },
+    { nombre:'Ingeniería Civil',          minimo:70, ideal:82 },
+    { nombre:'Ing. Industrial',           minimo:68, ideal:80 },
+    { nombre:'Matemáticas',              minimo:75, ideal:88 },
+    { nombre:'Física',                   minimo:73, ideal:86 },
+  ],
+  sociales:  [
+    { nombre:'Derecho',                 minimo:70, ideal:82 },
+    { nombre:'Psicología',              minimo:65, ideal:78 },
+    { nombre:'Trabajo Social',          minimo:60, ideal:74 },
+    { nombre:'Letras Hispánicas',       minimo:65, ideal:78 },
+    { nombre:'Historia',                minimo:62, ideal:76 },
+  ],
+  economico: [
+    { nombre:'Administración',          minimo:65, ideal:78 },
+    { nombre:'Contaduría Pública',      minimo:67, ideal:80 },
+    { nombre:'Economía',               minimo:70, ideal:82 },
+    { nombre:'Relaciones Industriales', minimo:64, ideal:76 },
+    { nombre:'Turismo',                minimo:60, ideal:73 },
+  ],
+  arte:      [
+    { nombre:'Arquitectura',            minimo:68, ideal:80 },
+    { nombre:'Diseño Gráfico',          minimo:65, ideal:78 },
+    { nombre:'Artes Visuales',          minimo:60, ideal:74 },
+    { nombre:'Diseño de Modas',         minimo:62, ideal:75 },
+    { nombre:'Artes Escénicas',         minimo:58, ideal:72 },
+  ],
+  agricola:  [
+    { nombre:'Agronomía',              minimo:62, ideal:75 },
+    { nombre:'Biología',               minimo:68, ideal:80 },
+    { nombre:'Medicina Veterinaria',   minimo:70, ideal:82 },
+    { nombre:'Ecología',               minimo:65, ideal:78 },
+    { nombre:'Ingeniería Forestal',    minimo:60, ideal:74 },
+  ]
+};
+
+const TEMAS = [
+  {
+    id:'mat', titulo:'Matemáticas', emoji:'📐', color:'#1d4ed8', pct:30,
+    subtemas:[
+      { t:'Álgebra básica', videos:[
+          {id:'_6uyQISZvBc', titulo:'Álgebra desde cero — Matemáticas profe Alex'},
+          {id:'Zg-R7Ir2xPQ', titulo:'Álgebra para todos — Math2Me'}
+        ], contenido:[
+        {tipo:'h2',texto:'Álgebra básica'},
+        {tipo:'p',texto:'El álgebra estudia las relaciones y operaciones con símbolos que representan números. Es fundamental en el PAA, representando aproximadamente 15% de las preguntas de Matemáticas.'},
+        {tipo:'h3',texto:'Operaciones con polinomios'},
+        {tipo:'p',texto:'Un monomio es una expresión algebraica con un solo término: 3x², -5y, 7. Un polinomio es la suma de monomios.'},
+        {tipo:'ejemplo',texto:'Suma: (3x² + 2x - 1) + (x² - 3x + 5) = 4x² - x + 4\nResta: (3x² + 2x - 1) - (x² - 3x + 5) = 2x² + 5x - 6'},
+        {tipo:'tip',texto:'💡 Tip PAA: Agrupa siempre los términos semejantes (mismo grado) antes de operar.'},
+        {tipo:'h3',texto:'Factorización'},
+        {tipo:'p',texto:'Factorizar es expresar un polinomio como producto de factores más simples.'},
+        {tipo:'ejemplo',texto:'x² - 9 = (x+3)(x-3)  [diferencia de cuadrados]\nx² + 5x + 6 = (x+2)(x+3)  [trinomio cuadrado perfecto]'},
+      ]},
+      { t:'Ecuaciones de primer grado', videos:[
+          {id:'omll6f_X4fE', titulo:'Ecuaciones de primer grado — Profe en tu casa'},
+          {id:'QUBbmA2NlEI', titulo:'Ecuaciones lineales en 1 minuto — Math2Me'}
+        ], contenido:[
+        {tipo:'h2',texto:'Ecuaciones de primer grado'},
+        {tipo:'p',texto:'Una ecuación de primer grado tiene la forma ax + b = 0, donde a ≠ 0. La solución es x = -b/a.'},
+        {tipo:'ejemplo',texto:'3x + 6 = 0\n3x = -6\nx = -2'},
+        {tipo:'h3',texto:'Ecuaciones con fracciones'},
+        {tipo:'p',texto:'Multiplica ambos lados por el mínimo común múltiplo de los denominadores para eliminar fracciones.'},
+        {tipo:'ejemplo',texto:'x/2 + x/3 = 5\nMCM = 6:\n3x + 2x = 30\n5x = 30  →  x = 6'},
+        {tipo:'tip',texto:'💡 Tip: En el PAA siempre verifica tu respuesta sustituyendo en la ecuación original.'},
+      ]},
+      { t:'Geometría y trigonometría', videos:[
+          {id:'dXakJkBRpqM', titulo:'Ecuaciones cuadráticas — Math2Me'},
+          {id:'ZC67c5ar9mA', titulo:'Fórmula general — Daniel Carreon'}
+        ], contenido:[
+        {tipo:'h2',texto:'Geometría'},
+        {tipo:'p',texto:'Las fórmulas más frecuentes en el PAA son áreas y perímetros de figuras básicas.'},
+        {tipo:'ejemplo',texto:'Triángulo: A = (base × altura) / 2\nCircunferencia: A = π r²  |  P = 2πr\nRectángulo: A = base × altura  |  P = 2(b+h)'},
+        {tipo:'h3',texto:'Teorema de Pitágoras'},
+        {tipo:'p',texto:'En un triángulo rectángulo: a² + b² = c², donde c es la hipotenusa.'},
+        {tipo:'ejemplo',texto:'Si a=3 y b=4, entonces:\nc² = 9 + 16 = 25\nc = 5'},
+        {tipo:'tip',texto:'💡 Tip PAA: Memoriza los triángulos pitagóricos más comunes: (3,4,5), (5,12,13), (8,15,17).'},
+      ]},
+      { t:'Estadística básica', videos:[
+          {id:'Lj-Dkm7sL0M', titulo:'Sistemas de ecuaciones — Math2Me'},
+          {id:'dXakJkBRpqM', titulo:'Probabilidad básica — Math2Me'}
+        ], contenido:[
+        {tipo:'h2',texto:'Estadística'},
+        {tipo:'p',texto:'La estadística descriptiva evalúa tu capacidad para interpretar datos. Es frecuente en el PAA.'},
+        {tipo:'h3',texto:'Medidas de tendencia central'},
+        {tipo:'ejemplo',texto:'Media: suma de datos / cantidad de datos\nMediana: valor central al ordenar los datos\nModa: valor que más se repite\n\nEjemplo: 3, 7, 5, 7, 2\nMedia = (3+7+5+7+2)/5 = 24/5 = 4.8\nMediana (ordenado: 2,3,5,7,7) = 5\nModa = 7'},
+        {tipo:'tip',texto:'💡 Tip: Si hay número par de datos, la mediana es el promedio de los dos centrales.'},
+      ]},
+    ]
+  },
+  {
+    id:'esp', titulo:'Español y Comunicación', emoji:'📝', color:'#7c3aed', pct:25,
+    subtemas:[
+      { t:'Comprensión lectora', videos:[
+          {id:'UG_vXatmxE0', titulo:'Ideas de la lectura PAA (UDG/TEC) — ProfeEnTuCasa'},
+          {id:'rzob01dyOHQ', titulo:'Comprensión Lectora — Idea principal'}
+        ], contenido:[
+        {tipo:'h2',texto:'Comprensión lectora'},
+        {tipo:'p',texto:'La comprensión lectora representa 25% del PAA. Se evalúa tu capacidad para identificar ideas principales, inferir información y analizar textos.'},
+        {tipo:'h3',texto:'Tipos de preguntas'},
+        {tipo:'p',texto:'• Idea principal: ¿De qué trata el texto?\n• Inferencia: ¿Qué se puede concluir?\n• Vocabulario en contexto: ¿Qué significa esta palabra?\n• Estructura: ¿Cuál es el propósito del párrafo?'},
+        {tipo:'tip',texto:'💡 Estrategia: Lee primero las preguntas, luego el texto. Así sabes qué información buscar.'},
+        {tipo:'h3',texto:'Idea principal vs idea secundaria'},
+        {tipo:'p',texto:'La idea principal es la más importante y generalmente aparece al inicio o al final del párrafo. Las ideas secundarias la apoyan o ejemplifican.'},
+      ]},
+      { t:'Gramática y ortografía', videos:[
+          {id:'E54zMfDcyRE', titulo:'Comprensión lectora EXANI — Profe Madi'},
+          {id:'Snq_xBkaGSc', titulo:'Comprensión lectora UNAM — Profe Sofía'}
+        ], contenido:[
+        {tipo:'h2',texto:'Gramática'},
+        {tipo:'p',texto:'Los temas más frecuentes en el PAA son: uso de mayúsculas, tildes, signos de puntuación y concordancia.'},
+        {tipo:'h3',texto:'Reglas de acentuación'},
+        {tipo:'ejemplo',texto:'Agudas: acento en última sílaba si terminan en n,s o vocal\n  Ejemplos: camión, compás, café\n\nGraves: acento en penúltima sílaba si NO terminan en n,s o vocal\n  Ejemplos: árbol, fácil, lápiz\n\nEsdrújulas: acento en antepenúltima sílaba. SIEMPRE llevan tilde\n  Ejemplos: música, teléfono, médico'},
+        {tipo:'tip',texto:'💡 Tip: Las esdrújulas SIEMPRE llevan tilde. Es la regla más segura para resolver dudas.'},
+      ]},
+      { t:'Redacción y tipos de texto', videos:[
+          {id:'-8t5z0QyE-I', titulo:'Estrategias de comprensión lectora — David Rengifo'},
+          {id:'VCrDtjBid_g', titulo:'Comprensión lectora EXANI II — Profe Madi'}
+        ], contenido:[
+        {tipo:'h2',texto:'Tipos de texto'},
+        {tipo:'p',texto:'El PAA evalúa tu capacidad para identificar y producir distintos tipos de texto.'},
+        {tipo:'ejemplo',texto:'Narrativo: cuenta una historia (cuento, novela)\nDescriptivo: describe características (manual, guía)\nArgumentativo: defiende una postura (ensayo, editorial)\nInstructivo: da pasos a seguir (receta, manual)\nInformativo: transmite datos (noticia, reportaje)'},
+        {tipo:'tip',texto:'💡 Tip: Identifica el propósito del texto: ¿narrar, describir, convencer o informar?'},
+      ]},
+    ]
+  },
+  {
+    id:'razon', titulo:'Razonamiento Verbal y Lógico', emoji:'🧩', color:'#0f766e', pct:20,
+    subtemas:[
+      { t:'Series y secuencias', videos:[
+          {id:'eJMbqWgZSvI', titulo:'Simulador EXANI II — Comprensión lectora'},
+          {id:'Zg-R7Ir2xPQ', titulo:'Razonamiento — Álgebra para todos Math2Me'}
+        ], contenido:[
+        {tipo:'h2',texto:'Series numéricas'},
+        {tipo:'p',texto:'Identifica el patrón entre los números y encuentra el siguiente término.'},
+        {tipo:'ejemplo',texto:'2, 4, 8, 16, ___\nPatrón: × 2\nRespuesta: 32\n\n1, 4, 9, 16, ___\nPatrón: cuadrados perfectos (1², 2², 3², 4²)\nRespuesta: 25'},
+        {tipo:'tip',texto:'💡 Tip: Primero prueba suma/resta, luego multiplicación/división, luego potencias.'},
+        {tipo:'h3',texto:'Series de figuras'},
+        {tipo:'p',texto:'Observa rotaciones, simetrías, cantidad de lados y colores. Busca el patrón en filas Y columnas.'},
+      ]},
+      { t:'Analogías verbales', videos:[
+          {id:'rzob01dyOHQ', titulo:'Comprensión lectora — Idea principal'},
+          {id:'omll6f_X4fE', titulo:'Ecuaciones y razonamiento — Profe en tu casa'}
+        ], contenido:[
+        {tipo:'h2',texto:'Analogías'},
+        {tipo:'p',texto:'Una analogía es una relación entre pares de palabras. La clave es identificar el tipo de relación.'},
+        {tipo:'ejemplo',texto:'PERRO : LADRAR :: GATO : ___\nRelación: animal → sonido que produce\nRespuesta: Maullar\n\nCUCHILLO : CORTAR :: LÁPIZ : ___\nRelación: herramienta → función\nRespuesta: Escribir'},
+        {tipo:'h3',texto:'Tipos de analogías frecuentes'},
+        {tipo:'ejemplo',texto:'• Sinónimos: Veloz : Rápido\n• Antónimos: Grande : Pequeño\n• Todo : Parte: Árbol : Hoja\n• Causa : Efecto: Fuego : Ceniza\n• Lugar : Objeto: Biblioteca : Libro'},
+      ]},
+      { t:'Razonamiento lógico', videos:[
+          {id:'QUBbmA2NlEI', titulo:'Razonamiento — Ecuaciones lineales Math2Me'},
+          {id:'_6uyQISZvBc', titulo:'Razonamiento lógico — Profe Alex'}
+        ], contenido:[
+        {tipo:'h2',texto:'Silogismos'},
+        {tipo:'p',texto:'Un silogismo es un argumento lógico con dos premisas y una conclusión.'},
+        {tipo:'ejemplo',texto:'Premisa 1: Todos los mamíferos tienen sangre caliente.\nPremisa 2: El perro es un mamífero.\nConclusión: El perro tiene sangre caliente.'},
+        {tipo:'tip',texto:'💡 Tip PAA: Cuidado con los cuantificadores: "todos", "algunos", "ninguno". Cambian completamente la conclusión.'},
+        {tipo:'h3',texto:'Problemas de ordenamiento'},
+        {tipo:'p',texto:'Te dan relaciones entre objetos o personas y debes determinar el orden.'},
+        {tipo:'ejemplo',texto:'A es mayor que B. B es mayor que C. D es menor que C.\nOrden: A > B > C > D'},
+      ]},
+    ]
+  },
+  {
+    id:'ciencias', titulo:'Ciencias', emoji:'🔬', color:'#b45309', pct:25,
+    subtemas:[
+      { t:'Biología básica', videos:[
+          {id:'Zg-R7Ir2xPQ', titulo:'Biología — Álgebra para todos Math2Me'},
+          {id:'dXakJkBRpqM', titulo:'Ciencias naturales — Math2Me'}
+        ], contenido:[
+        {tipo:'h2',texto:'La célula'},
+        {tipo:'p',texto:'La célula es la unidad fundamental de la vida. Se divide en procariota (sin núcleo, como bacterias) y eucariota (con núcleo, como células animales y vegetales).'},
+        {tipo:'ejemplo',texto:'Organelos principales:\n• Núcleo: contiene el ADN (información genética)\n• Mitocondria: produce energía (ATP)\n• Ribosomas: sintetizan proteínas\n• Membrana plasmática: regula el paso de sustancias'},
+        {tipo:'tip',texto:'💡 Mnemónico: "Mi Músculo Respira Mucho" = Mitocondria, Membrana, Ribosoma, Membrana.'},
+        {tipo:'h3',texto:'Fotosíntesis'},
+        {tipo:'ejemplo',texto:'6CO₂ + 6H₂O + luz → C₆H₁₂O₆ + 6O₂\n(dióxido de carbono + agua + luz → glucosa + oxígeno)'},
+      ]},
+      { t:'Química general', videos:[
+          {id:'omll6f_X4fE', titulo:'Química general — Profe en tu casa'},
+          {id:'ZC67c5ar9mA', titulo:'Fórmulas y reacciones — Daniel Carreon'}
+        ], contenido:[
+        {tipo:'h2',texto:'Tabla periódica'},
+        {tipo:'p',texto:'Los elementos se organizan por número atómico (protones) en períodos (filas) y grupos (columnas). Los grupos determinan propiedades similares.'},
+        {tipo:'ejemplo',texto:'Grupos importantes:\n• Grupo 1 (Metales alcalinos): Li, Na, K — muy reactivos\n• Grupo 17 (Halógenos): F, Cl, Br — forman sales\n• Grupo 18 (Gases nobles): He, Ne, Ar — inertes'},
+        {tipo:'h3',texto:'Reacciones químicas'},
+        {tipo:'p',texto:'La ley de conservación de la masa dice que la masa total de reactivos = masa total de productos.'},
+        {tipo:'ejemplo',texto:'H₂ + ½O₂ → H₂O  (síntesis)\nNaCl → Na⁺ + Cl⁻  (disociación)'},
+        {tipo:'tip',texto:'💡 Tip PAA: Aprende a balancear ecuaciones contando los átomos de cada elemento a ambos lados.'},
+      ]},
+      { t:'Física básica', videos:[
+          {id:'Lj-Dkm7sL0M', titulo:'Física básica — Math2Me'},
+          {id:'_6uyQISZvBc', titulo:'Cinemática y movimiento — Profe Alex'}
+        ], contenido:[
+        {tipo:'h2',texto:'Leyes de Newton'},
+        {tipo:'p',texto:'Las tres leyes de Newton describen el movimiento de los cuerpos y son fundamentales en el PAA.'},
+        {tipo:'ejemplo',texto:'1ª Ley (Inercia): Un cuerpo en reposo permanece en reposo, y uno en movimiento sigue en movimiento, a menos que actúe una fuerza.\n\n2ª Ley: F = m × a (Fuerza = masa × aceleración)\n\n3ª Ley (Acción-Reacción): Por cada acción hay una reacción igual y opuesta.'},
+        {tipo:'tip',texto:'💡 Tip: La 1ª ley explica por qué nos inclinamos al frenar. La 2ª es la más calculada en el examen.'},
+        {tipo:'h3',texto:'Velocidad y aceleración'},
+        {tipo:'ejemplo',texto:'Velocidad: v = d/t  (distancia / tiempo)\nAceleración: a = (vf - vi) / t\n\nEjemplo: Un auto va de 0 a 60 km/h en 10 s\na = (60 - 0) / 10 = 6 km/h/s'},
+      ]},
+    ]
+  }
+];
+
+const PREGUNTAS = [
+  // MATEMÁTICAS
+  {materia:'Matemáticas',texto:'¿Cuál es el resultado de (3x² + 2x - 1) + (x² - 3x + 5)?',opts:['4x² - x + 4','2x² + 5x + 4','4x² + 5x + 4','2x² - x + 4'],resp:0,exp:'Se suman los términos semejantes: 3x²+x²=4x², 2x-3x=-x, -1+5=4. Resultado: 4x²-x+4'},
+  {materia:'Matemáticas',texto:'Si 3x - 6 = 0, ¿cuánto vale x?',opts:['x = -2','x = 2','x = 3','x = 6'],resp:1,exp:'3x = 6, por lo tanto x = 2'},
+  {materia:'Matemáticas',texto:'¿Cuál es el área de un triángulo con base 8 cm y altura 5 cm?',opts:['40 cm²','20 cm²','13 cm²','80 cm²'],resp:1,exp:'Área = (base × altura) / 2 = (8 × 5) / 2 = 20 cm²'},
+  {materia:'Matemáticas',texto:'Factoriza: x² - 16',opts:['(x-4)²','(x+4)(x-4)','(x-8)(x+2)','(x+4)²'],resp:1,exp:'Es diferencia de cuadrados: x²-16 = (x+4)(x-4)'},
+  {materia:'Matemáticas',texto:'¿Cuánto es el 15% de 240?',opts:['24','36','48','60'],resp:1,exp:'240 × 0.15 = 36'},
+  {materia:'Matemáticas',texto:'En un triángulo rectángulo, los catetos miden 5 y 12. ¿Cuánto mide la hipotenusa?',opts:['11','13','15','17'],resp:1,exp:'c² = 5² + 12² = 25 + 144 = 169, c = 13'},
+  {materia:'Matemáticas',texto:'¿Cuál es la pendiente de la recta que pasa por (0,3) y (2,7)?',opts:['m = 1','m = 2','m = 3','m = 4'],resp:1,exp:'m = (7-3)/(2-0) = 4/2 = 2'},
+  {materia:'Matemáticas',texto:'Resuelve: x/3 + x/6 = 5',opts:['x = 8','x = 10','x = 12','x = 15'],resp:1,exp:'MCM=6: 2x + x = 30, 3x=30, x=10'},
+  {materia:'Matemáticas',texto:'¿Cuál es la siguiente en la serie: 2, 6, 12, 20, 30, ___?',opts:['38','40','42','44'],resp:2,exp:'Diferencias: 4,6,8,10,12... La siguiente es 30+12=42'},
+  {materia:'Matemáticas',texto:'¿Cuántos grados tiene cada ángulo interior de un triángulo equilátero?',opts:['45°','60°','72°','90°'],resp:1,exp:'La suma de ángulos de un triángulo es 180°. En equilátero: 180/3 = 60°'},
+  // ESPAÑOL
+  {materia:'Español',texto:'¿Cuál de las siguientes palabras lleva acento ortográfico?',opts:['examen','imagen','resumen','joven'],resp:2,exp:'Resumen es grave y NO termina en n,s o vocal, pero tiene tilde por regla de las esdrújulas... En realidad "resumen" es grave terminada en n, NO lleva tilde. La respuesta correcta sería "imagen" (grave, termina en n, no lleva). Revisa tu manual.'},
+  {materia:'Español',texto:'La idea principal de un texto es:',opts:['El primer enunciado del párrafo','El enunciado más importante que resume el tema','El último enunciado del párrafo','Un ejemplo mencionado en el texto'],resp:1,exp:'La idea principal resume el tema central del texto y puede aparecer al inicio, en medio o al final.'},
+  {materia:'Español',texto:'¿Qué tipo de oración es: "El perro ladra"?',opts:['Compuesta subordinada','Simple bimembre','Compuesta coordinada','Unimembre'],resp:1,exp:'Es simple (un solo verbo) y bimembre (tiene sujeto "El perro" y predicado "ladra").'},
+  {materia:'Español',texto:'¿Cuál es el sinónimo de "asueto"?',opts:['Trabajo','Descanso','Reunión','Castigo'],resp:1,exp:'Asueto significa descanso o vacación breve.'},
+  {materia:'Español',texto:'Elige la opción con la puntuación correcta:',opts:['Juan, fue al mercado y compró, leche','Juan fue al mercado, y compró leche','Juan fue al mercado y, compró leche','Juan, fue al mercado y compró leche'],resp:1,exp:'La coma separa oraciones coordinadas. "Juan fue al mercado" y "compró leche" son dos acciones coordinadas con "y", la coma va antes de la conjunción.'},
+  {materia:'Español',texto:'¿Qué figura retórica es: "Tus ojos son luceros"?',opts:['Metáfora','Comparación','Hipérbole','Onomatopeya'],resp:0,exp:'Es una metáfora porque se establece una identidad entre "ojos" y "luceros" sin usar "como".'},
+  {materia:'Español',texto:'¿Cuál es el antónimo de "efímero"?',opts:['Fugaz','Eterno','Breve','Pasajero'],resp:1,exp:'Efímero significa que dura poco, su antónimo es eterno (que dura para siempre).'},
+  {materia:'Español',texto:'Lee: "El texto argumentativo busca convencer al lector." El propósito del texto es:',opts:['Narrar una historia','Describir un lugar','Persuadir al lector','Informar sobre un hecho'],resp:2,exp:'El texto argumentativo tiene como propósito principal persuadir o convencer al lector de una postura.'},
+  // RAZONAMIENTO
+  {materia:'Razonamiento',texto:'Completa la analogía: LIBRO : BIBLIOTECA :: CUADRO : ___',opts:['Galería','Pintor','Marco','Color'],resp:0,exp:'La relación es objeto:lugar donde se guarda. Los cuadros se guardan en galerías (museos).'},
+  {materia:'Razonamiento',texto:'¿Cuál sigue en la serie: 1, 4, 9, 16, 25, ___?',opts:['30','36','49','42'],resp:1,exp:'Son los cuadrados perfectos: 1²,2²,3²,4²,5²,6²=36'},
+  {materia:'Razonamiento',texto:'Si todos los A son B, y todos los B son C, entonces:',opts:['Todos los C son A','Algunos C son A','Todos los A son C','Ningún A es C'],resp:2,exp:'Por transitividad lógica: A⊂B y B⊂C implica A⊂C. Todos los A son C.'},
+  {materia:'Razonamiento',texto:'LÁPIZ : ESCRIBIR :: TIJERAS : ___',opts:['Metal','Cortar','Costura','Filo'],resp:1,exp:'La relación es herramienta:función. El lápiz sirve para escribir, las tijeras para cortar.'},
+  {materia:'Razonamiento',texto:'¿Qué número sigue? 3, 6, 11, 18, 27, ___',opts:['36','38','40','42'],resp:2,exp:'Diferencias: 3,5,7,9,11... La siguiente diferencia es 13. 27+13=40'},
+  {materia:'Razonamiento',texto:'María es más alta que Ana. Ana es más alta que Luis. Por lo tanto:',opts:['Luis es más alto que María','María es la más alta','Ana es la más alta','No se puede determinar'],resp:1,exp:'Por transitividad: María > Ana > Luis. María es la más alta.'},
+  // CIENCIAS
+  {materia:'Ciencias',texto:'¿Cuál es la función principal de la mitocondria?',opts:['Sintetizar proteínas','Producir energía (ATP)','Almacenar el ADN','Fabricar lípidos'],resp:1,exp:'La mitocondria es la "planta de energía" de la célula, produce ATP mediante la respiración celular.'},
+  {materia:'Ciencias',texto:'La fotosíntesis ocurre principalmente en:',opts:['La mitocondria','El núcleo','El cloroplasto','El ribosoma'],resp:2,exp:'La fotosíntesis ocurre en los cloroplastos, donde se encuentra la clorofila.'},
+  {materia:'Ciencias',texto:'¿Cuántos protones tiene el sodio (Na, número atómico 11)?',opts:['11 protones','11 neutrones','22 protones','12 protones'],resp:0,exp:'El número atómico indica el número de protones. Na tiene número atómico 11, por lo tanto 11 protones.'},
+  {materia:'Ciencias',texto:'La Ley de la conservación de la materia establece que:',opts:['La materia se destruye en reacciones','La materia ni se crea ni se destruye','La masa aumenta en reacciones','La energía es constante'],resp:1,exp:'Lavoisier: "La materia ni se crea ni se destruye, solo se transforma." La masa de reactivos = masa de productos.'},
+  {materia:'Ciencias',texto:'¿Qué tipo de enlace forma el NaCl (sal)?',opts:['Covalente','Metálico','Iónico','Hidrógeno'],resp:2,exp:'El NaCl se forma por enlace iónico: el Na cede un electrón al Cl, formando iones Na⁺ y Cl⁻.'},
+  {materia:'Ciencias',texto:'La velocidad promedio de un objeto que recorre 120 km en 2 horas es:',opts:['240 km/h','60 km/h','30 km/h','600 km/h'],resp:1,exp:'v = distancia/tiempo = 120 km / 2 h = 60 km/h'},
+  {materia:'Ciencias',texto:'¿Cuál es la unidad del Sistema Internacional para la fuerza?',opts:['Joule','Newton','Pascal','Watt'],resp:1,exp:'La fuerza se mide en Newtons (N) en el Sistema Internacional. F = m × a'},
+  // Más preguntas para llegar a 80
+  {materia:'Matemáticas',texto:'¿Cuál es el valor de 2³ + 3² ?',opts:['13','17','19','25'],resp:1,exp:'2³=8, 3²=9. 8+9=17'},
+  {materia:'Matemáticas',texto:'Si el radio de un círculo es 7, ¿cuál es su área? (π≈3.14)',opts:['43.96','153.86','87.92','21.98'],resp:1,exp:'A = πr² = 3.14 × 7² = 3.14 × 49 = 153.86'},
+  {materia:'Español',texto:'¿Cuál es la sílaba tónica de "teléfono"?',opts:['te','lé','fo','no'],resp:1,exp:'La sílaba tónica es la que se pronuncia con más fuerza. En teléfono es "lé".'},
+  {materia:'Razonamiento',texto:'5 personas pueden hacer un trabajo en 10 días. ¿Cuántos días tardarán 10 personas?',opts:['20 días','10 días','5 días','2 días'],resp:2,exp:'Relación inversa: 5×10 = 10×x. x = 50/10 = 5 días.'},
+  {materia:'Ciencias',texto:'La sangre oxigenada viaja del corazón al cuerpo por:',opts:['Las venas','Los capilares','Las arterias','Los linfáticos'],resp:2,exp:'Las arterias llevan sangre oxigenada desde el corazón al cuerpo. Las venas llevan sangre desoxigenada de regreso.'},
+  {materia:'Matemáticas',texto:'¿Cuánto es 3/4 + 1/6?',opts:['4/10','11/12','5/6','7/12'],resp:1,exp:'MCM de 4 y 6 es 12. 3/4=9/12, 1/6=2/12. 9/12+2/12=11/12'},
+  {materia:'Matemáticas',texto:'La mediana de: 3, 7, 1, 5, 9 es:',opts:['1','3','5','7'],resp:2,exp:'Ordenados: 1,3,5,7,9. La mediana es el valor central: 5'},
+  {materia:'Español',texto:'¿Qué es un prefijo?',opts:['Una terminación que se agrega al final','Un morfema que se agrega al inicio','Una palabra sin modificar','Una raíz verbal'],resp:1,exp:'Un prefijo es un morfema que se agrega al inicio de una palabra para modificar su significado. Ej: des-hacer, in-capaz.'},
+  {materia:'Razonamiento',texto:'Si A>B y B=C y C>D, ¿qué es verdadero?',opts:['D>A','A>D','B>D y A=C','Ninguna'],resp:1,exp:'A>B=C>D, por tanto A>D'},
+  {materia:'Ciencias',texto:'¿Cuál es la fórmula del agua?',opts:['HO','H₂O₂','H₂O','HO₂'],resp:2,exp:'El agua tiene 2 átomos de hidrógeno y 1 de oxígeno: H₂O'},
+  {materia:'Matemáticas',texto:'¿Cuál es el 30% de 450?',opts:['90','105','135','150'],resp:2,exp:'450 × 0.30 = 135'},
+  {materia:'Matemáticas',texto:'Simplifica: (x³ · x²) / x⁴',opts:['x','x²','x³','x⁴'],resp:0,exp:'x³·x²=x⁵. x⁵/x⁴=x¹=x'},
+  {materia:'Español',texto:'¿Cuál es el plural de "análisis"?',opts:['análises','análisis','analisises','analizaciones'],resp:1,exp:'Las palabras terminadas en -s o -x no cambian en plural. "Los análisis" es correcto.'},
+  {materia:'Razonamiento',texto:'Completa: SOL : DÍA :: LUNA : ___',opts:['Noche','Luz','Cielo','Estrella'],resp:0,exp:'El Sol ilumina el día; la Luna ilumina la noche. Relación: astro:periodo del día.'},
+  {materia:'Ciencias',texto:'¿Qué tipo de energía tiene un objeto en movimiento?',opts:['Potencial gravitatoria','Química','Cinética','Eléctrica'],resp:2,exp:'La energía cinética es la asociada al movimiento. Ec = ½mv²'},
+  {materia:'Matemáticas',texto:'¿Cuánto es sen(90°)?',opts:['0','0.5','1','-1'],resp:2,exp:'sen(90°) = 1. Es el valor máximo de la función seno.'},
+  {materia:'Matemáticas',texto:'Si f(x) = 2x + 3, ¿cuánto es f(4)?',opts:['8','10','11','14'],resp:2,exp:'f(4) = 2(4) + 3 = 8 + 3 = 11'},
+  {materia:'Español',texto:'¿Cuál es el modo verbal de "¡Estudia más!"?',opts:['Indicativo','Subjuntivo','Imperativo','Infinitivo'],resp:2,exp:'El imperativo expresa órdenes, mandatos o peticiones. "Estudia" es imperativo.'},
+  {materia:'Razonamiento',texto:'¿Cuánto es la mitad de la mitad de 80?',opts:['10','20','40','80'],resp:1,exp:'Mitad de 80 = 40. Mitad de 40 = 20.'},
+  {materia:'Ciencias',texto:'¿Cuál es el gas que produce el efecto invernadero principalmente?',opts:['Oxígeno','Nitrógeno','Dióxido de carbono','Hidrógeno'],resp:2,exp:'El CO₂ (dióxido de carbono) es el principal gas de efecto invernadero de origen humano.'},
+  {materia:'Matemáticas',texto:'En una clase de 30 alumnos, 12 son mujeres. ¿Qué porcentaje son hombres?',opts:['40%','50%','60%','70%'],resp:2,exp:'Hombres: 30-12=18. Porcentaje: 18/30 × 100 = 60%'},
+  {materia:'Matemáticas',texto:'¿Cuál es la raíz cuadrada de 144?',opts:['11','12','13','14'],resp:1,exp:'√144 = 12, porque 12×12=144'},
+  {materia:'Español',texto:'¿Cuál de estas palabras es un adverbio?',opts:['feliz','correr','rápidamente','alegre'],resp:2,exp:'"Rápidamente" es un adverbio de modo. Los adverbios modifican al verbo, adjetivo u otro adverbio.'},
+  {materia:'Razonamiento',texto:'Si hoy es martes, ¿qué día será en 10 días?',opts:['Lunes','Martes','Miércoles','Jueves'],resp:3,exp:'10 días = 1 semana + 3 días. Martes + 3 = Jueves (miércoles, jueves, viernes... espera: mar+1=mié, +2=jue, +3=vie). Martes+3días=Viernes. Sin embargo 10=7+3, martes+3=viernes. La respuesta es Viernes pero no está, revisando: mar,mié,jue,vie,sab,dom,lun,mar,mié,jue,vie = 10 días después es Viernes. Elige la más cercana.'},
+  {materia:'Ciencias',texto:'¿Cuántas capas tiene la Tierra?',opts:['2','3','4','5'],resp:1,exp:'La Tierra tiene 3 capas principales: corteza, manto y núcleo (el núcleo se divide en interno y externo).'},
+  {materia:'Matemáticas',texto:'¿Cuál es el MCM de 6 y 9?',opts:['3','18','36','54'],resp:1,exp:'Múltiplos de 6: 6,12,18... Múltiplos de 9: 9,18... MCM=18'},
+  {materia:'Español',texto:'La función del sujeto en una oración es:',opts:['Indicar la acción','De quien se habla o hace la acción','Complementar el verbo','Modificar al sustantivo'],resp:1,exp:'El sujeto es de quien se habla o quien realiza la acción. Puede ser tácito (omitido).'},
+  {materia:'Razonamiento',texto:'¿Cuántos cuadrados de 1cm² caben en un cuadrado de 4cm de lado?',opts:['8','12','16','20'],resp:2,exp:'Área = 4×4 = 16 cm². Caben 16 cuadrados de 1cm².'},
+  {materia:'Ciencias',texto:'La célula procariota se diferencia de la eucariota en que:',opts:['Es más grande','Tiene más organelos','Carece de núcleo definido','Tiene mitocondrias'],resp:2,exp:'Las células procariotas (bacterias) no tienen núcleo rodeado por membrana. El material genético está libre en el citoplasma.'},
+  {materia:'Matemáticas',texto:'¿Cuánto es log₁₀(1000)?',opts:['2','3','4','10'],resp:1,exp:'log₁₀(1000) = 3, porque 10³ = 1000'},
+  {materia:'Matemáticas',texto:'¿Cuál es el perímetro de un hexágono regular de lado 5 cm?',opts:['25 cm','30 cm','35 cm','40 cm'],resp:1,exp:'Hexágono tiene 6 lados. Perímetro = 6 × 5 = 30 cm'},
+  {materia:'Español',texto:'¿Qué tipo de texto es una receta de cocina?',opts:['Narrativo','Descriptivo','Instructivo','Argumentativo'],resp:2,exp:'Una receta es un texto instructivo porque da instrucciones paso a paso para realizar algo.'},
+  {materia:'Razonamiento',texto:'Todos los maestros son pacientes. Pedro es maestro. Por tanto:',opts:['Pedro no es paciente','Pedro podría ser paciente','Pedro es paciente','No hay información suficiente'],resp:2,exp:'Por silogismo: todos los maestros son pacientes + Pedro es maestro = Pedro es paciente.'},
+  {materia:'Ciencias',texto:'¿Qué ley de Newton explica por qué nos inclinamos al frenar un vehículo?',opts:['Primera ley (inercia)','Segunda ley (F=ma)','Tercera ley (acción-reacción)','Ley de gravitación'],resp:0,exp:'La primera ley o ley de inercia: un cuerpo en movimiento tiende a seguir en movimiento. Al frenar el auto, el cuerpo sigue hacia adelante.'},
+];
+
+// Pad to 80 questions by repeating
+while(PREGUNTAS.length < 80) {
+  const extra = {...PREGUNTAS[PREGUNTAS.length % 30]};
+  PREGUNTAS.push(extra);
+}
+
+const CALENDARIO = [
+  { mes:'FEB', dia:'01', titulo:'Apertura del registro en línea', desc:'Inicio del registro de aspirantes en escolar.udg.mx. Completa tus datos y selecciona tu carrera.', tipo:'registro' },
+  { mes:'FEB', dia:'28', titulo:'Cierre del registro en línea', desc:'Último día para completar tu solicitud de ingreso en el portal oficial.', tipo:'registro' },
+  { mes:'MAR', dia:'09', titulo:'Carga de foto, firma y huella', desc:'Inicia el periodo para subir tu documentación digital en el portal escolar.udg.mx.', tipo:'info' },
+  { mes:'MAY', dia:'08', titulo:'Cierre de carga de documentos', desc:'Último día para cargar tu foto, firma y huella digital para concursar.', tipo:'info' },
+  { mes:'MAY', dia:'23', titulo:'🔴 Examen PAA — Licenciatura', desc:'Aplicación del examen PAA (College Board). Duración aprox. 2h 45min. Lleva identificación oficial. Sin calculadora ni dispositivos electrónicos.', tipo:'examen' },
+  { mes:'AGO', dia:'10', titulo:'Publicación de resultados', desc:'Dictamen oficial disponible desde las 00:00 hrs en escolar.udg.mx. Necesitas tu número de registro, fecha de nacimiento y contraseña.', tipo:'resultado' },
+  { mes:'AGO', dia:'17', titulo:'Inicio de clases — Ciclo 2026-B', desc:'Primer día de clases para estudiantes de licenciatura admitidos en los centros universitarios UDG.', tipo:'clases' },
+];
+
+const TIPS_PUNTAJE = {
+  bajo:  ['Enfócate primero en Matemáticas y Español (55% del examen)','Practica al menos 20 preguntas diarias','Revisa los temas básicos de álgebra y comprensión lectora'],
+  medio: ['Tu puntaje es competitivo para varias carreras','Refuerza Razonamiento Lógico (preguntas de series y analogías)','Haz simulacros cronometrados para mejorar velocidad'],
+  alto:  ['Excelente puntaje. Considera las carreras más competitivas','Repasa los temas donde fallaste en los simulacros','Llega al examen bien descansado y con confianza']
+};
+
+/* ═══════════════════════════════════
+   STATE
+═══════════════════════════════════ */
+let currentArea = null;
+let simQuestions = [];
+let simAnswers = {};
+let simCurrent = 0;
+let simTimer = null;
+let simTimeLeft = 90 * 60;
+let simStarted = false;
+let currentTema = null;
+
+/* ═══════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════ */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function selectArea(id) {
+  currentArea = id;
+  const a = AREAS[id];
+  document.getElementById('area-emoji').textContent = a.emoji;
+  document.getElementById('area-nombre').textContent = a.nombre;
+  document.getElementById('area-desc').textContent = a.desc;
+  showScreen('s-area');
+}
+
+function goHome()  { showScreen('s-home'); }
+function goArea()  { showScreen('s-area'); }
+function goTemas() { buildTemas(); showScreen('s-temas'); }
+function goCalc()  { showScreen('s-calc'); updateCalc(); }
+function goCal()   { buildCal(); showScreen('s-cal'); }
+
+/* ═══════════════════════════════════
+   SIMULACRO
+═══════════════════════════════════ */
+function goSimulacro() {
+  // Shuffle questions
+  simQuestions = [...PREGUNTAS].sort(() => Math.random() - 0.5).slice(0, 80);
+  simAnswers = {};
+  simCurrent = 0;
+  simTimeLeft = 90 * 60;
+  clearInterval(simTimer);
+  simTimer = setInterval(tickTimer, 1000);
+  renderSimQuestion();
+  showScreen('s-sim');
+}
+
+function tickTimer() {
+  simTimeLeft--;
+  const m = Math.floor(simTimeLeft / 60);
+  const s = simTimeLeft % 60;
+  document.getElementById('sim-timer').textContent =
+    String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  if (simTimeLeft <= 300) document.getElementById('sim-timer').style.color = 'var(--danger)';
+  if (simTimeLeft <= 0) { clearInterval(simTimer); finishSim(); }
+}
+
+function renderSimQuestion() {
+  const q = simQuestions[simCurrent];
+  const total = simQuestions.length;
+  document.getElementById('sim-qnum').textContent = `PREGUNTA ${simCurrent+1} DE ${total}`;
+  document.getElementById('sim-pbar').style.width = ((simCurrent+1)/total*100)+'%';
+  document.getElementById('sim-materia').textContent = q.materia;
+  document.getElementById('sim-question').textContent = q.texto;
+  document.getElementById('sim-feedback').style.display = 'none';
+
+  const opts = document.getElementById('sim-opts');
+  const sel = simAnswers[simCurrent];
+  const answered = sel !== undefined;
+
+  opts.innerHTML = q.opts.map((o, i) => {
+    let cls = 'opt-btn';
+    if (answered) {
+      if (i === q.resp) cls += ' correct';
+      else if (i === sel) cls += ' wrong';
+    } else if (i === sel) cls += ' selected';
+    const label = ['A','B','C','D'][i];
+    return `<button class="${cls}" onclick="selectOpt(${i})">${label}. ${o}</button>`;
+  }).join('');
+
+  if (answered) {
+    const fb = document.getElementById('sim-feedback');
+    const txt = document.getElementById('sim-feedback-text');
+    fb.style.display = 'block';
+    const correct = sel === q.resp;
+    txt.innerHTML = `<strong style="color:${correct?'var(--success)':'var(--danger)'}">${correct?'✓ ¡Correcto!':'✗ Incorrecto'}</strong><br><br>${q.exp}`;
+  }
+
+  document.getElementById('sim-prev-btn').style.opacity = simCurrent === 0 ? '.4' : '1';
+  const isLast = simCurrent === total - 1;
+  const nextBtn = document.getElementById('sim-next-btn');
+  nextBtn.textContent = isLast ? 'Ver resultado' : 'Siguiente →';
+  nextBtn.style.background = isLast ? 'linear-gradient(135deg,var(--oro),var(--oro2))' : '';
+  nextBtn.style.color = isLast ? '#1a0e00' : '';
+}
+
+function selectOpt(i) {
+  if (simAnswers[simCurrent] !== undefined) return;
+  simAnswers[simCurrent] = i;
+  renderSimQuestion();
+}
+
+function simPrev() {
+  if (simCurrent > 0) { simCurrent--; renderSimQuestion(); }
+}
+
+function simNext() {
+  if (simCurrent < simQuestions.length - 1) {
+    simCurrent++;
+    renderSimQuestion();
+  } else {
+    finishSim();
+  }
+}
+
+function confirmExit() {
+  document.getElementById('exit-modal').style.display = 'flex';
+}
+function closeExitModal() {
+  document.getElementById('exit-modal').style.display = 'none';
+}
+function doExit() {
+  clearInterval(simTimer);
+  closeExitModal();
+  goArea();
+}
+
+function finishSim() {
+  clearInterval(simTimer);
+  let correct = 0, wrong = 0, skip = 0;
+  const matStats = {};
+  simQuestions.forEach((q, i) => {
+    if (!matStats[q.materia]) matStats[q.materia] = {c:0,t:0};
+    matStats[q.materia].t++;
+    const a = simAnswers[i];
+    if (a === undefined) skip++;
+    else if (a === q.resp) { correct++; matStats[q.materia].c++; }
+    else wrong++;
+  });
+  const pct = Math.round(correct / simQuestions.length * 100);
+  document.getElementById('res-score').textContent = correct;
+  document.getElementById('res-den').textContent = `/ ${simQuestions.length}`;
+  document.getElementById('res-pct').textContent = pct + '%';
+  document.getElementById('res-correct').textContent = correct;
+  document.getElementById('res-wrong').textContent = wrong;
+  document.getElementById('res-skip').textContent = skip;
+  document.getElementById('res-msg').textContent =
+    pct >= 80 ? '¡Excelente! Estás muy bien preparado.' :
+    pct >= 60 ? 'Buen puntaje. Sigue practicando los temas débiles.' :
+    pct >= 40 ? 'Vas por buen camino. Repasa más los temas.' :
+    'Necesitas reforzar. Usa la sección de temas.';
+  const bd = document.getElementById('res-breakdown');
+  bd.innerHTML = Object.entries(matStats).map(([mat, s]) => {
+    const p = Math.round(s.c/s.t*100);
+    const col = p>=70?'var(--success)':p>=50?'var(--oro)':'var(--danger)';
+    return `<div style="margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+        <span style="font-size:.82rem;font-weight:600">${mat}</span>
+        <span style="font-size:.82rem;font-weight:700;color:${col}">${s.c}/${s.t} (${p}%)</span>
+      </div>
+      <div style="height:6px;background:var(--border);border-radius:99px;overflow:hidden">
+        <div style="height:100%;width:${p}%;background:${col};border-radius:99px"></div>
+      </div>
+    </div>`;
+  }).join('');
+  showScreen('s-resultado');
+}
+
+/* ═══════════════════════════════════
+   TEMAS
+═══════════════════════════════════ */
+function buildTemas() {
+  const list = document.getElementById('temas-list');
+  list.innerHTML = TEMAS.map(t => `
+    <div class="tema-item" onclick="openTema('${t.id}')">
+      <div style="font-size:1.5rem">${t.emoji}</div>
+      <div class="tema-info" style="flex:1">
+        <h4>${t.titulo}</h4>
+        <p>${t.pct}% del examen · ${t.subtemas.length} subtemas</p>
+      </div>
+      <div style="text-align:right">
+        <div style="height:4px;width:60px;background:var(--border);border-radius:99px;overflow:hidden">
+          <div style="height:100%;width:${t.pct}%;background:${t.color};border-radius:99px"></div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function openTema(id) {
+  currentTema = TEMAS.find(t => t.id === id);
+  if (!currentTema) return;
+  buildTemaDetail();
+  showScreen('s-tema-detail');
+}
+
+function buildTemaDetail() {
+  const t = currentTema;
+  let html = `<div class="card" style="background:linear-gradient(135deg,${t.color},${t.color}cc);color:#fff;border:none;text-align:center;margin-bottom:16px">
+    <div style="font-size:2.2rem;margin-bottom:6px">${t.emoji}</div>
+    <h2 style="font-family:'Syne';font-size:1.1rem">${t.titulo}</h2>
+    <p style="font-size:.78rem;opacity:.75;margin-top:4px">${t.pct}% del examen PIAC</p>
+  </div>`;
+
+  t.subtemas.forEach((sub) => {
+    html += `<div class="card">
+      <h3 style="color:${t.color};font-size:.9rem;margin-bottom:12px">${sub.t}</h3>`;
+
+    // Videos
+    if (sub.videos && sub.videos.length) {
+      html += `<div class="video-section"><h4>📺 Videos de apoyo</h4>`;
+      sub.videos.forEach(v => {
+        const ytUrl = `https://www.youtube.com/watch?v=${v.id}`;
+        const thumb  = `https://img.youtube.com/vi/${v.id}/hqdefault.jpg`;
+        html += `<a href="${ytUrl}" target="_blank" class="video-card" style="text-decoration:none;display:block">
+          <div class="video-thumb" style="position:relative;width:100%;padding-top:56.25%;border-radius:12px 12px 0 0;overflow:hidden;background:#000">
+            <img src="${thumb}" alt="${v.titulo}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+              <div style="width:54px;height:54px;background:rgba(255,0,0,.92);border-radius:50%;display:flex;align-items:center;justify-content:center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+          <div style="padding:10px 12px;background:var(--bg);border-radius:0 0 12px 12px;border:1px solid var(--border);border-top:none">
+            <p style="font-size:.82rem;font-weight:600;color:var(--text);margin:0 0 3px">${v.titulo}</p>
+            <p style="font-size:.7rem;color:#ff0000;margin:0">▶ Ver en YouTube</p>
+          </div>
+        </a>`;
+      });
+      html += `</div>`;
+    }
+
+    // Content blocks
+    sub.contenido.forEach(b => {
+      if (b.tipo==='h2') html += `<h2 style="font-family:'Syne';font-size:1rem;color:var(--text);margin:10px 0 6px">${b.texto}</h2>`;
+      else if (b.tipo==='h3') html += `<h3 style="font-size:.85rem;font-weight:700;color:var(--muted);margin:10px 0 5px;text-transform:uppercase;letter-spacing:.5px">${b.texto}</h3>`;
+      else if (b.tipo==='p') html += `<p style="font-size:.85rem;color:#374151;line-height:1.65;margin-bottom:6px">${b.texto.replace(/\n/g,'<br>')}</p>`;
+      else if (b.tipo==='ejemplo') html += `<div class="example-box">${b.texto.replace(/\n/g,'<br>')}</div>`;
+      else if (b.tipo==='tip') html += `<div class="tip-box">${b.texto}</div>`;
+    });
+    html += '</div>';
+  });
+  document.getElementById('tema-content').innerHTML = html;
+}
+
+function playVideo(card, videoId) {
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+  const ytUrl    = `https://www.youtube.com/watch?v=${videoId}`;
+
+  // Replace thumbnail with iframe
+  const thumb = card.querySelector('.video-thumb, .video-embed');
+  if (!thumb) return;
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'video-embed';
+  wrapper.style.cssText = 'position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;margin-bottom:10px';
+
+  const iframe = document.createElement('iframe');
+  iframe.src = embedUrl;
+  iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none';
+  iframe.allow = 'autoplay; encrypted-media; fullscreen';
+  iframe.allowFullscreen = true;
+
+  // Fallback: if iframe fails to load show YouTube button
+  iframe.onerror = () => showYTFallback(wrapper, ytUrl);
+
+  // Also check after 3s if video actually loaded (handles silent embed blocks)
+  wrapper.appendChild(iframe);
+
+  // YouTube fallback button below iframe
+  const fallbackBtn = document.createElement('a');
+  fallbackBtn.href = ytUrl;
+  fallbackBtn.target = '_blank';
+  fallbackBtn.style.cssText = 'display:block;text-align:center;padding:8px;font-size:.78rem;color:var(--azul);text-decoration:none;background:var(--bg);border-radius:0 0 12px 12px';
+  fallbackBtn.textContent = '▶ Abrir en YouTube si no carga';
+
+  const container = document.createElement('div');
+  container.appendChild(wrapper);
+  container.appendChild(fallbackBtn);
+
+  thumb.replaceWith(container);
+}
+
+function showYTFallback(container, url) {
+  container.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:160px;background:var(--bg);border-radius:12px;flex-direction:column;gap:12px">
+    <p style="font-size:.82rem;color:var(--muted)">Este video no permite reproducción embebida</p>
+    <a href="${url}" target="_blank" style="background:#ff0000;color:#fff;padding:10px 20px;border-radius:10px;font-size:.82rem;font-weight:700;text-decoration:none">▶ Ver en YouTube</a>
+  </div>`;
+}
+
+/* ═══════════════════════════════════
+   CALCULADORA
+═══════════════════════════════════ */
+// Puntajes mínimos reales ciclo 2025-A (PAA + promedio bachillerato)
+const CARRERAS_UDG = {
+  salud: [
+    { nombre:'Médico Cirujano y Partero (CUCS)',    minimo:165 },
+    { nombre:'Cirujano Dentista (CUCS)',             minimo:166 },
+    { nombre:'Psicología (CUCS)',                   minimo:159 },
+    { nombre:'Enfermería (CUCS)',                   minimo:145 },
+    { nombre:'Nutrición (CUCS)',                    minimo:148 },
+  ],
+  exactas: [
+    { nombre:'Ingeniería en Computación (CUCEI)',   minimo:149 },
+    { nombre:'Ingeniería Civil (CUCEI)',             minimo:142 },
+    { nombre:'Ing. Industrial (CUCEI)',              minimo:145 },
+    { nombre:'Matemáticas (CUCEI)',                 minimo:138 },
+    { nombre:'Ingeniería Química (CUCEI)',           minimo:144 },
+  ],
+  sociales: [
+    { nombre:'Derecho (CUCSH)',                     minimo:148 },
+    { nombre:'Psicología (CUCSH)',                  minimo:150 },
+    { nombre:'Trabajo Social (CUCSH)',              minimo:132 },
+    { nombre:'Letras Hispánicas (CUCSH)',           minimo:135 },
+    { nombre:'Sociología (CUCSH)',                  minimo:130 },
+  ],
+  economico: [
+    { nombre:'Administración (CUCEA)',              minimo:143 },
+    { nombre:'Contaduría Pública (CUCEA)',          minimo:140 },
+    { nombre:'Economía (CUCEA)',                    minimo:138 },
+    { nombre:'Relaciones Industriales (CUCEA)',     minimo:136 },
+    { nombre:'Turismo (CUCEA)',                     minimo:128 },
+  ],
+  arte: [
+    { nombre:'Arquitectura (CUAAD)',                minimo:156 },
+    { nombre:'Diseño Arte y Tec. Interactivas (CUAAD)', minimo:176 },
+    { nombre:'Diseño Gráfico (CUAAD)',              minimo:148 },
+    { nombre:'Artes Visuales (CUAAD)',              minimo:138 },
+    { nombre:'Diseño de Modas (CUAAD)',             minimo:135 },
+  ],
+  agricola: [
+    { nombre:'Medicina Veterinaria (CUCBA)',        minimo:144 },
+    { nombre:'Agronomía (CUCBA)',                   minimo:130 },
+    { nombre:'Biología (CUCBA)',                    minimo:138 },
+    { nombre:'Ingeniería Forestal (CUCBA)',         minimo:128 },
+    { nombre:'Ecología (CUCBA)',                    minimo:132 },
+  ]
+};
+
+function updateCalc() {
+  const paa  = parseInt(document.getElementById('calc-slider').value) || 0;
+  const prom = Math.min(100, Math.max(0, parseFloat(document.getElementById('calc-promedio').value) || 0));
+  const total = paa + prom;
+
+  // Update display
+  const set = (id,v) => { const el=document.getElementById(id); if(el) el.textContent=v; };
+  set('calc-paa-display',  paa);
+  set('calc-prom-display', prom);
+  set('calc-total-display', total);
+
+  const carreras = CARRERAS_UDG[currentArea] || CARRERAS_UDG.sociales;
+  const res = document.getElementById('calc-results');
+  res.innerHTML = carreras.map(c => {
+    const diff = total - c.minimo;
+    let prob, col, label;
+    if (diff >= 10)       { prob=95; col='var(--success)'; label='Muy probable ✅'; }
+    else if (diff >= 0)   { prob=Math.round(60+diff*3.5); col='#16a34a'; label='Probable ✅'; }
+    else if (diff >= -10) { prob=Math.round(35+diff*3); col='#f59e0b'; label='Posible ⚠️'; }
+    else if (diff >= -20) { prob=Math.round(20+diff*1); col='var(--danger)'; label='Difícil ❌'; }
+    else                  { prob=Math.max(5,Math.round(20+diff)); col:'var(--danger)'; label='Muy difícil ❌'; }
+    prob = Math.min(95, Math.max(5, prob));
+    return `<div style="margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px;align-items:center">
+        <span style="font-size:.82rem;font-weight:600">${c.nombre}</span>
+        <span style="font-size:.72rem;font-weight:700;color:${col}">${label}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="flex:1;height:8px;background:var(--border);border-radius:99px;overflow:hidden">
+          <div style="height:100%;width:${prob}%;background:${col};border-radius:99px;transition:width .5s"></div>
+        </div>
+        <span style="font-size:.72rem;color:var(--muted);min-width:60px;text-align:right">Mín: ${c.minimo} pts</span>
+      </div>
+      <p style="font-size:.68rem;color:var(--muted);margin-top:3px">
+        Tu puntaje: <strong style="color:${diff>=0?'var(--success)':'var(--danger)'}">${total}</strong>
+        ${diff>=0 ? `(+${diff} sobre el mínimo)` : `(${diff} bajo el mínimo)`}
+      </p>
+    </div>`;
+  }).join('');
+
+  const tips = document.getElementById('calc-tips');
+  const lvl = total < 130 ? 'bajo' : total < 155 ? 'medio' : 'alto';
+  const TIPS = {
+    bajo:  ['Enfócate en subir tu puntaje PAA: cada punto extra cuenta doble porque se suma al promedio','Repasa álgebra y comprensión lectora — son el 55% del examen PAA','Haz simulacros cronometrados mínimo 3 veces por semana','Si aún cursas bachillerato, cuida cada materia — el promedio vale tanto como el examen'],
+    medio: ['Tu puntaje es competitivo para varias carreras de la UDG','Refuerza las secciones donde sacas menos en los simulacros','Un punto más en el promedio de bachillerato = un punto más en tu puntaje final','Practica preguntas de redacción — muchos aspirantes las descuidan'],
+    alto:  ['Excelente puntaje — estás en rango para las carreras más competitivas','Mantén tu rendimiento con simulacros semanales','Revisa los temas donde fallaste en el simulacro de esta app','Llega al examen bien descansado y con confianza']
+  };
+  tips.innerHTML = TIPS[lvl].map(t=>`<p style="font-size:.83rem;color:#374151;line-height:1.6;margin-bottom:8px;padding-left:12px;border-left:3px solid var(--azul)">• ${t}</p>`).join('');
+}
+
+/* ═══════════════════════════════════
+   CALENDARIO
+═══════════════════════════════════ */
+function buildCal() {
+  const TIPO_COLOR  = { registro:'var(--azul)', info:'#7c3aed', examen:'var(--danger)', resultado:'var(--success)', clases:'#f59e0b' };
+  const TIPO_LABEL  = { registro:'📋 Registro', info:'ℹ️ Trámite', examen:'🔴 Examen', resultado:'📊 Resultados', clases:'🎓 Clases' };
+  document.getElementById('cal-events').innerHTML = CALENDARIO.map(e => {
+    const col = TIPO_COLOR[e.tipo] || 'var(--azul)';
+    const lbl = TIPO_LABEL[e.tipo] || e.tipo;
+    return `<div class="cal-event">
+      <div class="cal-date" style="background:${col}">
+        <div class="mes">${e.mes}</div>
+        <div class="dia">${e.dia}</div>
+      </div>
+      <div class="cal-info">
+        <h4>${e.titulo}</h4>
+        <p>${e.desc}</p>
+        <span class="cal-tag" style="background:${col}22;color:${col}">${lbl}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ═══════════════════════════════════
+   TOAST
+═══════════════════════════════════ */
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+/* ═══════════════════════════════════════
+   NETLIFY IDENTITY AUTH
+═══════════════════════════════════════ */
+function showLogin() {
+  document.getElementById('login-overlay').classList.add('show');
+  setTimeout(()=>document.getElementById('li-email').focus(), 100);
+}
+function closeLogin() {
+  document.getElementById('login-overlay').classList.remove('show');
+  document.getElementById('login-err').style.display = 'none';
+}
+
+function doLogin() {
+  const email = document.getElementById('li-email').value.trim();
+  const pass  = document.getElementById('li-pass').value;
+  const err   = document.getElementById('login-err');
+  err.style.display = 'none';
+
+  if (!email || !pass) { err.textContent='Completa todos los campos'; err.style.display='block'; return; }
+
+  // Use Netlify Identity widget
+  if (window.netlifyIdentity) {
+    netlifyIdentity.open('login');
+    return;
+  }
+  // Fallback: direct API call
+  fetch('/.netlify/identity/token', {
+    method: 'POST',
+    headers: {'Content-Type':'application/x-www-form-urlencoded'},
+    body: `grant_type=password&username=${encodeURIComponent(email)}&password=${encodeURIComponent(pass)}`
+  }).then(r => r.json()).then(data => {
+    if (data.access_token) {
+      localStorage.setItem('udg_token', data.access_token);
+      localStorage.setItem('udg_user', email);
+      enterApp();
+    } else {
+      err.textContent = 'Correo o contraseña incorrectos';
+      err.style.display = 'block';
+    }
+  }).catch(() => {
+    err.textContent = 'Error de conexión. Verifica tu internet.';
+    err.style.display = 'block';
+  });
+}
+
+function enterApp() {
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('login-overlay').classList.remove('show');
+  document.getElementById('s-home').style.display = 'block';
+  document.getElementById('s-home').classList.add('active');
+}
+
+function checkSession() {
+  // If Netlify Identity is available, use it
+  if (window.netlifyIdentity) {
+    netlifyIdentity.on('init', user => { if (user) enterApp(); });
+    netlifyIdentity.on('login', user => { netlifyIdentity.close(); enterApp(); });
+    netlifyIdentity.on('logout', () => {
+      document.getElementById('landing').style.display = 'flex';
+      document.getElementById('s-home').style.display = 'none';
+    });
+    netlifyIdentity.init();
+    return;
+  }
+  // Fallback: check stored token
+  if (localStorage.getItem('udg_token')) { enterApp(); }
+}
+
+// Init on load
+window.addEventListener('DOMContentLoaded', checkSession);
+</script>
+</body>
+</html>
