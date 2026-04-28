@@ -28,41 +28,63 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-thumb{background:var(--azul);border-radius:99px}
 
-/* ── LANDING / LOGIN ── */
-#landing{display:flex;flex-direction:column;min-height:100vh;background:linear-gradient(135deg,#001840 0%,#004a97 50%,#001840 100%);position:relative;overflow:hidden}
-#landing::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(240,165,0,.12),transparent 60%),radial-gradient(circle at 80% 20%,rgba(99,102,241,.15),transparent 50%)}
-.land-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 28px;position:relative;z-index:2}
-.land-logo{font-family:'Syne';font-weight:800;font-size:1.3rem;color:#fff;letter-spacing:-.5px}
+/* ── LANDING PRO ── */
+#landing{display:flex;flex-direction:column;min-height:100vh;background:#000d1a;position:relative;overflow:hidden}
+#landing::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse 80% 60% at 50% -10%,rgba(0,74,151,.8),transparent),
+  radial-gradient(ellipse 40% 40% at 80% 80%,rgba(240,165,0,.15),transparent),
+  radial-gradient(ellipse 50% 50% at 10% 90%,rgba(0,100,200,.2),transparent);pointer-events:none}
+#landing::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
+.land-nav{display:flex;justify-content:space-between;align-items:center;padding:22px 28px;position:relative;z-index:10;border-bottom:1px solid rgba(255,255,255,.06)}
+.land-logo{font-family:'Syne';font-weight:800;font-size:1.25rem;color:#fff;letter-spacing:-.5px}
 .land-logo span{color:var(--oro)}
-.land-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;position:relative;z-index:2}
-.land-badge{display:inline-block;background:rgba(240,165,0,.2);border:1px solid rgba(240,165,0,.4);color:var(--oro2);font-size:.7rem;font-weight:700;letter-spacing:2px;padding:5px 16px;border-radius:99px;text-transform:uppercase;margin-bottom:20px}
-.land-h1{font-family:'Syne';font-weight:800;font-size:3rem;color:#fff;line-height:1.05;margin-bottom:14px}
-.land-h1 span{color:var(--oro)}
-.land-sub{color:rgba(255,255,255,.65);font-size:.95rem;max-width:400px;margin:0 auto 36px;line-height:1.65}
-.land-features{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:400px;margin:0 auto 40px;text-align:left}
-.land-feat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start}
-.land-feat-icon{font-size:1.3rem;flex-shrink:0}
-.land-feat h4{color:#fff;font-size:.82rem;font-weight:700;margin-bottom:2px}
-.land-feat p{color:rgba(255,255,255,.5);font-size:.7rem;line-height:1.4}
-.land-cta{display:flex;flex-direction:column;gap:12px;align-items:center;width:100%;max-width:320px;margin:0 auto}
-.btn-land{background:linear-gradient(135deg,var(--oro),var(--oro2));color:#1a0e00;font-weight:800;font-size:.95rem;padding:16px 32px;border-radius:14px;border:none;cursor:pointer;width:100%;font-family:'Syne';letter-spacing:-.3px;transition:all .2s;box-shadow:0 4px 20px rgba(240,165,0,.3)}
-.btn-land:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(240,165,0,.4)}
-.btn-land-outline{background:rgba(255,255,255,.08);color:#fff;font-weight:600;font-size:.85rem;padding:13px 32px;border-radius:14px;border:1px solid rgba(255,255,255,.2);cursor:pointer;width:100%;font-family:'DM Sans';transition:all .2s}
-.btn-land-outline:hover{background:rgba(255,255,255,.14)}
-.land-footer{text-align:center;padding:20px;color:rgba(255,255,255,.3);font-size:.72rem;position:relative;z-index:2}
-/* login modal */
-#login-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.75);backdrop-filter:blur(12px);align-items:center;justify-content:center}
-#login-overlay.show{display:flex}
-.login-box{background:#fff;border-radius:24px;padding:36px 32px;width:360px;max-width:92vw;text-align:center}
-.login-box h2{font-family:'Syne';font-size:1.2rem;color:var(--azul);margin-bottom:6px}
-.login-box p{font-size:.8rem;color:var(--muted);margin-bottom:24px}
-.login-box input{width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:12px;font-size:.9rem;font-family:'DM Sans';color:var(--text);margin-bottom:12px;box-sizing:border-box;transition:border .2s}
-.login-box input:focus{outline:none;border-color:var(--azul)}
-.login-box .btn-login{background:var(--azul);color:#fff;border:none;width:100%;padding:14px;border-radius:12px;font-weight:700;font-size:.9rem;cursor:pointer;font-family:'DM Sans';transition:all .2s;margin-bottom:10px}
-.login-box .btn-login:hover{background:var(--azul2)}
-.login-err{color:#dc2626;font-size:.78rem;margin-bottom:10px;display:none}
-.login-close{color:var(--muted);font-size:.75rem;cursor:pointer;background:none;border:none;font-family:'DM Sans'}
-.login-close:hover{color:var(--text)}
+.land-nav-right{display:flex;align-items:center;gap:10px}
+.land-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 24px 40px;position:relative;z-index:5}
+.land-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(240,165,0,.12);border:1px solid rgba(240,165,0,.3);color:var(--oro2);font-size:.68rem;font-weight:700;letter-spacing:2.5px;padding:6px 16px;border-radius:99px;text-transform:uppercase;margin-bottom:28px}
+.land-eyebrow::before{content:'';width:6px;height:6px;background:var(--oro2);border-radius:50%;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.6)}}
+.land-h1{font-family:'Syne';font-weight:800;font-size:3.2rem;color:#fff;line-height:1.05;margin-bottom:18px;max-width:520px}
+.land-h1 em{color:var(--oro);font-style:normal;position:relative}
+.land-h1 em::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--oro),var(--oro2));border-radius:99px}
+.land-sub{color:rgba(255,255,255,.55);font-size:.95rem;max-width:420px;margin:0 auto 48px;line-height:1.7}
+/* Stats bar */
+.land-stats{display:flex;gap:32px;margin:0 auto 48px;justify-content:center;flex-wrap:wrap}
+.land-stat{text-align:center}
+.land-stat-num{font-family:'Syne';font-size:1.8rem;font-weight:800;color:#fff;line-height:1}
+.land-stat-num span{color:var(--oro)}
+.land-stat-label{font-size:.68rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px}
+.land-stat-div{width:1px;background:rgba(255,255,255,.1);align-self:stretch}
+/* CTA */
+.land-cta{display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:56px}
+.btn-land-main{background:linear-gradient(135deg,var(--oro) 0%,var(--oro2) 100%);color:#0d0800;font-weight:800;font-size:1rem;padding:18px 40px;border-radius:16px;border:none;cursor:pointer;font-family:'Syne';letter-spacing:-.3px;transition:all .25s;box-shadow:0 0 40px rgba(240,165,0,.35),0 4px 20px rgba(0,0,0,.4);position:relative;overflow:hidden}
+.btn-land-main::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);opacity:0;transition:opacity .2s}
+.btn-land-main:hover{transform:translateY(-3px);box-shadow:0 0 60px rgba(240,165,0,.5),0 8px 30px rgba(0,0,0,.5)}
+.btn-land-main:hover::before{opacity:1}
+.land-trust{font-size:.72rem;color:rgba(255,255,255,.3);display:flex;align-items:center;gap:6px}
+.land-trust::before{content:'🔒';font-size:.8rem}
+/* Features grid */
+.land-features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:440px;margin:0 auto 56px;width:100%}
+.land-feat-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px;text-align:left;transition:all .2s;position:relative;overflow:hidden}
+.land-feat-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.04),transparent);opacity:0;transition:opacity .2s}
+.land-feat-card:hover{border-color:rgba(240,165,0,.3);transform:translateY(-2px)}
+.land-feat-card:hover::before{opacity:1}
+.land-feat-icon{font-size:1.6rem;margin-bottom:8px}
+.land-feat-card h4{color:#fff;font-size:.85rem;font-weight:700;margin-bottom:4px}
+.land-feat-card p{color:rgba(255,255,255,.4);font-size:.72rem;line-height:1.45}
+/* Testimonial / social proof */
+.land-proof{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:24px;max-width:400px;margin:0 auto 0;text-align:left}
+.land-proof-stars{color:var(--oro);font-size:.9rem;margin-bottom:10px;letter-spacing:2px}
+.land-proof-text{color:rgba(255,255,255,.7);font-size:.83rem;line-height:1.65;font-style:italic;margin-bottom:14px}
+.land-proof-author{display:flex;align-items:center;gap:10px}
+.land-proof-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--azul),var(--oro));display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#fff}
+.land-proof-name{font-size:.78rem;font-weight:600;color:#fff}
+.land-proof-detail{font-size:.68rem;color:rgba(255,255,255,.35)}
+/* Footer */
+.land-footer-bar{border-top:1px solid rgba(255,255,255,.06);padding:20px 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;position:relative;z-index:5}
+.land-footer-bar p{font-size:.7rem;color:rgba(255,255,255,.25)}
+/* Nav pill */
+.land-pill{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:.75rem;padding:8px 16px;border-radius:99px;cursor:pointer;font-family:'DM Sans';transition:all .2s}
+.land-pill:hover{background:rgba(255,255,255,.12);color:#fff}
 .screen{display:none;min-height:100vh;animation:fadeUp .4s ease}
 .screen.active{display:block}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
@@ -306,41 +328,47 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 </head>
 <body>
 
-<!-- ══ LANDING ══ -->
+<!-- ══ LANDING PRO ══ -->
 <div id="landing">
   <nav class="land-nav">
     <div class="land-logo">Acier<span>ta</span>UDG</div>
-    <button class="btn-land-outline" style="width:auto;padding:10px 22px" onclick="showLogin()">Iniciar sesión</button>
+    <div class="land-nav-right">
+      <span class="land-pill">📅 Examen: 23 mayo 2026</span>
+    </div>
   </nav>
   <div class="land-hero">
-    <div class="land-badge">Examen PAA · Universidad de Guadalajara 2026-B</div>
-    <h1 class="land-h1">Tu pase a la<br><span>UDG</span> empieza aquí</h1>
-    <p class="land-sub">Simulacros cronometrados, preparación por temas, calculadora de puntaje real y calendario oficial. Todo lo que necesitas para entrar.</p>
-    <div class="land-features">
-      <div class="land-feat"><div class="land-feat-icon">🧪</div><div><h4>Simulacro PAA</h4><p>80 preguntas · 90 min</p></div></div>
-      <div class="land-feat"><div class="land-feat-icon">📚</div><div><h4>Temas + Videos</h4><p>Mat, Español, Ciencias</p></div></div>
-      <div class="land-feat"><div class="land-feat-icon">🎯</div><div><h4>Calculadora Real</h4><p>Fórmula oficial UDG</p></div></div>
-      <div class="land-feat"><div class="land-feat-icon">📅</div><div><h4>Calendario 2026-B</h4><p>Fechas verificadas</p></div></div>
+    <div class="land-eyebrow">PAA · Universidad de Guadalajara · 2026-B</div>
+    <h1 class="land-h1">Entra a la UDG.<br>Con <em>preparación real</em>.</h1>
+    <p class="land-sub">La única plataforma con simulacros del PAA oficial, fórmula real de admisión y calendario verificado. Sin relleno, sin adivinar.</p>
+    <div class="land-stats">
+      <div class="land-stat"><div class="land-stat-num">80<span>+</span></div><div class="land-stat-label">Preguntas reales</div></div>
+      <div class="land-stat-div"></div>
+      <div class="land-stat"><div class="land-stat-num">4</div><div class="land-stat-label">Áreas del PAA</div></div>
+      <div class="land-stat-div"></div>
+      <div class="land-stat"><div class="land-stat-num"><span>∞</span></div><div class="land-stat-label">Simulacros</div></div>
     </div>
     <div class="land-cta">
-      <button class="btn-land" onclick="showLogin()">🚀 Acceder ahora</button>
-      <p style="color:rgba(255,255,255,.4);font-size:.72rem;margin-top:4px">Acceso con cuenta autorizada</p>
+      <button class="btn-land-main" onclick="enterApp()">Comenzar mi preparación →</button>
+      <p class="land-trust">Acceso gratuito · Sin registro</p>
+    </div>
+    <div class="land-features-grid">
+      <div class="land-feat-card"><div class="land-feat-icon">🧪</div><h4>Simulacro PAA</h4><p>80 preguntas cronometradas a 90 min con corrección inmediata</p></div>
+      <div class="land-feat-card"><div class="land-feat-icon">🎯</div><h4>Calculadora Real</h4><p>PAA + Promedio = Puntaje final. Fórmula oficial UDG</p></div>
+      <div class="land-feat-card"><div class="land-feat-icon">📚</div><h4>Temas + Videos</h4><p>Matemáticas, Español, Ciencias y Razonamiento</p></div>
+      <div class="land-feat-card"><div class="land-feat-icon">📅</div><h4>Calendario 2026-B</h4><p>Fechas verificadas de registro, examen y resultados</p></div>
+    </div>
+    <div class="land-proof">
+      <div class="land-proof-stars">★★★★★</div>
+      <p class="land-proof-text">"Por fin una app que usa la fórmula real de la UDG. La calculadora con el promedio y el PAA me ayudó a saber exactamente cuánto necesitaba sacar."</p>
+      <div class="land-proof-author">
+        <div class="land-proof-avatar">MR</div>
+        <div><div class="land-proof-name">María R.</div><div class="land-proof-detail">Admitida en Psicología · CUCSH 2025</div></div>
+      </div>
     </div>
   </div>
-  <div class="land-footer">AciertaUDG © 2026 · Todos los derechos reservados · Alejandro Vivanco Consultoría</div>
-</div>
-
-<!-- ══ LOGIN MODAL ══ -->
-<div id="login-overlay">
-  <div class="login-box">
-    <div style="font-size:2rem;margin-bottom:8px">🎓</div>
-    <h2>Acceder a AciertaUDG</h2>
-    <p>Ingresa con tu cuenta autorizada</p>
-    <p id="login-err" class="login-err">Correo o contraseña incorrectos</p>
-    <input type="email" id="li-email" placeholder="tu@correo.com" autocomplete="email">
-    <input type="password" id="li-pass" placeholder="Contraseña" onkeydown="if(event.key==='Enter')doLogin()">
-    <button class="btn-login" onclick="doLogin()">Entrar →</button>
-    <button class="login-close" onclick="closeLogin()">← Volver al inicio</button>
+  <div class="land-footer-bar">
+    <p>AciertaUDG © 2026 · Alejandro Vivanco Consultoría</p>
+    <p>Datos verificados · escolar.udg.mx</p>
   </div>
 </div>
 
@@ -1357,65 +1385,15 @@ function toast(msg) {
 /* ═══════════════════════════════════════
    NETLIFY IDENTITY AUTH
 ═══════════════════════════════════════ */
-function showLogin() {
-  document.getElementById('login-overlay').classList.add('show');
-  setTimeout(()=>document.getElementById('li-email').focus(), 100);
-}
-function closeLogin() {
-  document.getElementById('login-overlay').classList.remove('show');
-  document.getElementById('login-err').style.display = 'none';
-}
-
-function doLogin() {
-  if (window.netlifyIdentity) {
-    closeLogin();
-    netlifyIdentity.open('login');
-    return;
-  }
-  // Fallback manual API
-  const email = document.getElementById('li-email').value.trim();
-  const pass  = document.getElementById('li-pass').value;
-  const err   = document.getElementById('login-err');
-  err.style.display = 'none';
-  if (!email || !pass) { err.textContent='Completa todos los campos'; err.style.display='block'; return; }
-  fetch('/.netlify/identity/token', {
-    method:'POST',
-    headers:{'Content-Type':'application/x-www-form-urlencoded'},
-    body:`grant_type=password&username=${encodeURIComponent(email)}&password=${encodeURIComponent(pass)}`
-  }).then(r=>r.json()).then(data=>{
-    if (data.access_token) { localStorage.setItem('udg_token', data.access_token); enterApp(); }
-    else { err.textContent='Correo o contraseña incorrectos'; err.style.display='block'; }
-  }).catch(()=>{ err.textContent='Error de conexión'; err.style.display='block'; });
-}
-
 function enterApp() {
-  document.getElementById('landing').style.display    = 'none';
-  document.getElementById('login-overlay').classList.remove('show');
-  // Show home screen and make it active
+  document.getElementById('landing').style.display = 'none';
   const home = document.getElementById('s-home');
   home.style.display = 'block';
   home.classList.add('active');
 }
 
 function checkSession() {
-  if (!window.netlifyIdentity) return;
-
-  // Handle invite/recovery tokens in URL hash
-  const hash = window.location.hash;
-  if (hash && (hash.includes('invite_token') || hash.includes('recovery_token') || hash.includes('confirmation_token'))) {
-    netlifyIdentity.open();
-  }
-
-  netlifyIdentity.on('init', user => { if (user) enterApp(); });
-  netlifyIdentity.on('login', user => { netlifyIdentity.close(); enterApp(); });
-  netlifyIdentity.on('logout', () => {
-    document.getElementById('landing').style.display = 'flex';
-    document.querySelectorAll('.screen').forEach(s => {
-      s.style.display = 'none';
-      s.classList.remove('active');
-    });
-  });
-  netlifyIdentity.init();
+  // No auth needed — direct access
 }
 
 window.addEventListener('DOMContentLoaded', checkSession);
