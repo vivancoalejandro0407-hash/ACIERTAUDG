@@ -695,169 +695,328 @@ const CARRERAS = {
 };
 
 const TEMAS = [
+  /* ══ MATEMÁTICAS ══ */
   {
     id:'mat', titulo:'Matemáticas', emoji:'📐', color:'#1d4ed8', pct:30,
     subtemas:[
-      { t:'Álgebra básica', videos:[
-          {id:'_6uyQISZvBc', titulo:'Álgebra desde cero — Matemáticas profe Alex'},
+      { t:'Álgebra — Operaciones con polinomios', videos:[
+          {id:'_6uyQISZvBc', titulo:'Álgebra desde cero — Profe Alex'},
           {id:'Zg-R7Ir2xPQ', titulo:'Álgebra para todos — Math2Me'}
         ], contenido:[
-        {tipo:'h2',texto:'Álgebra básica'},
-        {tipo:'p',texto:'El álgebra estudia las relaciones y operaciones con símbolos que representan números. Es fundamental en el PAA, representando aproximadamente 15% de las preguntas de Matemáticas.'},
-        {tipo:'h3',texto:'Operaciones con polinomios'},
-        {tipo:'p',texto:'Un monomio es una expresión algebraica con un solo término: 3x², -5y, 7. Un polinomio es la suma de monomios.'},
-        {tipo:'ejemplo',texto:'Suma: (3x² + 2x - 1) + (x² - 3x + 5) = 4x² - x + 4\nResta: (3x² + 2x - 1) - (x² - 3x + 5) = 2x² + 5x - 6'},
-        {tipo:'tip',texto:'💡 Tip PAA: Agrupa siempre los términos semejantes (mismo grado) antes de operar.'},
-        {tipo:'h3',texto:'Factorización'},
-        {tipo:'p',texto:'Factorizar es expresar un polinomio como producto de factores más simples.'},
-        {tipo:'ejemplo',texto:'x² - 9 = (x+3)(x-3)  [diferencia de cuadrados]\nx² + 5x + 6 = (x+2)(x+3)  [trinomio cuadrado perfecto]'},
+        {tipo:'h2',texto:'¿Qué es un polinomio?'},
+        {tipo:'p',texto:'Un polinomio es una expresión algebraica formada por la suma de términos. Cada término tiene un coeficiente numérico y una variable elevada a una potencia entera no negativa.'},
+        {tipo:'ejemplo',texto:'Monomio (1 término): 3x²\nBinomio (2 términos): 2x + 5\nTrinomio (3 términos): x² - 3x + 4\nPolinomio general: 4x³ + 2x² - x + 7'},
+        {tipo:'h3',texto:'Suma y resta de polinomios'},
+        {tipo:'p',texto:'Solo se pueden sumar o restar términos semejantes (mismo grado y variable). Agrupa los términos del mismo tipo y opera sus coeficientes.'},
+        {tipo:'ejemplo',texto:'(3x² + 2x - 1) + (x² - 3x + 5)\n= (3x² + x²) + (2x - 3x) + (-1 + 5)\n= 4x² - x + 4\n\n(5x² + 3x - 2) - (2x² - x + 4)\n= (5x²-2x²) + (3x+x) + (-2-4)\n= 3x² + 4x - 6'},
+        {tipo:'h3',texto:'Multiplicación de polinomios'},
+        {tipo:'p',texto:'Multiplica cada término del primer polinomio por cada término del segundo. Luego suma los términos semejantes.'},
+        {tipo:'ejemplo',texto:'(x + 2)(x + 3)\n= x·x + x·3 + 2·x + 2·3\n= x² + 3x + 2x + 6\n= x² + 5x + 6'},
+        {tipo:'tip',texto:'💡 Tip PAA: En multiplicación de binomios usa FOIL: Primeros, Externos, Internos, Últimos. Ahorra tiempo en el examen.'},
       ]},
-      { t:'Ecuaciones de primer grado', videos:[
-          {id:'omll6f_X4fE', titulo:'Ecuaciones de primer grado — Profe en tu casa'},
-          {id:'QUBbmA2NlEI', titulo:'Ecuaciones lineales en 1 minuto — Math2Me'}
+      { t:'Álgebra — Factorización', videos:[
+          {id:'omll6f_X4fE', titulo:'Factorización completa — Profe en tu casa'},
+          {id:'QUBbmA2NlEI', titulo:'Factorización Math2Me'}
+        ], contenido:[
+        {tipo:'h2',texto:'¿Qué es factorizar?'},
+        {tipo:'p',texto:'Factorizar es escribir un polinomio como producto de factores más simples. Es el proceso inverso a la multiplicación.'},
+        {tipo:'h3',texto:'Factor común'},
+        {tipo:'p',texto:'Busca el máximo factor común entre todos los términos y sácalo fuera del paréntesis.'},
+        {tipo:'ejemplo',texto:'6x² + 9x = 3x(2x + 3)\n4a²b - 8ab² = 4ab(a - 2b)\n15x³ - 10x² + 5x = 5x(3x² - 2x + 1)'},
+        {tipo:'h3',texto:'Diferencia de cuadrados'},
+        {tipo:'p',texto:'Fórmula: a² - b² = (a + b)(a - b)'},
+        {tipo:'ejemplo',texto:'x² - 9 = (x+3)(x-3)\n4x² - 25 = (2x+5)(2x-5)\n16a² - 49b² = (4a+7b)(4a-7b)'},
+        {tipo:'h3',texto:'Trinomio cuadrado perfecto'},
+        {tipo:'p',texto:'Fórmula: a² ± 2ab + b² = (a ± b)²'},
+        {tipo:'ejemplo',texto:'x² + 6x + 9 = (x+3)²\nx² - 10x + 25 = (x-5)²\n4x² + 12x + 9 = (2x+3)²'},
+        {tipo:'h3',texto:'Trinomio de la forma x² + bx + c'},
+        {tipo:'p',texto:'Busca dos números que al multiplicarse den c y al sumarse den b.'},
+        {tipo:'ejemplo',texto:'x² + 7x + 12\nBusco: _×_ = 12 y _+_ = 7 → 3 y 4\nResultado: (x+3)(x+4)\n\nx² - 5x + 6\nBusco: _×_ = 6 y _+_ = -5 → -2 y -3\nResultado: (x-2)(x-3)'},
+        {tipo:'tip',texto:'💡 Tip PAA: Siempre verifica tu factorización multiplicando los factores. Si obtienes el polinomio original, está correcto.'},
+      ]},
+      { t:'Ecuaciones de 1° y 2° grado', videos:[
+          {id:'NybHckSEQBI', titulo:'Ecuaciones paso a paso — Math2Me'},
+          {id:'dXakJkBRpqM', titulo:'Ecuaciones cuadráticas — Math2Me'}
         ], contenido:[
         {tipo:'h2',texto:'Ecuaciones de primer grado'},
-        {tipo:'p',texto:'Una ecuación de primer grado tiene la forma ax + b = 0, donde a ≠ 0. La solución es x = -b/a.'},
-        {tipo:'ejemplo',texto:'3x + 6 = 0\n3x = -6\nx = -2'},
+        {tipo:'p',texto:'Una ecuación de primer grado (lineal) tiene la forma ax + b = 0. La estrategia es despejar x usando operaciones inversas.'},
+        {tipo:'ejemplo',texto:'3x + 6 = 0          5x - 3 = 2x + 9\n3x = -6              5x - 2x = 9 + 3\nx = -2               3x = 12 → x = 4'},
         {tipo:'h3',texto:'Ecuaciones con fracciones'},
-        {tipo:'p',texto:'Multiplica ambos lados por el mínimo común múltiplo de los denominadores para eliminar fracciones.'},
-        {tipo:'ejemplo',texto:'x/2 + x/3 = 5\nMCM = 6:\n3x + 2x = 30\n5x = 30  →  x = 6'},
-        {tipo:'tip',texto:'💡 Tip: En el PAA siempre verifica tu respuesta sustituyendo en la ecuación original.'},
+        {tipo:'p',texto:'Multiplica todos los términos por el MCM de los denominadores para eliminar fracciones.'},
+        {tipo:'ejemplo',texto:'x/2 + x/3 = 5   → MCM = 6\n6(x/2) + 6(x/3) = 6(5)\n3x + 2x = 30\n5x = 30  →  x = 6'},
+        {tipo:'h3',texto:'Ecuaciones de segundo grado'},
+        {tipo:'p',texto:'Forma general: ax² + bx + c = 0. Se resuelven por factorización o con la fórmula general.'},
+        {tipo:'ejemplo',texto:'Fórmula general:\nx = (-b ± √(b²-4ac)) / 2a\n\nEjemplo: 2x² - 5x + 3 = 0\na=2, b=-5, c=3\nx = (5 ± √(25-24)) / 4\nx = (5 ± 1) / 4\nx₁ = 6/4 = 3/2    x₂ = 4/4 = 1'},
+        {tipo:'h3',texto:'El discriminante b²-4ac'},
+        {tipo:'ejemplo',texto:'b²-4ac > 0 → Dos soluciones reales distintas\nb²-4ac = 0 → Una solución real (doble)\nb²-4ac < 0 → Sin soluciones reales'},
+        {tipo:'tip',texto:'💡 Tip PAA: Aprende a factorizar rápido. En muchas ecuaciones cuadráticas del examen es más rápido que la fórmula general.'},
       ]},
-      { t:'Geometría y trigonometría', videos:[
-          {id:'dXakJkBRpqM', titulo:'Ecuaciones cuadráticas — Math2Me'},
-          {id:'ZC67c5ar9mA', titulo:'Fórmula general — Daniel Carreon'}
+      { t:'Geometría — Figuras planas', videos:[
+          {id:'jUV6VDGNvCc', titulo:'Áreas y perímetros — Khan Academy'},
+          {id:'ZC67c5ar9mA', titulo:'Geometría — Daniel Carreon'}
         ], contenido:[
-        {tipo:'h2',texto:'Geometría'},
-        {tipo:'p',texto:'Las fórmulas más frecuentes en el PAA son áreas y perímetros de figuras básicas.'},
-        {tipo:'ejemplo',texto:'Triángulo: A = (base × altura) / 2\nCircunferencia: A = π r²  |  P = 2πr\nRectángulo: A = base × altura  |  P = 2(b+h)'},
+        {tipo:'h2',texto:'Perímetros y áreas'},
+        {tipo:'p',texto:'El perímetro es la longitud total del contorno de una figura. El área es la superficie que ocupa.'},
+        {tipo:'ejemplo',texto:'CUADRADO (lado = l)\nPerímetro = 4l\nÁrea = l²\n\nRECTÁNGULO (base b, altura h)\nPerímetro = 2(b+h)\nÁrea = b×h\n\nTRIÁNGULO (base b, altura h)\nPerímetro = a+b+c (suma de lados)\nÁrea = (b×h)/2\n\nCÍRCULO (radio r)\nCircunferencia = 2πr\nÁrea = πr²   (π ≈ 3.1416)'},
         {tipo:'h3',texto:'Teorema de Pitágoras'},
-        {tipo:'p',texto:'En un triángulo rectángulo: a² + b² = c², donde c es la hipotenusa.'},
-        {tipo:'ejemplo',texto:'Si a=3 y b=4, entonces:\nc² = 9 + 16 = 25\nc = 5'},
-        {tipo:'tip',texto:'💡 Tip PAA: Memoriza los triángulos pitagóricos más comunes: (3,4,5), (5,12,13), (8,15,17).'},
+        {tipo:'p',texto:'En todo triángulo rectángulo: el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos.'},
+        {tipo:'ejemplo',texto:'a² + b² = c²  (c = hipotenusa)\n\nTriángulos pitagóricos más comunes:\n3² + 4² = 5²   → (3, 4, 5)\n5² + 12² = 13² → (5, 12, 13)\n8² + 15² = 17² → (8, 15, 17)\n6² + 8² = 10²  → (6, 8, 10)'},
+        {tipo:'h3',texto:'Ángulos'},
+        {tipo:'ejemplo',texto:'Ángulo recto: 90°\nÁngulos complementarios: suman 90°\nÁngulos suplementarios: suman 180°\nSuma de ángulos en triángulo: 180°\nSuma de ángulos en cuadrilátero: 360°'},
+        {tipo:'tip',texto:'💡 Tip PAA: Memoriza los triángulos pitagóricos (3,4,5) y (5,12,13). Aparecen constantemente en el examen y ahorran cálculos.'},
       ]},
-      { t:'Estadística básica', videos:[
-          {id:'Lj-Dkm7sL0M', titulo:'Sistemas de ecuaciones — Math2Me'},
-          {id:'dXakJkBRpqM', titulo:'Probabilidad básica — Math2Me'}
+      { t:'Estadística y Probabilidad', videos:[
+          {id:'GrynkZp9be8', titulo:'Media mediana moda — Khan Academy'},
+          {id:'lHZTgLHLZ5I', titulo:'Probabilidad — Khan Academy'}
         ], contenido:[
-        {tipo:'h2',texto:'Estadística'},
-        {tipo:'p',texto:'La estadística descriptiva evalúa tu capacidad para interpretar datos. Es frecuente en el PAA.'},
-        {tipo:'h3',texto:'Medidas de tendencia central'},
-        {tipo:'ejemplo',texto:'Media: suma de datos / cantidad de datos\nMediana: valor central al ordenar los datos\nModa: valor que más se repite\n\nEjemplo: 3, 7, 5, 7, 2\nMedia = (3+7+5+7+2)/5 = 24/5 = 4.8\nMediana (ordenado: 2,3,5,7,7) = 5\nModa = 7'},
-        {tipo:'tip',texto:'💡 Tip: Si hay número par de datos, la mediana es el promedio de los dos centrales.'},
+        {tipo:'h2',texto:'Medidas de tendencia central'},
+        {tipo:'p',texto:'Resumen de un conjunto de datos con un valor representativo.'},
+        {tipo:'ejemplo',texto:'Datos: 4, 7, 2, 9, 7, 3, 7\n\nMEDIA (promedio):\n= (4+7+2+9+7+3+7)/7 = 39/7 ≈ 5.57\n\nMEDIANA (valor central al ordenar):\nOrdenado: 2, 3, 4, 7, 7, 7, 9\nMediana = 7 (el del centro)\n\nMODA (el que más se repite):\nModa = 7 (aparece 3 veces)'},
+        {tipo:'h3',texto:'Mediana con número par de datos'},
+        {tipo:'ejemplo',texto:'Datos: 3, 5, 8, 12\nMediana = (5+8)/2 = 13/2 = 6.5'},
+        {tipo:'h3',texto:'Probabilidad básica'},
+        {tipo:'p',texto:'La probabilidad mide qué tan probable es que ocurra un evento. Siempre está entre 0 y 1.'},
+        {tipo:'ejemplo',texto:'P(evento) = casos favorables / casos totales\n\nDado de 6 caras — P(sacar 4):\nP = 1/6 ≈ 0.167\n\nBaraja — P(sacar un As):\nP = 4/52 = 1/13 ≈ 0.077\n\nMoneda — P(cara o cruz):\nP = 1/2 = 0.5'},
+        {tipo:'h3',texto:'Conteo — Permutaciones y combinaciones'},
+        {tipo:'ejemplo',texto:'Permutaciones (importa el orden):\nP(n,r) = n!/(n-r)!\n\nCombinaciones (no importa el orden):\nC(n,r) = n!/[r!(n-r)!]\n\nEjemplo: ¿De cuántas formas ordenar 3 libros de 5?\nP(5,3) = 5!/2! = 60 formas'},
+        {tipo:'tip',texto:'💡 Tip PAA: La probabilidad NUNCA puede ser mayor que 1 ni menor que 0. Si tu resultado sale fuera de ese rango, hay un error.'},
+      ]},
+      { t:'Funciones y gráficas', videos:[
+          {id:'Lj-Dkm7sL0M', titulo:'Funciones lineales — Math2Me'},
+          {id:'sTMIEbYEjSo', titulo:'Gráficas y funciones — Profe en tu casa'}
+        ], contenido:[
+        {tipo:'h2',texto:'¿Qué es una función?'},
+        {tipo:'p',texto:'Una función es una relación donde a cada valor de x le corresponde exactamente un valor de y. Se escribe f(x).'},
+        {tipo:'ejemplo',texto:'f(x) = 2x + 3\nf(0) = 2(0) + 3 = 3\nf(2) = 2(2) + 3 = 7\nf(-1) = 2(-1) + 3 = 1'},
+        {tipo:'h3',texto:'Función lineal y = mx + b'},
+        {tipo:'p',texto:'m = pendiente (inclinación de la recta). b = ordenada al origen (donde cruza el eje y).'},
+        {tipo:'ejemplo',texto:'y = 3x - 2\nPendiente m = 3 (sube 3 por cada 1 que avanza)\nOrdenada b = -2 (cruza el eje y en -2)\n\nPendiente entre dos puntos:\nm = (y₂-y₁)/(x₂-x₁)\nPuntos (1,3) y (4,9):\nm = (9-3)/(4-1) = 6/3 = 2'},
+        {tipo:'h3',texto:'Función cuadrática y = ax² + bx + c'},
+        {tipo:'p',texto:'Su gráfica es una parábola. Si a>0 abre hacia arriba, si a<0 abre hacia abajo.'},
+        {tipo:'ejemplo',texto:'Vértice (punto más alto/bajo):\nx_v = -b/(2a)\ny_v = f(x_v)\n\ny = x² - 4x + 3\nx_v = -(-4)/(2·1) = 2\ny_v = 4 - 8 + 3 = -1\nVértice: (2, -1)'},
+        {tipo:'tip',texto:'💡 Tip PAA: Para identificar la pendiente en y=mx+b, solo lee el coeficiente de x. Para la ordenada al origen, sustituye x=0.'},
       ]},
     ]
   },
+
+  /* ══ ESPAÑOL ══ */
   {
     id:'esp', titulo:'Español y Comunicación', emoji:'📝', color:'#7c3aed', pct:25,
     subtemas:[
-      { t:'Comprensión lectora', videos:[
-          {id:'UG_vXatmxE0', titulo:'Ideas de la lectura PAA (UDG/TEC) — ProfeEnTuCasa'},
-          {id:'rzob01dyOHQ', titulo:'Comprensión Lectora — Idea principal'}
+      { t:'Comprensión lectora — Estrategias', videos:[
+          {id:'UG_vXatmxE0', titulo:'Ideas principales PAA — ProfeEnTuCasa'},
+          {id:'-8t5z0QyE-I', titulo:'Estrategias de lectura — David Rengifo'}
         ], contenido:[
-        {tipo:'h2',texto:'Comprensión lectora'},
-        {tipo:'p',texto:'La comprensión lectora representa 25% del PAA. Se evalúa tu capacidad para identificar ideas principales, inferir información y analizar textos.'},
-        {tipo:'h3',texto:'Tipos de preguntas'},
-        {tipo:'p',texto:'• Idea principal: ¿De qué trata el texto?\n• Inferencia: ¿Qué se puede concluir?\n• Vocabulario en contexto: ¿Qué significa esta palabra?\n• Estructura: ¿Cuál es el propósito del párrafo?'},
-        {tipo:'tip',texto:'💡 Estrategia: Lee primero las preguntas, luego el texto. Así sabes qué información buscar.'},
-        {tipo:'h3',texto:'Idea principal vs idea secundaria'},
-        {tipo:'p',texto:'La idea principal es la más importante y generalmente aparece al inicio o al final del párrafo. Las ideas secundarias la apoyan o ejemplifican.'},
+        {tipo:'h2',texto:'Tipos de preguntas en comprensión lectora'},
+        {tipo:'p',texto:'El PAA evalúa 4 tipos principales de preguntas de lectura. Reconocerlos te ayuda a saber qué buscar en el texto.'},
+        {tipo:'ejemplo',texto:'1. IDEA PRINCIPAL: ¿De qué trata principalmente el texto?\n2. INFORMACIÓN EXPLÍCITA: Según el texto, ¿qué...?\n3. INFERENCIA: ¿Qué se puede concluir/inferir?\n4. VOCABULARIO EN CONTEXTO: La palabra X significa...\n5. PROPÓSITO: El autor escribe este texto para...\n6. TONO/ACTITUD: El autor muestra una actitud de...'},
+        {tipo:'h3',texto:'Estrategia para preguntas de idea principal'},
+        {tipo:'p',texto:'La idea principal es la oración que resume todo el párrafo o texto. Generalmente aparece al inicio o al final. No confundas la idea principal con un detalle o ejemplo.'},
+        {tipo:'ejemplo',texto:'TEXTO: "Los perros son excelentes mascotas. Son leales, cariñosos y fáciles de entrenar. Además, ayudan a sus dueños a mantenerse activos."\n\nIdea principal: Los perros son buenas mascotas.\nDetalles de apoyo: leales, cariñosos, fáciles de entrenar.'},
+        {tipo:'h3',texto:'Estrategia para inferencias'},
+        {tipo:'p',texto:'Una inferencia es una conclusión lógica basada en la información del texto. No está escrita directamente pero se puede deducir.'},
+        {tipo:'ejemplo',texto:'Texto: "Ana llegó empapada y con el paraguas roto."\nInferencia válida: Estaba lloviendo fuerte.\nNo inferencia: Ana odia la lluvia. (No hay evidencia)'},
+        {tipo:'tip',texto:'💡 Estrategia de oro: Lee primero las preguntas, luego el texto. Así sabes exactamente qué información buscar y ahorras tiempo.'},
+        {tipo:'h3',texto:'Vocabulario en contexto'},
+        {tipo:'p',texto:'Para preguntas de vocabulario, sustituye la palabra por cada opción y ve cuál da más sentido en el párrafo completo.'},
+        {tipo:'ejemplo',texto:'Oración: "El científico tenía una actitud escéptica ante los resultados."\nEscéptica significa: A) entusiasta B) dudosa C) confiada D) nerviosa\n\nSustituye: "actitud dudosa ante los resultados" → tiene sentido → B'},
       ]},
-      { t:'Gramática y ortografía', videos:[
-          {id:'E54zMfDcyRE', titulo:'Comprensión lectora EXANI — Profe Madi'},
-          {id:'Snq_xBkaGSc', titulo:'Comprensión lectora UNAM — Profe Sofía'}
+      { t:'Comprensión lectora — Textos literarios', videos:[
+          {id:'rzob01dyOHQ', titulo:'Textos literarios — análisis'},
+          {id:'VCrDtjBid_g', titulo:'Comprensión EXANI II — Profe Madi'}
         ], contenido:[
-        {tipo:'h2',texto:'Gramática'},
-        {tipo:'p',texto:'Los temas más frecuentes en el PAA son: uso de mayúsculas, tildes, signos de puntuación y concordancia.'},
-        {tipo:'h3',texto:'Reglas de acentuación'},
-        {tipo:'ejemplo',texto:'Agudas: acento en última sílaba si terminan en n,s o vocal\n  Ejemplos: camión, compás, café\n\nGraves: acento en penúltima sílaba si NO terminan en n,s o vocal\n  Ejemplos: árbol, fácil, lápiz\n\nEsdrújulas: acento en antepenúltima sílaba. SIEMPRE llevan tilde\n  Ejemplos: música, teléfono, médico'},
-        {tipo:'tip',texto:'💡 Tip: Las esdrújulas SIEMPRE llevan tilde. Es la regla más segura para resolver dudas.'},
+        {tipo:'h2',texto:'Géneros literarios'},
+        {tipo:'ejemplo',texto:'NARRATIVO: Cuenta una historia con personajes\n  • Cuento, novela, fábula, leyenda\n  • Elementos: narrador, personajes, trama, espacio, tiempo\n\nLÍRICO: Expresa emociones, generalmente en verso\n  • Poema, oda, elegía, soneto\n  • Elementos: verso, estrofa, rima, ritmo\n\nDRAMÁTICO: Escrito para representarse\n  • Obra de teatro, comedia, tragedia\n  • Elementos: actos, escenas, diálogos, acotaciones\n\nDIDÁCTICO: Busca enseñar o informar\n  • Ensayo, fábula con moraleja, artículo'},
+        {tipo:'h3',texto:'Figuras retóricas'},
+        {tipo:'p',texto:'Las figuras retóricas son recursos del lenguaje que dan expresividad al texto. El PAA frecuentemente pregunta sobre ellas.'},
+        {tipo:'ejemplo',texto:'METÁFORA: Identifica una cosa con otra sin "como"\n  "Tus ojos son estrellas" (no dice "parecen")\n\nSÍMIL/COMPARACIÓN: Compara usando "como"\n  "Corre como el viento"\n\nHIPÉRBOLE: Exageración intencionada\n  "Te lo he dicho mil veces"\n\nPERSONIFICACIÓN: Da cualidades humanas a cosas\n  "El viento silbaba entre los árboles"\n\nONOMATOPEYA: La palabra imita el sonido\n  "El reloj hacía tic-tac"\n\nSINESTESIA: Mezcla sensaciones de distintos sentidos\n  "Un silencio atronador" (oído + vista)'},
+        {tipo:'tip',texto:'💡 Tip PAA: Para identificar metáfora vs símil: si dice "es" o "son" = metáfora. Si dice "como", "parece", "igual que" = símil.'},
+      ]},
+      { t:'Gramática — Acentuación', videos:[
+          {id:'kJOOlCKxBBQ', titulo:'Acentuación completa — Superprofe'},
+          {id:'E54zMfDcyRE', titulo:'Reglas de tilde — Profe Madi'}
+        ], contenido:[
+        {tipo:'h2',texto:'Reglas de acentuación'},
+        {tipo:'p',texto:'En español, la tilde (acento ortográfico) se coloca según la posición de la sílaba tónica (la que se pronuncia con más fuerza).'},
+        {tipo:'ejemplo',texto:'AGUDAS: La fuerza va en la ÚLTIMA sílaba\n  Llevan tilde si terminan en: N, S o VOCAL\n  camión, compás, café, mamá\n  NO llevan: reloj, ciudad, papel\n\nGRAVES: La fuerza va en la PENÚLTIMA sílaba\n  Llevan tilde si NO terminan en: N, S o VOCAL\n  árbol, fácil, lápiz, álbum\n  NO llevan: casa, comen, libros\n\nESDRÚJULAS: La fuerza va en la ANTEPENÚLTIMA\n  SIEMPRE llevan tilde, sin excepción\n  música, teléfono, médico, pájaro\n\nSOBREESDRÚJULAS: Antes de la antepenúltima\n  SIEMPRE llevan tilde\n  dígamelo, cómetelo, rápidamente'},
+        {tipo:'h3',texto:'Acento diacrítico'},
+        {tipo:'p',texto:'Diferencia palabras que se escriben igual pero significan cosas distintas.'},
+        {tipo:'ejemplo',texto:'tú (pronombre) vs tu (posesivo)\nél (pronombre) vs el (artículo)\nsí (afirmación) vs si (condicional)\nmás (cantidad) vs mas (pero)\nsé (verbo) vs se (pronombre)\nté (bebida) vs te (pronombre)\ndé (verbo dar) vs de (preposición)\nmí (pronombre) vs mi (posesivo)'},
+        {tipo:'tip',texto:'💡 Regla de oro: Las esdrújulas SIEMPRE llevan tilde. Si memorizas solo una regla que sea esta.'},
+      ]},
+      { t:'Gramática — Morfología y sintaxis', videos:[
+          {id:'otzSB7pABFU', titulo:'Tipos de oraciones — Superprofe'},
+          {id:'9L_K7xmuCro', titulo:'Morfología y partes de la oración'}
+        ], contenido:[
+        {tipo:'h2',texto:'Categorías gramaticales'},
+        {tipo:'ejemplo',texto:'SUSTANTIVO: Nombra personas, animales, cosas o ideas\n  Tipos: propio (México), común (ciudad), abstracto (amor)\n\nADJETIVO: Describe o califica al sustantivo\n  "La casa grande y bonita"\n\nVERBO: Expresa acción, estado o proceso\n  Modos: indicativo (afirmo), subjuntivo (dudo), imperativo (ordeno)\n\nADVERBIO: Modifica al verbo, adjetivo u otro adverbio\n  Terminan en -mente: rápidamente, claramente\n  Otros: muy, bien, aquí, ayer, siempre\n\nPRONOMBRE: Sustituye al sustantivo\n  Personales: yo, tú, él, nosotros...\n\nPREPOSICIÓN: Une palabras\n  a, ante, bajo, con, de, desde, en, entre, hacia, hasta, para, por, sin, sobre, tras'},
+        {tipo:'h3',texto:'Estructura de la oración'},
+        {tipo:'ejemplo',texto:'SUJETO: De quién se habla / quién realiza la acción\n  Puede ser tácito (omitido)\n  "María estudia" → Sujeto: María\n\nPREDICADO: Lo que se dice del sujeto\n  Núcleo del predicado: el verbo principal\n  "María estudia mucho" → Predicado: estudia mucho\n\nOBJETO DIRECTO: Recibe la acción del verbo\n  Se pregunta ¿qué? o ¿a quién?\n  "Compré un libro" → OD: un libro\n\nOBJETO INDIRECTO: Beneficiario de la acción\n  Se pregunta ¿a quién? / ¿para quién?\n  "Le di flores a Rosa" → OI: a Rosa'},
+        {tipo:'tip',texto:'💡 Tip PAA: Para identificar el sujeto, pregunta al verbo ¿quién? Para el OD pregunta ¿qué? o ¿a quién? directamente.'},
       ]},
       { t:'Redacción y tipos de texto', videos:[
-          {id:'-8t5z0QyE-I', titulo:'Estrategias de comprensión lectora — David Rengifo'},
-          {id:'VCrDtjBid_g', titulo:'Comprensión lectora EXANI II — Profe Madi'}
+          {id:'eJMbqWgZSvI', titulo:'Tipos de texto — análisis'},
+          {id:'MzNEIVZ5OIM', titulo:'Estructura textual — estrategias'}
         ], contenido:[
-        {tipo:'h2',texto:'Tipos de texto'},
-        {tipo:'p',texto:'El PAA evalúa tu capacidad para identificar y producir distintos tipos de texto.'},
-        {tipo:'ejemplo',texto:'Narrativo: cuenta una historia (cuento, novela)\nDescriptivo: describe características (manual, guía)\nArgumentativo: defiende una postura (ensayo, editorial)\nInstructivo: da pasos a seguir (receta, manual)\nInformativo: transmite datos (noticia, reportaje)'},
-        {tipo:'tip',texto:'💡 Tip: Identifica el propósito del texto: ¿narrar, describir, convencer o informar?'},
+        {tipo:'h2',texto:'Tipos de texto según su propósito'},
+        {tipo:'ejemplo',texto:'NARRATIVO: Cuenta hechos o historias\n  Estructura: inicio → nudo → desenlace\n  Ejemplo: cuento, novela, noticia\n\nDESCRIPTIVO: Presenta características detalladas\n  Tipos: objetiva (científica) / subjetiva (literaria)\n  Ejemplo: descripción de un lugar, retrato\n\nARGUMENTATIVO: Defiende una postura con razones\n  Estructura: tesis → argumentos → conclusión\n  Ejemplo: ensayo, editorial, discurso\n\nEXPOSITIVO / INFORMATIVO: Explica o informa\n  Objetivo, imparcial, basado en hechos\n  Ejemplo: artículo científico, enciclopedia\n\nINSTRUCTIVO: Da pasos para realizar algo\n  Usa verbos en imperativo o infinitivo\n  Ejemplo: receta, manual, instructivo'},
+        {tipo:'h3',texto:'Coherencia y cohesión textual'},
+        {tipo:'p',texto:'Coherencia: Las ideas del texto tienen sentido entre sí. Cohesión: Las oraciones están conectadas correctamente con palabras enlace.'},
+        {tipo:'ejemplo',texto:'CONECTORES más usados en el PAA:\n\nPara añadir: además, también, asimismo, igualmente\nPara contrastar: sin embargo, no obstante, pero, aunque\nPara ejemplificar: por ejemplo, es decir, como\nPara concluir: por lo tanto, en conclusión, finalmente\nPara ordenar: primero, luego, después, finalmente\nPara causa: porque, ya que, puesto que\nPara consecuencia: por eso, así que, entonces'},
+        {tipo:'tip',texto:'💡 Tip PAA: En redacción, los conectores son clave. Si una pregunta pide elegir el conector correcto, identifica la relación lógica entre las ideas (contraste, adición, causa, etc.)'},
       ]},
     ]
   },
+
+  /* ══ RAZONAMIENTO ══ */
   {
     id:'razon', titulo:'Razonamiento Verbal y Lógico', emoji:'🧩', color:'#0f766e', pct:20,
     subtemas:[
-      { t:'Series y secuencias', videos:[
-          {id:'eJMbqWgZSvI', titulo:'Simulador EXANI II — Comprensión lectora'},
-          {id:'Zg-R7Ir2xPQ', titulo:'Razonamiento — Álgebra para todos Math2Me'}
+      { t:'Series numéricas', videos:[
+          {id:'N9IFGHMx-6E', titulo:'Series numéricas — Matemóvil'},
+          {id:'Zg-R7Ir2xPQ', titulo:'Patrones numéricos — Math2Me'}
         ], contenido:[
-        {tipo:'h2',texto:'Series numéricas'},
-        {tipo:'p',texto:'Identifica el patrón entre los números y encuentra el siguiente término.'},
-        {tipo:'ejemplo',texto:'2, 4, 8, 16, ___\nPatrón: × 2\nRespuesta: 32\n\n1, 4, 9, 16, ___\nPatrón: cuadrados perfectos (1², 2², 3², 4²)\nRespuesta: 25'},
-        {tipo:'tip',texto:'💡 Tip: Primero prueba suma/resta, luego multiplicación/división, luego potencias.'},
-        {tipo:'h3',texto:'Series de figuras'},
-        {tipo:'p',texto:'Observa rotaciones, simetrías, cantidad de lados y colores. Busca el patrón en filas Y columnas.'},
+        {tipo:'h2',texto:'Tipos de series numéricas'},
+        {tipo:'p',texto:'Una serie numérica es una secuencia de números que siguen un patrón. La clave es encontrar la regla que los conecta.'},
+        {tipo:'h3',texto:'Serie aritmética — suma/resta constante'},
+        {tipo:'ejemplo',texto:'3, 7, 11, 15, ___\nDiferencia constante: +4\nSiguiente: 19\n\n20, 17, 14, 11, ___\nDiferencia constante: -3\nSiguiente: 8'},
+        {tipo:'h3',texto:'Serie geométrica — multiplicación constante'},
+        {tipo:'ejemplo',texto:'2, 6, 18, 54, ___\nRazón: ×3\nSiguiente: 162\n\n256, 64, 16, 4, ___\nRazón: ÷4\nSiguiente: 1'},
+        {tipo:'h3',texto:'Serie de cuadrados y cubos'},
+        {tipo:'ejemplo',texto:'1, 4, 9, 16, 25, ___\nCuadrados: 1²,2²,3²,4²,5²,6²=36\n\n1, 8, 27, 64, 125, ___\nCubos: 1³,2³,3³,4³,5³,6³=216'},
+        {tipo:'h3',texto:'Series con diferencias crecientes'},
+        {tipo:'ejemplo',texto:'2, 3, 5, 8, 12, 17, ___\nDiferencias: 1, 2, 3, 4, 5, 6\nSiguiente: 17+6=23\n\n1, 2, 4, 7, 11, 16, ___\nDiferencias: 1, 2, 3, 4, 5, 6\nSiguiente: 16+6=22'},
+        {tipo:'h3',texto:'Series de Fibonacci'},
+        {tipo:'ejemplo',texto:'1, 1, 2, 3, 5, 8, 13, ___\nRegla: cada número = suma de los dos anteriores\nSiguiente: 8+13=21'},
+        {tipo:'tip',texto:'💡 Estrategia PAA: Calcula siempre las diferencias entre términos consecutivos. Si las diferencias son iguales = aritmética. Si son distintas pero siguen un patrón, analiza las diferencias de las diferencias.'},
       ]},
       { t:'Analogías verbales', videos:[
-          {id:'rzob01dyOHQ', titulo:'Comprensión lectora — Idea principal'},
-          {id:'omll6f_X4fE', titulo:'Ecuaciones y razonamiento — Profe en tu casa'}
+          {id:'WZy3_k7E1kI', titulo:'Analogías verbales — estrategia'},
+          {id:'rzob01dyOHQ', titulo:'Razonamiento verbal — práctica'}
         ], contenido:[
-        {tipo:'h2',texto:'Analogías'},
-        {tipo:'p',texto:'Una analogía es una relación entre pares de palabras. La clave es identificar el tipo de relación.'},
-        {tipo:'ejemplo',texto:'PERRO : LADRAR :: GATO : ___\nRelación: animal → sonido que produce\nRespuesta: Maullar\n\nCUCHILLO : CORTAR :: LÁPIZ : ___\nRelación: herramienta → función\nRespuesta: Escribir'},
-        {tipo:'h3',texto:'Tipos de analogías frecuentes'},
-        {tipo:'ejemplo',texto:'• Sinónimos: Veloz : Rápido\n• Antónimos: Grande : Pequeño\n• Todo : Parte: Árbol : Hoja\n• Causa : Efecto: Fuego : Ceniza\n• Lugar : Objeto: Biblioteca : Libro'},
+        {tipo:'h2',texto:'¿Qué es una analogía?'},
+        {tipo:'p',texto:'Una analogía es una relación entre pares de palabras. La clave es identificar QUÉ tipo de relación existe en el par dado y aplicarla al par incompleto.'},
+        {tipo:'h3',texto:'Tipos de analogías más frecuentes en el PAA'},
+        {tipo:'ejemplo',texto:'SINÓNIMOS: Grande : Enorme\nANTÓNIMOS: Frío : Caliente\n\nTODO : PARTE: Árbol : Hoja\nPARTE : TODO: Pétalo : Flor\n\nOBJETO : FUNCIÓN: Cuchillo : Cortar\nAGENTE : ACCIÓN: Pintor : Pintar\n\nOBJETO : MATERIAL: Silla : Madera\nOBJETO : LUGAR: Libro : Biblioteca\n\nCRÍA : ANIMAL: Cachorro : Perro\nANIMAL : SONIDO: Gato : Maullar\n\nCAUSA : EFECTO: Fuego : Ceniza\nSÍNTOMA : ENFERMEDAD: Fiebre : Gripe\n\nGRADO: Tibio : Caliente : Hirviente\n(De menor a mayor intensidad)'},
+        {tipo:'h3',texto:'Estrategia paso a paso'},
+        {tipo:'p',texto:'1. Forma una oración con el par dado\n2. Aplica la misma oración al par incompleto\n3. Elige la opción que complete correctamente'},
+        {tipo:'ejemplo',texto:'MÉDICO : HOSPITAL :: MAESTRO : ___\n\nPaso 1: "El médico trabaja en el hospital"\nPaso 2: "El maestro trabaja en la ___"\nRespuesta: ESCUELA\n\nPINTOR : PINCEL :: ESCRITOR : ___\n"El pintor usa un pincel para trabajar"\n"El escritor usa ___ para trabajar"\nRespuesta: PLUMA o COMPUTADORA'},
+        {tipo:'tip',texto:'💡 Tip PAA: Siempre forma una oración completa con el par dado. Esto evita confusiones entre relaciones parecidas.'},
       ]},
-      { t:'Razonamiento lógico', videos:[
-          {id:'QUBbmA2NlEI', titulo:'Razonamiento — Ecuaciones lineales Math2Me'},
-          {id:'_6uyQISZvBc', titulo:'Razonamiento lógico — Profe Alex'}
+      { t:'Razonamiento lógico — Silogismos', videos:[
+          {id:'NybHckSEQBI', titulo:'Lógica y silogismos — Math2Me'},
+          {id:'_6uyQISZvBc', titulo:'Razonamiento deductivo — Profe Alex'}
         ], contenido:[
         {tipo:'h2',texto:'Silogismos'},
-        {tipo:'p',texto:'Un silogismo es un argumento lógico con dos premisas y una conclusión.'},
-        {tipo:'ejemplo',texto:'Premisa 1: Todos los mamíferos tienen sangre caliente.\nPremisa 2: El perro es un mamífero.\nConclusión: El perro tiene sangre caliente.'},
-        {tipo:'tip',texto:'💡 Tip PAA: Cuidado con los cuantificadores: "todos", "algunos", "ninguno". Cambian completamente la conclusión.'},
+        {tipo:'p',texto:'Un silogismo tiene dos premisas y una conclusión. La conclusión debe seguir necesariamente de las premisas.'},
+        {tipo:'ejemplo',texto:'VÁLIDO:\nTodos los A son B\nTodos los B son C\n∴ Todos los A son C ✓\n\nEjemplo:\nTodos los perros son mamíferos\nTodos los mamíferos tienen sangre caliente\n∴ Todos los perros tienen sangre caliente ✓'},
+        {tipo:'h3',texto:'Cuantificadores — cambian todo'},
+        {tipo:'ejemplo',texto:'"TODOS los A son B" ≠ "ALGUNOS A son B"\n"NINGÚN A es B" ≠ "NO TODOS los A son B"\n\nEjemplo cuidadoso:\nTodos los médicos son profesionales\nAlejandro es profesional\n∴ Alejandro es médico ✗ (INCORRECTO)\n\n¿Por qué? Hay muchos profesionales que no son médicos. La conclusión no se sigue necesariamente.'},
         {tipo:'h3',texto:'Problemas de ordenamiento'},
-        {tipo:'p',texto:'Te dan relaciones entre objetos o personas y debes determinar el orden.'},
-        {tipo:'ejemplo',texto:'A es mayor que B. B es mayor que C. D es menor que C.\nOrden: A > B > C > D'},
+        {tipo:'p',texto:'Te dan relaciones de mayor/menor, antes/después, etc. y debes determinar el orden correcto.'},
+        {tipo:'ejemplo',texto:'Ana es más alta que Beto\nBeto es más alto que Carlos\nCarlos es más alto que Diana\n\nOrden: Ana > Beto > Carlos > Diana\n\n¿Quién es el más bajo? Diana\n¿Quién está en medio? Beto y Carlos'},
+        {tipo:'h3',texto:'Problemas de verdadero/falso'},
+        {tipo:'ejemplo',texto:'Si "Todos los gatos son negros" es FALSO:\n→ "Algún gato no es negro" es VERDADERO\n→ "Ningún gato es negro" puede ser falso\n\nNegación de "Todos": "Alguno no"\nNegación de "Ninguno": "Alguno sí"\nNegación de "Algunos": "Ninguno"'},
+        {tipo:'tip',texto:'💡 Tip PAA: Lee muy cuidadosamente los cuantificadores (todos, algunos, ninguno). Un cambio de "todos" a "algunos" invalida completamente una conclusión.'},
+      ]},
+      { t:'Razonamiento espacial y figuras', videos:[
+          {id:'eJMbqWgZSvI', titulo:'Razonamiento espacial — práctica'},
+          {id:'VCrDtjBid_g', titulo:'Series de figuras — estrategia'}
+        ], contenido:[
+        {tipo:'h2',texto:'Series de figuras'},
+        {tipo:'p',texto:'Se presenta una secuencia de figuras que siguen un patrón. Debes identificar el patrón y elegir la figura que continúa.'},
+        {tipo:'h3',texto:'¿Qué observar en cada figura?'},
+        {tipo:'ejemplo',texto:'1. FORMA: ¿Cambia el tipo de figura?\n2. TAMAÑO: ¿Aumenta o disminuye?\n3. POSICIÓN: ¿Rota? ¿Cuántos grados?\n4. COLOR/RELLENO: ¿Alterna blanco/negro?\n5. CANTIDAD: ¿Aumenta el número de elementos?\n6. ORIENTACIÓN: ¿Se voltea o refleja?'},
+        {tipo:'h3',texto:'Estrategia para series de figuras'},
+        {tipo:'p',texto:'Analiza primero las filas, luego las columnas. Busca qué cambia de izquierda a derecha y de arriba a abajo.'},
+        {tipo:'ejemplo',texto:'Ejemplo de patrón de rotación:\n▲ → ▶ → ▼ → ◀\n(Rota 90° en sentido horario cada vez)\n\nEjemplo de patrón de cantidad:\n● → ●● → ●●● → ●●●●\n(Aumenta 1 elemento por paso)'},
+        {tipo:'h3',texto:'Matrices 3×3'},
+        {tipo:'p',texto:'En matrices de 3×3, analiza cada fila y columna. La figura faltante debe ser consistente tanto con su fila como con su columna.'},
+        {tipo:'tip',texto:'💡 Tip PAA: En figuras con rotación, identifica el ángulo de giro (90°, 180° o 270°). En figuras con relleno, busca alternancia blanco-negro o patrones de 2 o 3 pasos.'},
       ]},
     ]
   },
+
+  /* ══ CIENCIAS ══ */
   {
     id:'ciencias', titulo:'Ciencias', emoji:'🔬', color:'#b45309', pct:25,
     subtemas:[
-      { t:'Biología básica', videos:[
-          {id:'Zg-R7Ir2xPQ', titulo:'Biología — Álgebra para todos Math2Me'},
-          {id:'dXakJkBRpqM', titulo:'Ciencias naturales — Math2Me'}
+      { t:'Biología — La célula', videos:[
+          {id:'LzrJNQBCBIc', titulo:'La célula — Khan Academy'},
+          {id:'xoNECL5VDWM', titulo:'Organelos celulares — explicación'}
         ], contenido:[
-        {tipo:'h2',texto:'La célula'},
-        {tipo:'p',texto:'La célula es la unidad fundamental de la vida. Se divide en procariota (sin núcleo, como bacterias) y eucariota (con núcleo, como células animales y vegetales).'},
-        {tipo:'ejemplo',texto:'Organelos principales:\n• Núcleo: contiene el ADN (información genética)\n• Mitocondria: produce energía (ATP)\n• Ribosomas: sintetizan proteínas\n• Membrana plasmática: regula el paso de sustancias'},
-        {tipo:'tip',texto:'💡 Mnemónico: "Mi Músculo Respira Mucho" = Mitocondria, Membrana, Ribosoma, Membrana.'},
-        {tipo:'h3',texto:'Fotosíntesis'},
-        {tipo:'ejemplo',texto:'6CO₂ + 6H₂O + luz → C₆H₁₂O₆ + 6O₂\n(dióxido de carbono + agua + luz → glucosa + oxígeno)'},
+        {tipo:'h2',texto:'La célula: unidad de la vida'},
+        {tipo:'p',texto:'Toda la vida está compuesta por células. Existen dos tipos fundamentales según tengan o no núcleo definido.'},
+        {tipo:'ejemplo',texto:'PROCARIOTA (sin núcleo membranoso)\n  • Bacteria, arquea\n  • Sin organelos membranosos\n  • Material genético libre en citoplasma\n  • Tamaño: 1-10 μm\n\nEUCARIOTA (con núcleo membranoso)\n  • Animal, vegetal, hongo, protista\n  • Con organelos especializados\n  • ADN encerrado en núcleo\n  • Tamaño: 10-100 μm'},
+        {tipo:'h3',texto:'Organelos y sus funciones'},
+        {tipo:'ejemplo',texto:'NÚCLEO: Contiene el ADN. Centro de control celular.\nMITOCONDRIA: Produce energía (ATP). "Central energética"\nCLOROPLASTO: Realiza fotosíntesis (solo en plantas)\nRIBOSOMAS: Sintetizan proteínas\nRETÍCULO ENDOPLÁSMICO: Transporte de materiales\nAPARATO DE GOLGI: Empaca y envía proteínas\nLISOSOMA: Digestión celular (en animales)\nVACUOLA: Almacenamiento (grande en plantas)\nMEMBRANA PLASMÁTICA: Controla entrada/salida'},
+        {tipo:'h3',texto:'Diferencias célula animal vs vegetal'},
+        {tipo:'ejemplo',texto:'CÉLULA VEGETAL tiene ADICIONALMENTE:\n  ✓ Pared celular (celulosa) — da rigidez\n  ✓ Cloroplastos — para fotosíntesis\n  ✓ Vacuola central grande\n  ✗ No tiene centríolos (en animales sí)'},
+        {tipo:'h3',texto:'División celular'},
+        {tipo:'ejemplo',texto:'MITOSIS: Para crecimiento y reparación\n  Resultado: 2 células hijas idénticas\n  Fases: Profase → Metafase → Anafase → Telofase\n\nMEIOSIS: Para reproducción sexual\n  Resultado: 4 células con la mitad de cromosomas\n  Ocurre en gónadas (ovarios y testículos)'},
+        {tipo:'tip',texto:'💡 Mnemónico: "Mi Mamá Ama Todo" = Mitocondria, Membrana, Aparato Golgi, Todo lo demás. Para fotosíntesis: CLoRoplasto = CLima + LuZ.'},
       ]},
-      { t:'Química general', videos:[
-          {id:'omll6f_X4fE', titulo:'Química general — Profe en tu casa'},
-          {id:'ZC67c5ar9mA', titulo:'Fórmulas y reacciones — Daniel Carreon'}
+      { t:'Biología — Genética y evolución', videos:[
+          {id:'5HGdHDFFNpU', titulo:'Genética básica — Matemóvil'},
+          {id:'DmSz1eh-CYs', titulo:'Leyes de Mendel — explicación'}
         ], contenido:[
-        {tipo:'h2',texto:'Tabla periódica'},
-        {tipo:'p',texto:'Los elementos se organizan por número atómico (protones) en períodos (filas) y grupos (columnas). Los grupos determinan propiedades similares.'},
-        {tipo:'ejemplo',texto:'Grupos importantes:\n• Grupo 1 (Metales alcalinos): Li, Na, K — muy reactivos\n• Grupo 17 (Halógenos): F, Cl, Br — forman sales\n• Grupo 18 (Gases nobles): He, Ne, Ar — inertes'},
-        {tipo:'h3',texto:'Reacciones químicas'},
-        {tipo:'p',texto:'La ley de conservación de la masa dice que la masa total de reactivos = masa total de productos.'},
-        {tipo:'ejemplo',texto:'H₂ + ½O₂ → H₂O  (síntesis)\nNaCl → Na⁺ + Cl⁻  (disociación)'},
-        {tipo:'tip',texto:'💡 Tip PAA: Aprende a balancear ecuaciones contando los átomos de cada elemento a ambos lados.'},
+        {tipo:'h2',texto:'Genética — Leyes de Mendel'},
+        {tipo:'p',texto:'Gregor Mendel descubrió los principios básicos de la herencia genética mediante experimentos con guisantes.'},
+        {tipo:'ejemplo',texto:'TÉRMINOS CLAVE:\nGEN: Unidad de herencia (segmento de ADN)\nALELO: Versión alternativa de un gen\nDOMINANTE: Se expresa aunque haya un alelo recesivo (A)\nRECESIVO: Solo se expresa si hay dos copias (a)\nHOMOCIGOTO: Dos alelos iguales (AA o aa)\nHETEROCIGOTO: Alelos distintos (Aa)\nGENOTIPO: Composición genética (AA, Aa, aa)\nFENOTIPO: Característica observable'},
+        {tipo:'h3',texto:'Cruce de Mendel — Cuadro de Punnett'},
+        {tipo:'ejemplo',texto:'Cruce Aa × Aa:\n       A        a\nA  |  AA    |  Aa  |\na  |  Aa    |  aa  |\n\nResultados:\nAA = 1/4 (25%) — homocigoto dominante\nAa = 2/4 (50%) — heterocigoto\naa = 1/4 (25%) — homocigoto recesivo\n\nFenotipo: 3 dominantes : 1 recesivo (3:1)'},
+        {tipo:'h3',texto:'ADN y síntesis de proteínas'},
+        {tipo:'ejemplo',texto:'ADN → (transcripción) → ARNm → (traducción) → Proteína\n\nBases nitrogenadas del ADN:\nAdenina (A) - Timina (T)\nGuanina (G) - Citosina (C)\n\nEn el ARN: Uracilo (U) reemplaza a Timina (T)'},
+        {tipo:'tip',texto:'💡 Tip PAA: En el cuadro de Punnett, recuerda que la proporción fenotípica en cruce Aa×Aa siempre es 3:1 (3 con fenotipo dominante, 1 con fenotipo recesivo).'},
       ]},
-      { t:'Física básica', videos:[
-          {id:'Lj-Dkm7sL0M', titulo:'Física básica — Math2Me'},
-          {id:'_6uyQISZvBc', titulo:'Cinemática y movimiento — Profe Alex'}
+      { t:'Química — Tabla periódica y enlaces', videos:[
+          {id:'bBJb_Q3sBTM', titulo:'Tabla periódica — explicación completa'},
+          {id:'PGwLoqZsmcM', titulo:'Enlaces químicos — Profe en tu casa'}
         ], contenido:[
-        {tipo:'h2',texto:'Leyes de Newton'},
-        {tipo:'p',texto:'Las tres leyes de Newton describen el movimiento de los cuerpos y son fundamentales en el PAA.'},
-        {tipo:'ejemplo',texto:'1ª Ley (Inercia): Un cuerpo en reposo permanece en reposo, y uno en movimiento sigue en movimiento, a menos que actúe una fuerza.\n\n2ª Ley: F = m × a (Fuerza = masa × aceleración)\n\n3ª Ley (Acción-Reacción): Por cada acción hay una reacción igual y opuesta.'},
-        {tipo:'tip',texto:'💡 Tip: La 1ª ley explica por qué nos inclinamos al frenar. La 2ª es la más calculada en el examen.'},
-        {tipo:'h3',texto:'Velocidad y aceleración'},
-        {tipo:'ejemplo',texto:'Velocidad: v = d/t  (distancia / tiempo)\nAceleración: a = (vf - vi) / t\n\nEjemplo: Un auto va de 0 a 60 km/h en 10 s\na = (60 - 0) / 10 = 6 km/h/s'},
+        {tipo:'h2',texto:'La tabla periódica'},
+        {tipo:'p',texto:'Los elementos están organizados por número atómico (cantidad de protones). Los períodos son filas horizontales y los grupos son columnas verticales.'},
+        {tipo:'ejemplo',texto:'ESTRUCTURA DEL ÁTOMO:\nProtones (+): en el núcleo — determinan el elemento\nNeutrones (0): en el núcleo — determinan el isótopo\nElectrones (-): en la corteza — determinan reactividad\n\nNúmero atómico (Z) = número de protones\nMasa atómica (A) ≈ protones + neutrones'},
+        {tipo:'h3',texto:'Grupos importantes'},
+        {tipo:'ejemplo',texto:'GRUPO 1 — Metales alcalinos: Li, Na, K\n  • Muy reactivos, se oxidan fácilmente\n  • Reaccionan con agua → hidróxido + hidrógeno\n\nGRUPO 2 — Metales alcalinotérreos: Mg, Ca\n  • Reactivos pero menos que el grupo 1\n\nGRUPO 17 — Halógenos: F, Cl, Br, I\n  • Forman sales al reaccionar con metales\n  • NaCl = sal de mesa\n\nGRUPO 18 — Gases nobles: He, Ne, Ar\n  • Prácticamente inertes, no reaccionan\n  • Capa de valencia completa'},
+        {tipo:'h3',texto:'Tipos de enlace químico'},
+        {tipo:'ejemplo',texto:'ENLACE IÓNICO:\n  Metal + No metal\n  Transferencia de electrones\n  Ej: NaCl (Na⁺ + Cl⁻)\n  Sólidos cristalinos, punto de fusión alto\n\nENLACE COVALENTE:\n  No metal + No metal\n  Compartición de electrones\n  Ej: H₂O, CO₂, CH₄\n  Pueden ser gases, líquidos o sólidos\n\nENLACE METÁLICO:\n  Metal + Metal\n  Electrones libres compartidos\n  Conductores de electricidad y calor'},
+        {tipo:'tip',texto:'💡 Tip PAA: Metal + No metal = iónico. No metal + No metal = covalente. Esta regla simple resuelve la mayoría de preguntas de enlace.'},
+      ]},
+      { t:'Química — Reacciones y estequiometría', videos:[
+          {id:'omll6f_X4fE', titulo:'Reacciones químicas — Profe en tu casa'},
+          {id:'ZC67c5ar9mA', titulo:'Balanceo de ecuaciones — Daniel Carreon'}
+        ], contenido:[
+        {tipo:'h2',texto:'Tipos de reacciones químicas'},
+        {tipo:'ejemplo',texto:'SÍNTESIS: A + B → AB\n  "Dos reactivos se unen en uno"\n  Ej: 2H₂ + O₂ → 2H₂O\n\nDESCOMPOSICIÓN: AB → A + B\n  "Un compuesto se divide"\n  Ej: 2H₂O → 2H₂ + O₂\n\nSUSTITUCIÓN SIMPLE: A + BC → AC + B\n  Ej: Zn + 2HCl → ZnCl₂ + H₂\n\nDOBLE SUSTITUCIÓN: AB + CD → AD + CB\n  Ej: NaCl + AgNO₃ → AgCl + NaNO₃\n\nCOMBUSTIÓN: combustible + O₂ → CO₂ + H₂O\n  Ej: CH₄ + 2O₂ → CO₂ + 2H₂O'},
+        {tipo:'h3',texto:'Balanceo de ecuaciones'},
+        {tipo:'p',texto:'La ley de conservación de la masa dice que los átomos no se crean ni destruyen. Debes igualar el número de átomos de cada elemento en ambos lados.'},
+        {tipo:'ejemplo',texto:'__H₂ + __O₂ → __H₂O\n\nPaso 1: Cuenta átomos sin balancear:\nIzq: 2H, 2O   Der: 2H, 1O\n\nPaso 2: Balancea O primero:\nH₂ + O₂ → 2H₂O\n\nPaso 3: Balancea H:\n2H₂ + O₂ → 2H₂O\n\nVerifica: Izq: 4H, 2O   Der: 4H, 2O ✓'},
+        {tipo:'tip',texto:'💡 Tip PAA: Nunca cambies las fórmulas de los compuestos al balancear. Solo cambia los coeficientes (números frente a cada fórmula).'},
+      ]},
+      { t:'Física — Mecánica y movimiento', videos:[
+          {id:'vVKNIxlvBjM', titulo:'Leyes de Newton — explicación'},
+          {id:'IHblqjW8RY8', titulo:'Cinemática básica — práctica'}
+        ], contenido:[
+        {tipo:'h2',texto:'Las 3 Leyes de Newton'},
+        {tipo:'ejemplo',texto:'1ª LEY (INERCIA):\n  Un objeto en reposo permanece en reposo\n  Un objeto en movimiento sigue en movimiento rectilíneo uniforme\n  A menos que una fuerza neta actúe sobre él\n  → Explica por qué nos inclinamos al frenar el auto\n\n2ª LEY (F = ma):\n  Fuerza = masa × aceleración\n  F se mide en Newtons (N)\n  → Si duplicas la fuerza, duplicas la aceleración\n  → Si duplicas la masa, la aceleración se reduce a la mitad\n\n3ª LEY (ACCIÓN-REACCIÓN):\n  Toda acción tiene una reacción igual y opuesta\n  → Al caminar, empujas el suelo hacia atrás\n     y el suelo te empuja hacia adelante'},
+        {tipo:'h3',texto:'Cinemática — Movimiento'},
+        {tipo:'ejemplo',texto:'VELOCIDAD MEDIA:\nv = d/t   (distancia / tiempo)\nUnidades: m/s, km/h\n\nConversión: 1 km/h = 1000/3600 m/s ≈ 0.278 m/s\n\nACELERACIÓN:\na = (vf - vi)/t\n\nMovimiento uniformemente acelerado (MUA):\nvf = vi + at\nd = vi·t + ½at²\nvf² = vi² + 2ad'},
+        {tipo:'h3',texto:'Energía'},
+        {tipo:'ejemplo',texto:'ENERGÍA CINÉTICA (movimiento):\nEc = ½mv²\n\nENERGÍA POTENCIAL GRAVITATORIA (altura):\nEp = mgh\n(m=masa, g=9.8 m/s², h=altura)\n\nCONSERVACIÓN DE ENERGÍA:\nEnergia total = Ec + Ep = constante\n(sin fricción)'},
+        {tipo:'tip',texto:'💡 Tip PAA: La fórmula F=ma es la más usada en física. Siempre verifica las unidades: F en Newtons, m en kg, a en m/s².'},
+      ]},
+      { t:'Física — Ondas, luz y electricidad', videos:[
+          {id:'GrynkZp9be8', titulo:'Ondas y luz — Khan Academy'},
+          {id:'lHZTgLHLZ5I', titulo:'Electricidad básica — práctica'}
+        ], contenido:[
+        {tipo:'h2',texto:'Ondas'},
+        {tipo:'p',texto:'Una onda es una perturbación que transporta energía sin transportar materia.'},
+        {tipo:'ejemplo',texto:'PARTES DE UNA ONDA:\nAmplitud: altura máxima de la onda\nLongitud de onda (λ): distancia entre dos crestas\nFrecuencia (f): oscilaciones por segundo (Hz)\nPeriodo (T): tiempo de una oscilación completa\n\nRelación: v = f × λ   (velocidad = frecuencia × longitud)\nTambién: T = 1/f\n\nTIPOS:\nMecánicas: necesitan medio (sonido)\nElectromagnéticas: no necesitan medio (luz)'},
+        {tipo:'h3',texto:'Espectro electromagnético'},
+        {tipo:'ejemplo',texto:'De menor a mayor frecuencia (mayor a menor longitud):\n\nRadio → Microondas → Infrarrojo → LUZ VISIBLE\n→ Ultravioleta → Rayos X → Rayos Gamma\n\nLuz visible: ROYGBIV\nROJO - NARANJA - AMARILLO - VERDE - AZUL - ÍNDIGO - VIOLETA\n(Menor a mayor frecuencia)'},
+        {tipo:'h3',texto:'Electricidad básica'},
+        {tipo:'ejemplo',texto:'LEY DE OHM: V = I × R\n  V = Voltaje (Volts)\n  I = Corriente (Amperes)\n  R = Resistencia (Ohms Ω)\n\nPOTENCIA: P = V × I = I²R\n\nCIRCUITO EN SERIE:\n  R_total = R₁ + R₂ + R₃\n  La misma corriente pasa por todo\n\nCIRCUITO EN PARALELO:\n  1/R_total = 1/R₁ + 1/R₂ + 1/R₃\n  El mismo voltaje en cada rama'},
+        {tipo:'tip',texto:'💡 Tip PAA: Memoriza V=IR (Ley de Ohm) y sus variaciones: I=V/R y R=V/I. Con una sola fórmula puedes resolver cualquier variante.'},
       ]},
     ]
   }
