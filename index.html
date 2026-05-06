@@ -356,7 +356,38 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 </head>
 <body>
 
-<!-- ══ LANDING PRO ══ -->
+<!-- ══ MODAL TÉRMINOS Y CONDICIONES ══ -->
+<div id="terms-modal" style="position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px)">
+  <div style="background:#fff;border-radius:20px;max-width:480px;width:100%;max-height:85vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)">
+    <!-- Header -->
+    <div style="background:var(--azul);padding:18px 22px;flex-shrink:0">
+      <h2 style="font-family:'Syne';font-size:1rem;font-weight:800;color:#fff;margin-bottom:2px">Términos y Condiciones de Uso</h2>
+      <p style="font-size:.68rem;color:rgba(255,255,255,.6)">AciertaUDG — Alejandro Vivanco Consultoría · Última actualización: mayo 2026</p>
+    </div>
+    <!-- Scrollable content -->
+    <div style="overflow-y:auto;padding:18px 22px;flex:1;font-size:.68rem;color:#374151;line-height:1.7">
+      <p style="margin-bottom:8px"><strong>1. ACEPTACIÓN DE TÉRMINOS.</strong> Al acceder y utilizar la plataforma AciertaUDG (en adelante "la Plataforma"), el usuario acepta plena y expresamente los presentes Términos y Condiciones de Uso en su totalidad. Si el usuario no está de acuerdo con alguno de los términos aquí establecidos, deberá abstenerse de utilizar la Plataforma.</p>
+      <p style="margin-bottom:8px"><strong>2. NATURALEZA DEL SERVICIO.</strong> AciertaUDG es una plataforma digital de preparación académica de carácter independiente. No tiene afiliación oficial, patrocinio, ni relación contractual con la Universidad de Guadalajara (UDG), el College Board, ni con ninguna institución educativa pública o privada. Los contenidos, simulacros y materiales ofrecidos son de carácter orientativo y preparatorio, y no garantizan la admisión del usuario a ninguna institución educativa.</p>
+      <p style="margin-bottom:8px"><strong>3. CONTENIDO DE TERCEROS.</strong> La Plataforma puede incluir enlaces, referencias o acceso a contenidos audiovisuales alojados en plataformas de terceros, incluyendo pero no limitándose a YouTube. Dichos contenidos son propiedad de sus respectivos autores y canales. AciertaUDG no se atribuye la autoría ni la propiedad de dichos materiales. El uso de estos contenidos se realiza conforme a las políticas de uso de las plataformas que los alojan. AciertaUDG no se responsabiliza por la disponibilidad, modificación, eliminación o calidad de contenidos de terceros.</p>
+      <p style="margin-bottom:8px"><strong>4. PAGO Y ACCESO.</strong> El acceso a la Plataforma requiere el pago de una cuota única establecida al momento de la compra. Dicho pago se procesa a través de Mercado Pago. Una vez confirmado el pago, se proporcionará al usuario una clave de acceso personal e intransferible. AciertaUDG no se responsabiliza por retrasos en la entrega de la clave derivados de causas de fuerza mayor, fallas en el sistema de pago o errores en la información proporcionada por el usuario.</p>
+      <p style="margin-bottom:8px"><strong>5. USO PERSONAL E INTRANSFERIBLE.</strong> La clave de acceso es de uso estrictamente personal. Está prohibida su reproducción, distribución, venta, cesión o cualquier forma de transferencia a terceros. AciertaUDG se reserva el derecho de revocar el acceso sin reembolso en caso de detectar uso indebido o compartición de credenciales.</p>
+      <p style="margin-bottom:8px"><strong>6. POLÍTICA DE REEMBOLSOS.</strong> Dado que el acceso a la Plataforma es inmediato una vez entregada la clave, no se realizarán reembolsos una vez que el usuario haya recibido y utilizado sus credenciales de acceso. En caso de no haber recibido la clave en el tiempo establecido, el usuario deberá contactar al soporte mediante los canales indicados.</p>
+      <p style="margin-bottom:8px"><strong>7. LIMITACIÓN DE RESPONSABILIDAD.</strong> AciertaUDG no garantiza resultados específicos en el examen PAA ni el ingreso del usuario a ninguna institución. La Plataforma se proporciona "tal como está". AciertaUDG no será responsable por daños directos, indirectos, incidentales o consecuentes derivados del uso o imposibilidad de uso de la Plataforma.</p>
+      <p style="margin-bottom:8px"><strong>8. PRIVACIDAD Y DATOS PERSONALES.</strong> AciertaUDG recopila únicamente la información necesaria para la prestación del servicio. Los datos del usuario no serán vendidos ni compartidos con terceros, salvo obligación legal. Al aceptar estos términos, el usuario consiente el tratamiento de sus datos conforme a la legislación mexicana aplicable en materia de protección de datos personales (LFPDPPP).</p>
+      <p style="margin-bottom:8px"><strong>9. PROPIEDAD INTELECTUAL.</strong> Los simulacros, preguntas, textos explicativos, calculadoras y demás contenidos originales de la Plataforma son propiedad de Alejandro Vivanco Consultoría. Queda prohibida su reproducción total o parcial sin autorización expresa por escrito.</p>
+      <p style="margin-bottom:8px"><strong>10. MODIFICACIONES.</strong> AciertaUDG se reserva el derecho de modificar en cualquier momento los presentes Términos y Condiciones. El uso continuado de la Plataforma tras dichas modificaciones implica la aceptación de los nuevos términos.</p>
+      <p style="margin-bottom:8px"><strong>11. JURISDICCIÓN.</strong> El presente acuerdo se rige por las leyes de los Estados Unidos Mexicanos. Cualquier controversia derivada del uso de la Plataforma se someterá a los tribunales competentes de la ciudad de Guadalajara, Jalisco, México.</p>
+      <p><strong>12. CONTACTO.</strong> Para dudas, aclaraciones o soporte, el usuario puede contactar al equipo de AciertaUDG a través de WhatsApp al número 33 2065 8076.</p>
+    </div>
+    <!-- Footer con botón -->
+    <div style="padding:16px 22px;border-top:1px solid #e5e7eb;flex-shrink:0;background:#f9fafb">
+      <p style="font-size:.65rem;color:#9ca3af;margin-bottom:10px;text-align:center">Al hacer clic en "Acepto y continuar" confirmas que has leído y aceptas los Términos y Condiciones en su totalidad.</p>
+      <button onclick="acceptTerms()" style="width:100%;padding:14px;background:linear-gradient(135deg,var(--azul),var(--azul2));color:#fff;font-weight:800;font-size:.9rem;border:none;border-radius:12px;cursor:pointer;font-family:'Syne'">
+        ✅ Acepto y continuar
+      </button>
+    </div>
+  </div>
+</div>
 <div id="landing">
   <nav class="land-nav">
     <div class="land-logo">Acier<span>ta</span>UDG</div>
@@ -366,7 +397,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   </nav>
   <div class="land-hero">
     <div class="land-eyebrow">PAA · Universidad de Guadalajara · 2026-B</div>
-    <h1 class="land-h1">Entra a la UDG.<br>Con <em>preparación real</em>.</h1>
+    <h1 class="land-h1" style="font-size:2.8rem">
+      <span style="font-size:1.1em;color:var(--oro);display:block;margin-bottom:8px">AciertaUDG</span>
+      Prepárate para<br>entrar a la UDG.
+    </h1>
     <p class="land-sub">El examen PAA es el <strong style="color:var(--oro2)">23 de mayo</strong> — tus competidores ya están practicando. Cada día que pasa sin prepararte es un punto menos en tu puntaje final.</p>
     <div class="land-stats">
       <div class="land-stat"><div class="land-stat-num">80<span>+</span></div><div class="land-stat-label">Preguntas reales</div></div>
@@ -490,7 +524,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   </div>
   <!-- Area selector -->
   <div style="background:linear-gradient(135deg,var(--azul) 0%,#001840 100%);padding:0 0 32px">
-    <p class="sect" style="color:rgba(255,255,255,.5);padding:0 20px;padding-top:0;margin-top:0">Elige tu área</p>
+    <p class="sect" style="color:rgba(255,255,255,.5);padding:0 20px;padding-top:16px;margin-top:0">¿Qué quieres estudiar?</p>
     <div class="cards-grid">
       <div class="area-card" onclick="selectArea('salud')">
         <div class="emoji">🩺</div>
@@ -522,6 +556,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
         <h3>Agropecuarias y Biológicas</h3>
         <p>Agronomía, Biología, Veterinaria...</p>
       </div>
+    </div>
+    <!-- Hint después de elegir área -->
+    <div id="area-hint" style="display:none;text-align:center;margin-top:20px;animation:fadeUp .4s ease">
+      <p style="color:var(--oro2);font-size:.85rem;font-weight:700">¡Listo! 👇 Baja para comenzar tu preparación</p>
     </div>
   </div>
 
@@ -809,8 +847,8 @@ const TEMAS = [
     id:'mat', titulo:'Matemáticas', emoji:'📐', color:'#1d4ed8', pct:30,
     subtemas:[
       { t:'Álgebra — Operaciones con polinomios', videos:[
-          {id:'_6uyQISZvBc', titulo:'Álgebra desde cero — Profe Alex'},
-          {id:'Zg-R7Ir2xPQ', titulo:'Álgebra para todos — Math2Me'}
+          {id:'wlCzTgI-Lk0', titulo:'Guía PAA Matemáticas explicada — UDG'},
+          {id:'BgFL6IE_5gg', titulo:'Temario completo Matemáticas PAA 2024'}
         ], contenido:[
         {tipo:'h2',texto:'¿Qué es un polinomio?'},
         {tipo:'p',texto:'Un polinomio es una expresión algebraica formada por la suma de términos. Cada término tiene un coeficiente numérico y una variable elevada a una potencia entera no negativa.'},
@@ -824,8 +862,8 @@ const TEMAS = [
         {tipo:'tip',texto:'💡 Tip PAA: En multiplicación de binomios usa FOIL: Primeros, Externos, Internos, Últimos. Ahorra tiempo en el examen.'},
       ]},
       { t:'Álgebra — Factorización', videos:[
-          {id:'omll6f_X4fE', titulo:'Factorización completa — Profe en tu casa'},
-          {id:'QUBbmA2NlEI', titulo:'Factorización Math2Me'}
+          {id:'E4K7jAc6vSI', titulo:'Simulacro PAA Matemáticas Marzo 2025 — UDG'},
+          {id:'NI6ywAds0cw', titulo:'Simulacro PAA Matemáticas Parte 2 — UDG'}
         ], contenido:[
         {tipo:'h2',texto:'¿Qué es factorizar?'},
         {tipo:'p',texto:'Factorizar es escribir un polinomio como producto de factores más simples. Es el proceso inverso a la multiplicación.'},
@@ -844,8 +882,8 @@ const TEMAS = [
         {tipo:'tip',texto:'💡 Tip PAA: Siempre verifica tu factorización multiplicando los factores. Si obtienes el polinomio original, está correcto.'},
       ]},
       { t:'Ecuaciones de 1° y 2° grado', videos:[
-          {id:'NybHckSEQBI', titulo:'Ecuaciones paso a paso — Math2Me'},
-          {id:'dXakJkBRpqM', titulo:'Ecuaciones cuadráticas — Math2Me'}
+          {id:'FIDpsqZE5fo', titulo:'Simulacro PAA Matemáticas Parte 3 — UDG'},
+          {id:'HJ139RjI6Lc', titulo:'Domina Matemáticas Simulacro UDG Marzo 2025'}
         ], contenido:[
         {tipo:'h2',texto:'Ecuaciones de primer grado'},
         {tipo:'p',texto:'Una ecuación de primer grado (lineal) tiene la forma ax + b = 0. La estrategia es despejar x usando operaciones inversas.'},
@@ -861,8 +899,8 @@ const TEMAS = [
         {tipo:'tip',texto:'💡 Tip PAA: Aprende a factorizar rápido. En muchas ecuaciones cuadráticas del examen es más rápido que la fórmula general.'},
       ]},
       { t:'Geometría — Figuras planas', videos:[
-          {id:'jUV6VDGNvCc', titulo:'Áreas y perímetros — Khan Academy'},
-          {id:'ZC67c5ar9mA', titulo:'Geometría — Daniel Carreon'}
+          {id:'BrIhJWoSb_Y', titulo:'Guía Oficial PAA 2024 Matemáticas (1-10) — UDG'},
+          {id:'Ur2Tyg3Gqt0', titulo:'Guía Oficial PAA 2024 Matemáticas (21-25) — UDG'}
         ], contenido:[
         {tipo:'h2',texto:'Perímetros y áreas'},
         {tipo:'p',texto:'El perímetro es la longitud total del contorno de una figura. El área es la superficie que ocupa.'},
@@ -875,8 +913,8 @@ const TEMAS = [
         {tipo:'tip',texto:'💡 Tip PAA: Memoriza los triángulos pitagóricos (3,4,5) y (5,12,13). Aparecen constantemente en el examen y ahorran cálculos.'},
       ]},
       { t:'Estadística y Probabilidad', videos:[
-          {id:'GrynkZp9be8', titulo:'Media mediana moda — Khan Academy'},
-          {id:'lHZTgLHLZ5I', titulo:'Probabilidad — Khan Academy'}
+          {id:'mSDLVwHpveE', titulo:'Explicación examen PAA Matemáticas — UDG 2026'},
+          {id:'wTFK-_RLgzs', titulo:'Lo más nuevo del examen PAA UDG 2025'}
         ], contenido:[
         {tipo:'h2',texto:'Medidas de tendencia central'},
         {tipo:'p',texto:'Resumen de un conjunto de datos con un valor representativo.'},
@@ -913,8 +951,8 @@ const TEMAS = [
     id:'esp', titulo:'Español y Comunicación', emoji:'📝', color:'#7c3aed', pct:25,
     subtemas:[
       { t:'Comprensión lectora — Estrategias', videos:[
-          {id:'UG_vXatmxE0', titulo:'Ideas principales PAA — ProfeEnTuCasa'},
-          {id:'-8t5z0QyE-I', titulo:'Estrategias de lectura — David Rengifo'}
+          {id:'58bG09avvco', titulo:'Guía PAA Área de Lectura Español — UDG'},
+          {id:'3suUy1FlDi8', titulo:'Guía PAA 2024B Lectura explicada — UDG'}
         ], contenido:[
         {tipo:'h2',texto:'Tipos de preguntas en comprensión lectora'},
         {tipo:'p',texto:'El PAA evalúa 4 tipos principales de preguntas de lectura. Reconocerlos te ayuda a saber qué buscar en el texto.'},
@@ -931,8 +969,8 @@ const TEMAS = [
         {tipo:'ejemplo',texto:'Oración: "El científico tenía una actitud escéptica ante los resultados."\nEscéptica significa: A) entusiasta B) dudosa C) confiada D) nerviosa\n\nSustituye: "actitud dudosa ante los resultados" → tiene sentido → B'},
       ]},
       { t:'Comprensión lectora — Textos literarios', videos:[
-          {id:'rzob01dyOHQ', titulo:'Textos literarios — análisis'},
-          {id:'VCrDtjBid_g', titulo:'Comprensión EXANI II — Profe Madi'}
+          {id:'SaJynz6r9b0', titulo:'Explicación Lectura PAA Simulacro Nacional 2025'},
+          {id:'6RPaibD05BM', titulo:'Explicación EN VIVO Lectura PAA (1-25) 2025'}
         ], contenido:[
         {tipo:'h2',texto:'Géneros literarios'},
         {tipo:'ejemplo',texto:'NARRATIVO: Cuenta una historia con personajes\n  • Cuento, novela, fábula, leyenda\n  • Elementos: narrador, personajes, trama, espacio, tiempo\n\nLÍRICO: Expresa emociones, generalmente en verso\n  • Poema, oda, elegía, soneto\n  • Elementos: verso, estrofa, rima, ritmo\n\nDRAMÁTICO: Escrito para representarse\n  • Obra de teatro, comedia, tragedia\n  • Elementos: actos, escenas, diálogos, acotaciones\n\nDIDÁCTICO: Busca enseñar o informar\n  • Ensayo, fábula con moraleja, artículo'},
@@ -942,8 +980,8 @@ const TEMAS = [
         {tipo:'tip',texto:'💡 Tip PAA: Para identificar metáfora vs símil: si dice "es" o "son" = metáfora. Si dice "como", "parece", "igual que" = símil.'},
       ]},
       { t:'Gramática — Acentuación', videos:[
-          {id:'kJOOlCKxBBQ', titulo:'Acentuación completa — Superprofe'},
-          {id:'E54zMfDcyRE', titulo:'Reglas de tilde — Profe Madi'}
+          {id:'f_tWj9ZW_m0', titulo:'Razonamiento Verbal PAA Clase 2 — 2024'},
+          {id:'wTFK-_RLgzs', titulo:'Lo más nuevo del examen PAA UDG 2025'}
         ], contenido:[
         {tipo:'h2',texto:'Reglas de acentuación'},
         {tipo:'p',texto:'En español, la tilde (acento ortográfico) se coloca según la posición de la sílaba tónica (la que se pronuncia con más fuerza).'},
@@ -954,8 +992,8 @@ const TEMAS = [
         {tipo:'tip',texto:'💡 Regla de oro: Las esdrújulas SIEMPRE llevan tilde. Si memorizas solo una regla que sea esta.'},
       ]},
       { t:'Gramática — Morfología y sintaxis', videos:[
-          {id:'otzSB7pABFU', titulo:'Tipos de oraciones — Superprofe'},
-          {id:'9L_K7xmuCro', titulo:'Morfología y partes de la oración'}
+          {id:'BrIhJWoSb_Y', titulo:'Guía Oficial PAA 2024 Matemáticas — UDG'},
+          {id:'wlCzTgI-Lk0', titulo:'Guía PAA Matemáticas explicada — UDG'}
         ], contenido:[
         {tipo:'h2',texto:'Categorías gramaticales'},
         {tipo:'ejemplo',texto:'SUSTANTIVO: Nombra personas, animales, cosas o ideas\n  Tipos: propio (México), común (ciudad), abstracto (amor)\n\nADJETIVO: Describe o califica al sustantivo\n  "La casa grande y bonita"\n\nVERBO: Expresa acción, estado o proceso\n  Modos: indicativo (afirmo), subjuntivo (dudo), imperativo (ordeno)\n\nADVERBIO: Modifica al verbo, adjetivo u otro adverbio\n  Terminan en -mente: rápidamente, claramente\n  Otros: muy, bien, aquí, ayer, siempre\n\nPRONOMBRE: Sustituye al sustantivo\n  Personales: yo, tú, él, nosotros...\n\nPREPOSICIÓN: Une palabras\n  a, ante, bajo, con, de, desde, en, entre, hacia, hasta, para, por, sin, sobre, tras'},
@@ -964,8 +1002,8 @@ const TEMAS = [
         {tipo:'tip',texto:'💡 Tip PAA: Para identificar el sujeto, pregunta al verbo ¿quién? Para el OD pregunta ¿qué? o ¿a quién? directamente.'},
       ]},
       { t:'Redacción y tipos de texto', videos:[
-          {id:'eJMbqWgZSvI', titulo:'Tipos de texto — análisis'},
-          {id:'MzNEIVZ5OIM', titulo:'Estructura textual — estrategias'}
+          {id:'3suUy1FlDi8', titulo:'Guía PAA 2024B Lectura explicada — UDG'},
+          {id:'58bG09avvco', titulo:'Área de Lectura PAA — UDG'}
         ], contenido:[
         {tipo:'h2',texto:'Tipos de texto según su propósito'},
         {tipo:'ejemplo',texto:'NARRATIVO: Cuenta hechos o historias\n  Estructura: inicio → nudo → desenlace\n  Ejemplo: cuento, novela, noticia\n\nDESCRIPTIVO: Presenta características detalladas\n  Tipos: objetiva (científica) / subjetiva (literaria)\n  Ejemplo: descripción de un lugar, retrato\n\nARGUMENTATIVO: Defiende una postura con razones\n  Estructura: tesis → argumentos → conclusión\n  Ejemplo: ensayo, editorial, discurso\n\nEXPOSITIVO / INFORMATIVO: Explica o informa\n  Objetivo, imparcial, basado en hechos\n  Ejemplo: artículo científico, enciclopedia\n\nINSTRUCTIVO: Da pasos para realizar algo\n  Usa verbos en imperativo o infinitivo\n  Ejemplo: receta, manual, instructivo'},
@@ -982,8 +1020,8 @@ const TEMAS = [
     id:'razon', titulo:'Razonamiento Verbal y Lógico', emoji:'🧩', color:'#0f766e', pct:20,
     subtemas:[
       { t:'Series numéricas', videos:[
-          {id:'N9IFGHMx-6E', titulo:'Series numéricas — Matemóvil'},
-          {id:'Zg-R7Ir2xPQ', titulo:'Patrones numéricos — Math2Me'}
+          {id:'E4K7jAc6vSI', titulo:'Simulacro PAA Matemáticas Marzo 2025 — UDG'},
+          {id:'HJ139RjI6Lc', titulo:'Domina Matemáticas Simulacro UDG 2025'}
         ], contenido:[
         {tipo:'h2',texto:'Tipos de series numéricas'},
         {tipo:'p',texto:'Una serie numérica es una secuencia de números que siguen un patrón. La clave es encontrar la regla que los conecta.'},
@@ -1000,8 +1038,8 @@ const TEMAS = [
         {tipo:'tip',texto:'💡 Estrategia PAA: Calcula siempre las diferencias entre términos consecutivos. Si las diferencias son iguales = aritmética. Si son distintas pero siguen un patrón, analiza las diferencias de las diferencias.'},
       ]},
       { t:'Analogías verbales', videos:[
-          {id:'WZy3_k7E1kI', titulo:'Analogías verbales — estrategia'},
-          {id:'rzob01dyOHQ', titulo:'Razonamiento verbal — práctica'}
+          {id:'f_tWj9ZW_m0', titulo:'Razonamiento Verbal PAA — 2024'},
+          {id:'6RPaibD05BM', titulo:'Lectura PAA EN VIVO — Simulacro 2025'}
         ], contenido:[
         {tipo:'h2',texto:'¿Qué es una analogía?'},
         {tipo:'p',texto:'Una analogía es una relación entre pares de palabras. La clave es identificar QUÉ tipo de relación existe en el par dado y aplicarla al par incompleto.'},
@@ -1013,8 +1051,8 @@ const TEMAS = [
         {tipo:'tip',texto:'💡 Tip PAA: Siempre forma una oración completa con el par dado. Esto evita confusiones entre relaciones parecidas.'},
       ]},
       { t:'Razonamiento lógico — Silogismos', videos:[
-          {id:'NybHckSEQBI', titulo:'Lógica y silogismos — Math2Me'},
-          {id:'_6uyQISZvBc', titulo:'Razonamiento deductivo — Profe Alex'}
+          {id:'wTFK-_RLgzs', titulo:'Lo más nuevo del examen PAA UDG 2025'},
+          {id:'BgFL6IE_5gg', titulo:'Temario completo Matemáticas PAA 2024'}
         ], contenido:[
         {tipo:'h2',texto:'Silogismos'},
         {tipo:'p',texto:'Un silogismo tiene dos premisas y una conclusión. La conclusión debe seguir necesariamente de las premisas.'},
@@ -1029,8 +1067,8 @@ const TEMAS = [
         {tipo:'tip',texto:'💡 Tip PAA: Lee muy cuidadosamente los cuantificadores (todos, algunos, ninguno). Un cambio de "todos" a "algunos" invalida completamente una conclusión.'},
       ]},
       { t:'Razonamiento espacial y figuras', videos:[
-          {id:'eJMbqWgZSvI', titulo:'Razonamiento espacial — práctica'},
-          {id:'VCrDtjBid_g', titulo:'Series de figuras — estrategia'}
+          {id:'SaJynz6r9b0', titulo:'Explicación Lectura PAA Simulacro 2025'},
+          {id:'NI6ywAds0cw', titulo:'Simulacro PAA Matemáticas Parte 2 — 2025'}
         ], contenido:[
         {tipo:'h2',texto:'Series de figuras'},
         {tipo:'p',texto:'Se presenta una secuencia de figuras que siguen un patrón. Debes identificar el patrón y elegir la figura que continúa.'},
@@ -1051,8 +1089,8 @@ const TEMAS = [
     id:'ciencias', titulo:'Ciencias', emoji:'🔬', color:'#b45309', pct:25,
     subtemas:[
       { t:'Biología — La célula', videos:[
-          {id:'LzrJNQBCBIc', titulo:'La célula — Khan Academy'},
-          {id:'xoNECL5VDWM', titulo:'Organelos celulares — explicación'}
+          {id:'wTFK-_RLgzs', titulo:'Lo más nuevo del examen PAA UDG 2025'},
+          {id:'BgFL6IE_5gg', titulo:'Temario completo PAA 2024 — Matemáticas'}
         ], contenido:[
         {tipo:'h2',texto:'La célula: unidad de la vida'},
         {tipo:'p',texto:'Toda la vida está compuesta por células. Existen dos tipos fundamentales según tengan o no núcleo definido.'},
@@ -1066,8 +1104,8 @@ const TEMAS = [
         {tipo:'tip',texto:'💡 Mnemónico: "Mi Mamá Ama Todo" = Mitocondria, Membrana, Aparato Golgi, Todo lo demás. Para fotosíntesis: CLoRoplasto = CLima + LuZ.'},
       ]},
       { t:'Biología — Genética y evolución', videos:[
-          {id:'5HGdHDFFNpU', titulo:'Genética básica — Matemóvil'},
-          {id:'DmSz1eh-CYs', titulo:'Leyes de Mendel — explicación'}
+          {id:'E4K7jAc6vSI', titulo:'Simulacro PAA Matemáticas Marzo 2025'},
+          {id:'mSDLVwHpveE', titulo:'Explicación examen PAA — UDG 2026'}
         ], contenido:[
         {tipo:'h2',texto:'Genética — Leyes de Mendel'},
         {tipo:'p',texto:'Gregor Mendel descubrió los principios básicos de la herencia genética mediante experimentos con guisantes.'},
@@ -1079,8 +1117,8 @@ const TEMAS = [
         {tipo:'tip',texto:'💡 Tip PAA: En el cuadro de Punnett, recuerda que la proporción fenotípica en cruce Aa×Aa siempre es 3:1 (3 con fenotipo dominante, 1 con fenotipo recesivo).'},
       ]},
       { t:'Química — Tabla periódica y enlaces', videos:[
-          {id:'bBJb_Q3sBTM', titulo:'Tabla periódica — explicación completa'},
-          {id:'PGwLoqZsmcM', titulo:'Enlaces químicos — Profe en tu casa'}
+          {id:'wlCzTgI-Lk0', titulo:'Guía PAA Matemáticas explicada — UDG'},
+          {id:'FIDpsqZE5fo', titulo:'Simulacro PAA Parte 3 — UDG 2025'}
         ], contenido:[
         {tipo:'h2',texto:'La tabla periódica'},
         {tipo:'p',texto:'Los elementos están organizados por número atómico (cantidad de protones). Los períodos son filas horizontales y los grupos son columnas verticales.'},
@@ -1092,8 +1130,8 @@ const TEMAS = [
         {tipo:'tip',texto:'💡 Tip PAA: Metal + No metal = iónico. No metal + No metal = covalente. Esta regla simple resuelve la mayoría de preguntas de enlace.'},
       ]},
       { t:'Química — Reacciones y estequiometría', videos:[
-          {id:'omll6f_X4fE', titulo:'Reacciones químicas — Profe en tu casa'},
-          {id:'ZC67c5ar9mA', titulo:'Balanceo de ecuaciones — Daniel Carreon'}
+          {id:'NI6ywAds0cw', titulo:'Simulacro PAA Matemáticas Parte 2 — 2025'},
+          {id:'HJ139RjI6Lc', titulo:'Domina Matemáticas Simulacro UDG 2025'}
         ], contenido:[
         {tipo:'h2',texto:'Tipos de reacciones químicas'},
         {tipo:'ejemplo',texto:'SÍNTESIS: A + B → AB\n  "Dos reactivos se unen en uno"\n  Ej: 2H₂ + O₂ → 2H₂O\n\nDESCOMPOSICIÓN: AB → A + B\n  "Un compuesto se divide"\n  Ej: 2H₂O → 2H₂ + O₂\n\nSUSTITUCIÓN SIMPLE: A + BC → AC + B\n  Ej: Zn + 2HCl → ZnCl₂ + H₂\n\nDOBLE SUSTITUCIÓN: AB + CD → AD + CB\n  Ej: NaCl + AgNO₃ → AgCl + NaNO₃\n\nCOMBUSTIÓN: combustible + O₂ → CO₂ + H₂O\n  Ej: CH₄ + 2O₂ → CO₂ + 2H₂O'},
@@ -1253,7 +1291,15 @@ function selectArea(id) {
   document.getElementById('area-emoji').textContent = a.emoji;
   document.getElementById('area-nombre').textContent = a.nombre;
   document.getElementById('area-desc').textContent = a.desc;
-  showScreen('s-area');
+  // Mostrar hint brevemente y luego navegar
+  const hint = document.getElementById('area-hint');
+  if (hint) {
+    hint.style.display = 'block';
+    setTimeout(() => hint.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+    setTimeout(() => showScreen('s-area'), 1200);
+  } else {
+    showScreen('s-area');
+  }
 }
 
 function goHome()  { showScreen('s-home'); }
@@ -1710,7 +1756,18 @@ function startCountdown() {
   setInterval(tick, 60000);
 }
 
-window.addEventListener('DOMContentLoaded', () => { checkSession(); startCountdown(); });
+function acceptTerms() {
+  sessionStorage.setItem('terms_accepted', '1');
+  document.getElementById('terms-modal').style.display = 'none';
+}
+
+function checkTerms() {
+  if (sessionStorage.getItem('terms_accepted') === '1') {
+    document.getElementById('terms-modal').style.display = 'none';
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => { checkTerms(); checkSession(); startCountdown(); });
 </script>
 </body>
 </html>
