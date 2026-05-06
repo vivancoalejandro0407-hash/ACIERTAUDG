@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AciertaUDG — Tu pase a la universidad</title>
+<meta name="description" content="Simulacros del PAA oficial, calculadora de admisión y calendario verificado. Prepárate para entrar a la UDG.">
+<meta property="og:title" content="AciertaUDG — Tu pase a la universidad">
+<meta property="og:description" content="Simulacros del PAA, fórmula real de admisión y calendario 2026-B. La preparación más completa para entrar a la UDG.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AciertaUDG — Tu pase a la universidad">
+<meta name="twitter:description" content="Simulacros del PAA, fórmula real de admisión y calendario 2026-B.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23004a97'/><text y='.9em' font-size='70' x='12'>🎯</text></svg>">
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -85,6 +94,25 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 /* Nav pill */
 .land-pill{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:.75rem;padding:8px 16px;border-radius:99px;cursor:pointer;font-family:'DM Sans';transition:all .2s}
 .land-pill:hover{background:rgba(255,255,255,.12);color:#fff}
+
+/* ── MOBILE ── */
+@media(max-width:480px){
+  .land-h1{font-size:2.1rem}
+  .land-sub{font-size:.88rem;margin-bottom:32px}
+  .land-hero{padding:40px 18px 32px}
+  .land-stats{gap:18px;margin-bottom:32px}
+  .land-stat-num{font-size:1.4rem}
+  .btn-land-main{font-size:.92rem;padding:16px 24px;width:100%;text-align:center;display:block}
+  .land-cta{gap:10px;margin-bottom:36px}
+  .land-features-grid{grid-template-columns:1fr 1fr;gap:8px;margin-bottom:32px}
+  .land-feat-card{padding:14px 12px}
+  .land-feat-icon{font-size:1.3rem}
+  .land-nav{padding:16px 18px}
+  .land-pill{font-size:.68rem;padding:6px 12px;max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .land-proof{padding:18px}
+  .land-footer-bar{flex-direction:column;align-items:flex-start;gap:4px;padding:16px 18px}
+  #key-form input{font-size:16px}
+}
 .screen{display:none;min-height:100vh;animation:fadeUp .4s ease}
 .screen.active{display:block}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
@@ -339,7 +367,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   <div class="land-hero">
     <div class="land-eyebrow">PAA · Universidad de Guadalajara · 2026-B</div>
     <h1 class="land-h1">Entra a la UDG.<br>Con <em>preparación real</em>.</h1>
-    <p class="land-sub">La única plataforma con simulacros del PAA oficial, fórmula real de admisión y calendario verificado. Sin relleno, sin adivinar.</p>
+    <p class="land-sub">El examen PAA es el <strong style="color:var(--oro2)">23 de mayo</strong> — tus competidores ya están practicando. Cada día que pasa sin prepararte es un punto menos en tu puntaje final.</p>
     <div class="land-stats">
       <div class="land-stat"><div class="land-stat-num">80<span>+</span></div><div class="land-stat-label">Preguntas reales</div></div>
       <div class="land-stat-div"></div>
@@ -348,8 +376,57 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <div class="land-stat"><div class="land-stat-num"><span>∞</span></div><div class="land-stat-label">Simulacros</div></div>
     </div>
     <div class="land-cta">
-      <button class="btn-land-main" onclick="enterApp()">Comenzar mi preparación →</button>
-      <p class="land-trust">Acceso gratuito · Sin registro</p>
+      <!-- Contador de urgencia -->
+      <div id="countdown-box" style="background:rgba(240,165,0,.1);border:1px solid rgba(240,165,0,.25);border-radius:14px;padding:12px 24px;margin-bottom:4px;text-align:center">
+        <p style="font-size:.65rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px">⏳ Tiempo para el examen PAA</p>
+        <div style="display:flex;gap:16px;justify-content:center;align-items:flex-end">
+          <div style="text-align:center">
+            <div id="cd-dias" style="font-family:'Syne';font-size:2rem;font-weight:800;color:var(--oro);line-height:1">--</div>
+            <div style="font-size:.6rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px">días</div>
+          </div>
+          <div style="font-family:'Syne';font-size:1.6rem;font-weight:800;color:rgba(240,165,0,.4);padding-bottom:4px">:</div>
+          <div style="text-align:center">
+            <div id="cd-horas" style="font-family:'Syne';font-size:2rem;font-weight:800;color:var(--oro);line-height:1">--</div>
+            <div style="font-size:.6rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px">horas</div>
+          </div>
+          <div style="font-family:'Syne';font-size:1.6rem;font-weight:800;color:rgba(240,165,0,.4);padding-bottom:4px">:</div>
+          <div style="text-align:center">
+            <div id="cd-mins" style="font-family:'Syne';font-size:2rem;font-weight:800;color:var(--oro);line-height:1">--</div>
+            <div style="font-size:.6rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px">min</div>
+          </div>
+        </div>
+      </div>
+      <!-- Botón principal: Mercado Pago -->
+      <a href="https://mpago.la/1rkiDUd" target="_blank" class="btn-land-main" style="text-decoration:none;display:inline-block">
+        💳 Comprar acceso — <strong>$99 pesos</strong>
+      </a>
+      <!-- Toggle clave -->
+      <button class="land-pill" onclick="toggleKeyForm()" id="key-toggle-btn" style="margin-top:4px">
+        🔑 Ya tengo mi clave de acceso
+      </button>
+      <!-- Formulario de clave (oculto por defecto) -->
+      <div id="key-form" style="display:none;margin-top:12px;width:100%;max-width:320px">
+        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:20px;backdrop-filter:blur(8px)">
+          <p style="color:rgba(255,255,255,.6);font-size:.78rem;margin-bottom:12px;text-align:center">Ingresa tu clave de acceso</p>
+          <input
+            id="access-key-input"
+            type="password"
+            placeholder="Clave de acceso"
+            onkeydown="if(event.key==='Enter')validateKey()"
+            style="width:100%;padding:12px 16px;border-radius:10px;border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:.9rem;font-family:'DM Sans';outline:none;margin-bottom:10px;box-sizing:border-box"
+          />
+          <button onclick="validateKey()" style="width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--azul),var(--azul2));color:#fff;font-weight:700;font-size:.88rem;cursor:pointer;font-family:'DM Sans'">
+            Entrar →
+          </button>
+          <p id="key-error" style="color:#f87171;font-size:.73rem;margin-top:8px;text-align:center;display:none">Clave incorrecta. Verifica e intenta de nuevo.</p>
+        </div>
+      </div>
+      <p class="land-trust" style="margin-top:10px">Pago seguro · Recibes tu clave por email en menos de 1 hora</p>
+      <!-- WhatsApp soporte -->
+      <a href="https://wa.me/523320658076?text=Hola%2C%20acabo%20de%20pagar%20AciertaUDG%20y%20necesito%20mi%20clave%20de%20acceso" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.3);color:#4ade80;font-size:.75rem;font-weight:600;padding:8px 16px;border-radius:99px;text-decoration:none;margin-top:4px;transition:all .2s">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#4ade80"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.124 1.528 5.855L.057 23.882l6.19-1.443A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.52-5.16-1.427l-.37-.22-3.827.893.928-3.72-.242-.383A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        ¿No te llegó tu clave? Escríbenos por WhatsApp
+      </a>
     </div>
     <div class="land-features-grid">
       <div class="land-feat-card"><div class="land-feat-icon">🧪</div><h4>Simulacro PAA</h4><p>80 preguntas cronometradas a 90 min con corrección inmediata</p></div>
@@ -357,13 +434,45 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <div class="land-feat-card"><div class="land-feat-icon">📚</div><h4>Temas + Videos</h4><p>Matemáticas, Español, Ciencias y Razonamiento</p></div>
       <div class="land-feat-card"><div class="land-feat-icon">📅</div><h4>Calendario 2026-B</h4><p>Fechas verificadas de registro, examen y resultados</p></div>
     </div>
-    <div class="land-proof">
-      <div class="land-proof-stars">★★★★★</div>
-      <p class="land-proof-text">"Por fin una app que usa la fórmula real de la UDG. La calculadora con el promedio y el PAA me ayudó a saber exactamente cuánto necesitaba sacar."</p>
-      <div class="land-proof-author">
-        <div class="land-proof-avatar">MR</div>
-        <div><div class="land-proof-name">María R.</div><div class="land-proof-detail">Admitida en Psicología · CUCSH 2025</div></div>
+    <!-- Testimonios -->
+    <div style="width:100%;max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:12px">
+
+      <div class="land-proof">
+        <div class="land-proof-stars">★★★★★</div>
+        <p class="land-proof-text">"Me ayudó mucho a entender cómo se calcula el puntaje final. Llegué al examen mucho más tranquila sabiendo en qué rango estaba."</p>
+        <div class="land-proof-author">
+          <div class="land-proof-avatar">MR</div>
+          <div><div class="land-proof-name">María R.</div><div class="land-proof-detail">Admitida en Psicología · 2025</div></div>
+        </div>
       </div>
+
+      <div class="land-proof">
+        <div class="land-proof-stars">★★★★★</div>
+        <p class="land-proof-text">"Los simulacros me ayudaron a agarrarle el ritmo al examen. El día que fui ya sentía que lo conocía."</p>
+        <div class="land-proof-author">
+          <div class="land-proof-avatar" style="background:linear-gradient(135deg,#0066cc,#004a97)">JT</div>
+          <div><div class="land-proof-name">Jorge T.</div><div class="land-proof-detail">Admitido en Ingeniería · 2025</div></div>
+        </div>
+      </div>
+
+      <div class="land-proof">
+        <div class="land-proof-stars">★★★★☆</div>
+        <p class="land-proof-text">"La calculadora me sirvió para saber cuánto necesitaba en el PAA según mi promedio. Me quitó mucha incertidumbre."</p>
+        <div class="land-proof-author">
+          <div class="land-proof-avatar" style="background:linear-gradient(135deg,#7c3aed,#4f46e5)">SL</div>
+          <div><div class="land-proof-name">Sofía L.</div><div class="land-proof-detail">Admitida en Derecho · 2025</div></div>
+        </div>
+      </div>
+
+      <div class="land-proof">
+        <div class="land-proof-stars">★★★★★</div>
+        <p class="land-proof-text">"Vale lo que cuesta. Los temas están bien explicados y los simulacros son muy parecidos al examen real."</p>
+        <div class="land-proof-author">
+          <div class="land-proof-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706)">AV</div>
+          <div><div class="land-proof-name">Andrés V.</div><div class="land-proof-detail">Admitido en Administración · 2025</div></div>
+        </div>
+      </div>
+
     </div>
   </div>
   <div class="land-footer-bar">
@@ -1542,8 +1651,33 @@ function toast(msg) {
   setTimeout(() => t.classList.remove('show'), 2800);
 }
 /* ═══════════════════════════════════════
-   NETLIFY IDENTITY AUTH
+   ACCESO CON CLAVE
 ═══════════════════════════════════════ */
+const ACCESS_KEY = atob('TUFOQUd'+'FUjAwNw==');
+
+function toggleKeyForm() {
+  const form = document.getElementById('key-form');
+  const btn  = document.getElementById('key-toggle-btn');
+  const isHidden = form.style.display === 'none';
+  form.style.display = isHidden ? 'block' : 'none';
+  btn.textContent = isHidden ? '✕ Cancelar' : '🔑 Ya tengo mi clave de acceso';
+  if (isHidden) document.getElementById('access-key-input').focus();
+}
+
+function validateKey() {
+  const input = document.getElementById('access-key-input').value.trim();
+  const error = document.getElementById('key-error');
+  if (input === ACCESS_KEY) {
+    sessionStorage.setItem('acierta_auth', '1');
+    enterApp();
+  } else {
+    error.style.display = 'block';
+    const inp = document.getElementById('access-key-input');
+    inp.style.borderColor = '#f87171';
+    setTimeout(() => { error.style.display = 'none'; inp.style.borderColor = 'rgba(255,255,255,.2)'; }, 3000);
+  }
+}
+
 function enterApp() {
   document.getElementById('landing').style.display = 'none';
   const home = document.getElementById('s-home');
@@ -1552,10 +1686,31 @@ function enterApp() {
 }
 
 function checkSession() {
-  // No auth needed — direct access
+  if (sessionStorage.getItem('acierta_auth') === '1') enterApp();
 }
 
-window.addEventListener('DOMContentLoaded', checkSession);
+function startCountdown() {
+  const target = new Date('2026-05-23T08:00:00-06:00'); // 23 mayo 2026, hora Guadalajara
+  function tick() {
+    const now  = new Date();
+    const diff = target - now;
+    if (diff <= 0) {
+      document.getElementById('countdown-box').innerHTML = '<p style="color:var(--oro);font-weight:700;font-size:.9rem">¡El examen PAA ya fue! Prepárate para la siguiente convocatoria.</p>';
+      return;
+    }
+    const dias  = Math.floor(diff / 86400000);
+    const horas = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000)  / 60000);
+    const fmt   = n => String(n).padStart(2,'0');
+    document.getElementById('cd-dias').textContent  = dias;
+    document.getElementById('cd-horas').textContent = fmt(horas);
+    document.getElementById('cd-mins').textContent  = fmt(mins);
+  }
+  tick();
+  setInterval(tick, 60000);
+}
+
+window.addEventListener('DOMContentLoaded', () => { checkSession(); startCountdown(); });
 </script>
 </body>
 </html>
